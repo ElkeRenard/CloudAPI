@@ -1,3 +1,7 @@
 <section id = 'listAll'>
-  
+    <ul *ngIf="completeList">
+        <li *ngFor="let country of completeList">
+             {{ country.name }}
+        </li>
+    </ul>
 </section>

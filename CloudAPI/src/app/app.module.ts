@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { ExoticService } from '../services/exotic.service';
+import { ExoticService } from '././services/exotic.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -19,14 +20,15 @@ import { DetailComponent } from './detail/detail.component';
     HomepageComponent,
     ListAllComponent,
     SearchResultComponent,
-    DetailComponent
+    DetailComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [ExoticService],
+  providers: [HttpClient, ExoticService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

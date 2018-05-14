@@ -4,6 +4,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ListAllComponent } from './list-all/list-all.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { DetailComponent } from './detail/detail.component';
+import { ExoticService } from '././services/exotic.service';
 
 @Component({
   selector: 'app-root',
