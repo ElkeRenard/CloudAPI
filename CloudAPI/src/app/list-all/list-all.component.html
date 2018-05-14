@@ -1,7 +1,30 @@
 <section id = 'listAll'>
-    <ul *ngIf="completeList">
-        <li *ngFor="let country of completeList">
-             {{ country.name }}
-        </li>
-    </ul>
+    <!--Table-->
+<table class="table table-hover">
+
+        <!--Table head-->
+        <thead *ngIf="completeList">
+            <tr>
+                <th>ID</th>
+                <th>Country</th>
+                <th>Capital</th>
+                <th>Region</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+    
+        <!--Table body-->
+        <tbody>
+            <tr *ngFor="let country of completeList">
+                <th scope="row">{{country.iso2Code}}</th>
+                <td>{{country.name}}</td>
+                <td>{{country.capitalCity}}</td>
+                <td>{{country.region.value}}</td>
+            </tr>
+        </tbody>
+        <!--Table body-->
+    
+    </table>
+    <!--Table-->
+   
 </section>
