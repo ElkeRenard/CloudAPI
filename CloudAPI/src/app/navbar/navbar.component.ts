@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  public language:string;
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  private ChangeLanguage(lan:string){
+    this.language = lan;
+  }
+
+
 
 }

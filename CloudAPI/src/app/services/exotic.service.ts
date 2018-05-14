@@ -6,10 +6,13 @@ import "rxjs/add/operator/map";
 @Injectable()
 export class ExoticService {
 
+  language:string;
+
   constructor(private http: HttpClient) { }
 
   getAll():Observable<IRoot>{
-    return this.http.get<IRoot>('http://api.worldbank.org/v2/countries?format=json');
+  
+    return this.http.get<IRoot>('http://api.worldbank.org/v2/es/countries?format=json');
   }
 
   getCategory(category){}

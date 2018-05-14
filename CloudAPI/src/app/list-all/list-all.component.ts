@@ -28,4 +28,12 @@ export class ListAllComponent implements OnInit {
 
   }
 
+  prev(){
+   
+  }
+
+  next(){
+
+  }
+
 }

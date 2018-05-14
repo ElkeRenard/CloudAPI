@@ -12,28 +12,36 @@
 
           <!-- Links -->
           <ul class="navbar-nav mr-auto smooth-scroll">
-              <li class="nav-item active">
+              <li class="nav-item">
                   <a class="nav-link" href="#">Home
                       <span class="sr-only">(current)</span>
                   </a>
               </li>
 
-              <!-- Dropdown -->
-              <li class="nav-item dropdown">
-                  <a href="list-all" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">List All</a>
-                  <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">All</a>
-                      <a class="dropdown-item" href="#">Fruits</a>
-                      <a class="dropdown-item" href="#">Vegetables</a>
-                      <a class="dropdown-item" href="#">Herbs and spices</a>
-                      <a class="dropdown-item" href="#">Nuts</a>
-                      <a class="dropdown-item" href="#">Beans and pulses</a>
-                  </div>
+              <li class="nav-item">
+                  <a href="#listAll" class="nav-link">List All</a>     
+              </li>
+
+              <li class="nav-item">
+                    <a href="" class="nav-link">Regions</a>     
               </li>
 
           </ul>
           <!-- Links -->
-
+          <ul class="navbar-nav nav-flex-icons">
+                <li  class="nav-item">
+                    <a id="nl" class="nav-link" ng-click="ChangeLanguage(nl)">NL</a>
+                </li>
+                <li id="fr" class="nav-item">
+                    <a class="nav-link" ng-click="ChangeLanguage(fr)">FR</a>
+                </li>
+                <li id="en" class="nav-item">
+                    <a class="nav-link" ng-click="ChangeLanguage(en)">EN</a>
+                </li>
+                <li id="es" class="nav-item">
+                    <a class="nav-link" ng-click="ChangeLanguage(es)">ES</a>
+                </li>
+            </ul>
           
       </div>
       <!-- Collapsible content -->
