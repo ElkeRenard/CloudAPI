@@ -12,6 +12,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ListAllComponent } from './list-all/list-all.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { DetailComponent } from './detail/detail.component';
+import { RegionsComponent } from './regions/regions.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { DetailComponent } from './detail/detail.component';
     ListAllComponent,
     SearchResultComponent,
     DetailComponent,
+    RegionsComponent,
   ],
   imports: [
     BrowserModule,
