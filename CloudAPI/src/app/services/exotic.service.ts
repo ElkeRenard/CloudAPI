@@ -12,12 +12,14 @@ export class ExoticService {
 
   getAll():Observable<IRoot>{
   
-    return this.http.get<IRoot>('http://api.worldbank.org/v2/es/countries?format=json');
+    return this.http.get<IRoot>('http://countryapi.gear.host/v1/Country/getCountries');
   }
 
-  getCategory(category){}
+  getRegion(region){}
 
-  getSearchResult(name){}
+  getSearchResult(name){
+    return this.http.get(`http://countryapi.gear.host/v1/Country/getCountries?pName=${name}`);
+  }
 
   getDetail(fullname){}
 
@@ -25,45 +27,29 @@ export class ExoticService {
 
 export interface IRoot{
 
-  "requestedPage": IPage,
-  "countries": ICountry[]
-}
-
-export interface IPage{
-
-  page: number,
-  pages: number,
-  per_page:number,
-  total:number
-
+  IsSuccess:boolean,
+  UserMessage:string,
+  TechnicalMessage:string,
+  TotalCount:number,
+  Response:ICountry[]
 }
 
 export interface ICountry{
 
-  id: string,
-  iso2Code:string,
-  name:string,
-  region:{
-    id:string,
-    iso2code:string,
-    value:string
-  },
-  adminregion:{
-    id:string,
-    iso2code:string,
-    value:string
-  },
-  incomeLevel:{
-    id:string,
-    iso2code:string,
-    value:string
-  },
-  lendingType:{
-    id:string,
-    iso2code:string,
-    value:string
-  },
-  capitalCity:string,
-  longitude:number,
-  latitude:number
+  Name:string,
+  Alpha2Code:string,
+  Alpha3Code:string,
+  NativeName:string,
+  Region:string,
+  SubRegion:string,
+  Latitude:number,
+  Longitude:number,
+  Area:number,
+  NumericCode:number,
+  NativeLanguage:string,
+  CurrencyCode:string,
+  CurrencyName:string,
+  CurrencySymbol:string,
+  Flag:string,
+  FlagPng:string
 }

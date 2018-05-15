@@ -7,10 +7,10 @@
         <!--Table head-->
         <thead *ngIf="completeList">
             <tr>
-                <th>ID</th>
-                <th>Country</th>
-                <th>Capital</th>
-                <th>Region</th>
+                <th  class="font-weight-bold">ID</th>
+                <th  class="font-weight-bold">Country</th>
+                <th  class="font-weight-bold">Native name</th>
+                <th  class="font-weight-bold">Region</th>
             </tr>
         </thead>
         <!--Table head-->
@@ -18,10 +18,10 @@
         <!--Table body-->
         <tbody>
             <tr *ngFor="let country of completeList">
-                <th scope="row">{{country.iso2Code}}</th>
-                <td>{{country.name}}</td>
-                <td>{{country.capitalCity}}</td>
-                <td>{{country.region.value}}</td>
+                <th scope="row">{{country.Alpha3Code}}</th>
+                <td>{{country.Name}}</td>
+                <td>{{country.NativeName}}</td>
+                <td>{{country.Region}}</td>
             </tr>
         </tbody>
         <!--Table body-->

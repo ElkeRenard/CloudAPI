@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExoticService } from '.././services/exotic.service';
 import { ICountry } from '.././services/exotic.service';
-import { IPage } from '.././services/exotic.service';
 import { IRoot } from '.././services/exotic.service';
 
 @Component({
@@ -11,13 +10,14 @@ import { IRoot } from '.././services/exotic.service';
 })
 export class ListAllComponent implements OnInit {
 
-  public completeList: IRoot;
+  public completeList: ICountry[];
   constructor(private exoticApi: ExoticService) { }
 
   ngOnInit() {
 
     this.exoticApi.getAll().subscribe(root => {
-    this.completeList = root[1];
+    this.completeList = root.Response;
+    console.log(this.completeList);
     },
     err => {
       console.log(err.message);

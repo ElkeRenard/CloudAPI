@@ -3,6 +3,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ExoticService } from '././services/exotic.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormBuilder, FormGroup} from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -28,7 +29,7 @@ import { DetailComponent } from './detail/detail.component';
     MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [HttpClient, ExoticService],
+  providers: [HttpClient, ExoticService,FormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
