@@ -29,7 +29,7 @@ import { DetailComponent } from './detail/detail.component';
     MDBBootstrapModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [HttpClient, ExoticService,HomepageComponent],
+  providers: [HttpClient, ExoticService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

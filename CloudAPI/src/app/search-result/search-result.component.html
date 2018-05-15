@@ -1,10 +1,11 @@
-<section id = 'searchResult'>
-    <h2 *ngIf="results" class="mb-5 font-weight-bold"><a ng-click="prev()"><i class="fa fa-angle-left mr-5" aria-hidden="true"></i></a>Search results<a ng-click="next()"><i class="fa fa-angle-right ml-5"></i></a></h2>
+<section id = 'searchResult' class="text-center">
+    
+    <h2 class="mb-4 font-weight-bold">Search result</h2>
     <!--Table-->
-    <table class="table table-hover table-sm">
+    <table *ngIf = "results; else start" class="table table-hover table-sm">
 
         <!--Table head-->
-        <thead *ngIf="results">
+        <thead *ngIf="results != ''; else noData">
             <tr>
                 <th  class="font-weight-bold">ID</th>
                 <th  class="font-weight-bold">Country</th>
@@ -29,3 +30,12 @@
     <!--Table-->
      
 </section>
+
+<ng-template #noData>
+    <i class="fa fa-globe fa-5x blue-text mb-3" aria-hidden="true"></i>
+    <p>Your search did not match any country.</p>
+</ng-template>
+
+<ng-template #start>
+        <i class="fa fa-globe fa-5x blue-text mb-3" aria-hidden="true"></i>
+</ng-template>
