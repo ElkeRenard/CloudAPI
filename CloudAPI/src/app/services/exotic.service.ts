@@ -30,8 +30,10 @@ export class ExoticService {
     return this.searchResult;
   }
 
-  getDetail(fullname){}
-
+  getDetail(fullname){
+    return this.http.get<IRootDetail>(`http://countryapi.gear.host/v1/Country/getCountries?pName=${fullname}`);
+  }
+    
 }
 
 export interface IRoot{
@@ -41,6 +43,15 @@ export interface IRoot{
   TechnicalMessage:string,
   TotalCount:number,
   Response:ICountry[]
+}
+
+export interface IRootDetail{
+
+  IsSuccess:boolean,
+  UserMessage:string,
+  TechnicalMessage:string,
+  TotalCount:number,
+  Response:ICountry
 }
 
 export interface ICountry{

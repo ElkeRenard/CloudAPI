@@ -1,1 +1,64 @@
-<section id = 'detail'></section>
+<section id = 'detail'>
+        <h2 class="mb-4 font-weight-bold text-center">Selected Country</h2>
+        <div class="text-center mb-4">
+            <img src="https://api.backendless.com/2F26DFBF-433C-51CC-FF56-830CEA93BF00/473FB5A9-D20E-8D3E-FF01-E93D9D780A00/files/CountryFlagsPng/blz.png" alt="flag" style="width: 20%;">
+        </div>
+        <button onclick="go()">go</button>
+
+        <!--Grid row-->
+        <div class="row">
+        
+        <!--Grid column-->
+        <div class="col-lg-5 col-md-12">
+        
+            <table class="table table-borderless table-sm" *ngIf="country">
+            
+                <tbody>
+                    <tr>
+                        <th scope="row"><i class="fa fa-globe mr-2" aria-hidden="true"></i>Name</th>
+                        <td>{{country.Name}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><i class="fa fa-heart mr-2" aria-hidden="true"></i>Native name</th>
+                        <td>{{country.NativeName}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><i class="fa fa-map-o mr-2" aria-hidden="true"></i>Region</th>
+                        <td>{{country.Region}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><i class="fa fa-map mr-2" aria-hidden="true"></i>Subregion</th>
+                        <td>{{country.Subregion}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><i class="fa fa-heart-o mr-2" aria-hidden="true"></i>Native language</th>
+                        <td>{{country.NativeLanguage}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><i class="fa fa-money mr-2" aria-hidden="true"></i>Currency name</th>
+                        <td>{{country.CurrencyName}}</td>
+                        <th scope="row">Symbol</th>
+                        <td>{{country.CurrencySymbol}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><i class="fa fa-star mr-2" aria-hidden="true"></i>Area</th>
+                        <td>{{country.Area}} km²</td>
+                    </tr>
+                </tbody>
+    
+            </table>
+        
+        </div>
+        <!--Grid column-->
+        
+        <!--Grid column-->
+        <div class="col-lg-7 col-md-12">
+        
+                
+        
+        </div>
+        <!--Grid column-->
+        
+        </div>
+        <!--Grid row-->
+</section>
