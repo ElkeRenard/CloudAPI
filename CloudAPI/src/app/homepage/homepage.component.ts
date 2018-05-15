@@ -8,7 +8,7 @@ import {ExoticService, ICountry } from '../services/exotic.service';
 })
 export class HomepageComponent implements OnInit {
 
-  public result: ICountry;
+  public list: ICountry[];
 
   constructor(private exoticApi: ExoticService) { }
 
@@ -17,16 +17,24 @@ export class HomepageComponent implements OnInit {
 
   findCountry(){
     console.log( (<HTMLInputElement>document.getElementById("search")).value);
-    this.exoticApi.getSearchResult((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
-      console.log(root);
-      },
-      err => {
-        console.log(err.message);
-      },
-      () => {
-        console.log("Done loading complete list");
-      });
+    this.exoticApi.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
+      this.list = root.Response;
+      this.exoticApi.setSearchResultByName(this.list);
+      console.log(this.list);
+    },
+    err => {
+      console.log(err.message);
+    },
+    () => {
+      console.log("Done loading search result");
+    });
   
     }
 
+    public getResult(){
+      console.log("return list");
+      return this.list;
+    }
+
 }
+

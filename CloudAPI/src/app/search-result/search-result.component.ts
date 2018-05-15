@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ICountry, ExoticService } from '../services/exotic.service';
 
 @Component({
   selector: 'search-result',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchResultComponent implements OnInit {
 
-  constructor() { }
+  public results: ICountry[];
+  constructor(public API: ExoticService) { }
 
   ngOnInit() {
+   
   }
+
+  ngDoCheck(){
+    console.log("docheck");
+    this.results = this.API.getSearchResultByName();
+    console.log(this.results);
+  }
+
+
 
 }

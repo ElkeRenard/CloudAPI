@@ -7,6 +7,7 @@ import "rxjs/add/operator/map";
 export class ExoticService {
 
   language:string;
+  private searchResult: ICountry[];
 
   constructor(private http: HttpClient) { }
 
@@ -17,8 +18,16 @@ export class ExoticService {
 
   getRegion(region){}
 
-  getSearchResult(name){
-    return this.http.get(`http://countryapi.gear.host/v1/Country/getCountries?pName=${name}`);
+  searchByName(name):Observable<IRoot>{
+    return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pName=${name}`);
+  }
+
+  setSearchResultByName(result){
+    this.searchResult = result;
+  }
+
+  getSearchResultByName(){
+    return this.searchResult;
   }
 
   getDetail(fullname){}
