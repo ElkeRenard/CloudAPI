@@ -9,6 +9,7 @@ import {ExoticService, ICountry } from '../services/exotic.service';
 export class HomepageComponent implements OnInit {
 
   public list: ICountry[];
+  private input: string;
 
   constructor(private exoticApi: ExoticService) { }
 
@@ -16,25 +17,25 @@ export class HomepageComponent implements OnInit {
   }
 
   findCountry(){
-    console.log( (<HTMLInputElement>document.getElementById("search")).value);
-    this.exoticApi.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
-      this.list = root.Response;
+    console.log((<HTMLInputElement>document.getElementById("search")).value);
+    this.input = (<HTMLInputElement>document.getElementById("search")).value;
+    if(this.input == ""){
+      this.list = [];
       this.exoticApi.setSearchResultByName(this.list);
-      console.log(this.list);
-    },
-    err => {
-      console.log(err.message);
-    },
-    () => {
-      console.log("Done loading search result");
-    });
-  
     }
-
-    public getResult(){
-      console.log("return list");
-      return this.list;
+    else{
+      this.exoticApi.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
+        this.list = root.Response;
+        this.exoticApi.setSearchResultByName(this.list);
+        console.log(this.list);
+      },
+      err => {
+        console.log(err.message);
+      },
+      () => {
+        console.log("Done loading search result");
+      });
     }
-
+  }
 }
 
