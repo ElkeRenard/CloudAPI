@@ -1,17 +1,17 @@
 <section id = 'detail'>
         <h2 class="mb-4 font-weight-bold text-center">Selected Country</h2>
         <div class="text-center mb-4" *ngIf="country">
-            <img src= {{country.Flag}} alt="flag" style="width: 35%;">
+            <img src= {{country.Flag}} alt="flag" style="width: 30%;">
         </div>
+        
         <button type="button" (click)="go()" class="btn">Find<i class="fa fa-paper-plane-o ml-2"></i></button>
 
         <!--Grid row-->
         <div class="row">
         
         <!--Grid column-->
-        <div class="col-lg-5 col-md-12">
-        
-            <table class="table table-borderless table-sm" *ngIf="country">
+        <div class="col-lg-5 col-md-12" *ngIf="country != null; else start">
+            <table class="table table-borderless table-sm" >
             
                 <tbody>
                     <tr>
@@ -62,3 +62,12 @@
         </div>
         <!--Grid row-->
 </section>
+
+<ng-template #noData>
+    <i class="fa fa-globe fa-5x blue-text mb-3" aria-hidden="true"></i>
+    <p>Your search did not match any country.</p>
+</ng-template>
+
+<ng-template #start>
+        <i class="fa fa-globe fa-5x blue-text mb-3 " aria-hidden="true"></i>
+</ng-template>

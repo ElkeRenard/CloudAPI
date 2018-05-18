@@ -8,6 +8,7 @@ export class ExoticService {
 
   language:string;
   private searchResult: ICountry[];
+  private searchDetail: ICountry;
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +31,14 @@ export class ExoticService {
     return this.searchResult;
   }
 
+  setSearchResultDetail(input:ICountry){
+    this.searchDetail = input;
+  }
+
+  getSearchResultDetail():ICountry{
+    return this.searchDetail;
+  }
+
   getDetail(fullname):Observable<IRoot>{
     return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pName=${fullname}`);
   }
@@ -45,14 +54,6 @@ export interface IRoot{
   Response:ICountry[]
 }
 
-export interface IRootDetail{
-
-  IsSuccess:boolean,
-  UserMessage:string,
-  TechnicalMessage:string,
-  TotalCount:number,
-  Response:ICountry
-}
 
 export interface ICountry{
 

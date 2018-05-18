@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import {ICountry, ExoticService } from '../services/exotic.service';
 
 @Component({
@@ -6,9 +6,10 @@ import {ICountry, ExoticService } from '../services/exotic.service';
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss']
 })
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent implements OnInit, DoCheck {
 
   public results: ICountry[];
+
   constructor(public API: ExoticService) { }
 
   ngOnInit() {
@@ -16,11 +17,15 @@ export class SearchResultComponent implements OnInit {
   }
 
   ngDoCheck(){
-    console.log("docheck");
     this.results = this.API.getSearchResultByName();
-    console.log(this.results);
+    console.log("results search: ",this.results);
   }
 
+  public goToDetail(countryIn: ICountry){
+    console.log("clicked: ",countryIn);
+   
+    this.API.setSearchResultDetail(countryIn);
+  }
 
 
 }

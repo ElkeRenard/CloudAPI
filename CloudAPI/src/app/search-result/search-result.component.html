@@ -17,7 +17,7 @@
        
         <!--Table body-->
         <tbody>
-            <tr *ngFor="let country of results">
+            <tr *ngFor="let country of results" (click)="goToDetail(country)">
                 <th scope="row">{{country.Alpha3Code}}</th>
                 <td>{{country.Name}}</td>
                 <td>{{country.NativeName}}</td>
