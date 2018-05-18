@@ -10,10 +10,10 @@
         
 
         <!--Grid row-->
-        <div class="row">
+        <div class="row" *ngIf="country; else start">
         
         <!--Grid column-->
-        <div class="col-lg-5 col-md-12" *ngIf="country != null; else start">
+        <div class="col-lg-5 col-md-12" >
             <table class="table table-borderless table-sm" >
             
                 <tbody>
@@ -72,5 +72,7 @@
 </ng-template>
 
 <ng-template #start>
-        <i class="fa fa-globe fa-5x blue-text mb-3 " aria-hidden="true"></i>
+        <div class="text-center mb-4">
+            <i class="fa fa-globe fa-5x blue-text mb-3 " aria-hidden="true"></i>
+        </div>
 </ng-template>
