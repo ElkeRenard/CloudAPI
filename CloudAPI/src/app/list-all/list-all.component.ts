@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ExoticService } from '.././services/exotic.service';
 import { ICountry } from '.././services/exotic.service';
 import { IRoot } from '.././services/exotic.service';
@@ -12,16 +12,19 @@ export class ListAllComponent implements OnInit {
 
   public completeList: ICountry[];
   private page:number=1;
-  constructor(private exoticApi: ExoticService) { }
+  private pages: any;
+  constructor(private exoticApi: ExoticService, private renderer: Renderer2) { }
 
   ngOnInit() {
     this.getList();
+    this.setActive();
   }
 
   prev(){
     if(this.page>1){
       this.page -= 1;
       this.getList();
+      this.setActive();
     }
    
    console.log(this.page);
@@ -31,9 +34,17 @@ export class ListAllComponent implements OnInit {
     if(this.page<10){
       this.page +=1;
       this.getList();
+      this.setActive();
     }
     console.log(this.page);
 
+  }
+
+  chosenPage(input:number){
+    this.page = input;
+    this.setActive();
+    this.getList();
+    console.log(this.page);
   }
 
   private getList(){
@@ -47,6 +58,20 @@ export class ListAllComponent implements OnInit {
       () => {
         console.log("Done loading complete list");
       });
+  }
+
+  private setActive(){
+    this.pages = document.getElementsByClassName("page-item");
+    console.log(this.pages);
+    for(let item of this.pages){
+      if(item.id == this.page){
+        console.log(this.page, item)
+        this.renderer.setStyle(item, 'background-color', '#4dd0e1');
+      }
+      else{
+        this.renderer.setStyle(item, 'background-color', 'white');
+      }
+    }
   }
 
 }

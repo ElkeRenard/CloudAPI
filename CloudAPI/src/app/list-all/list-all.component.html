@@ -1,6 +1,27 @@
 <section id = 'listAll' class="text-center">
 
     <h2 class="mb-5 font-weight-bold"><a (click)="prev()"><i class="fa fa-angle-left mr-5" aria-hidden="true"></i></a>All countries<a (click)="next()"><i class="fa fa-angle-right ml-5"></i></a></h2>
+        <nav>
+            <ul class="pagination justify-content-center">
+    
+               
+        
+                <!--Numbers-->
+                <li id="1" class="page-item"><a class="page-link" (click)="chosenPage(1)">1</a></li>
+                <li id="2" class="page-item"><a class="page-link" (click)="chosenPage(2)">2</a></li>
+                <li id="3" class="page-item"><a class="page-link" (click)="chosenPage(3)">3</a></li>
+                <li id="4" class="page-item"><a class="page-link" (click)="chosenPage(4)">4</a></li>
+                <li id="5" class="page-item"><a class="page-link" (click)="chosenPage(5)">5</a></li>
+                <li id="6" class="page-item"><a class="page-link" (click)="chosenPage(6)">6</a></li>
+                <li id="7" class="page-item"><a class="page-link" (click)="chosenPage(7)">7</a></li>
+                <li id="8" class="page-item"><a class="page-link" (click)="chosenPage(8)">8</a></li>
+                <li id="9" class="page-item"><a class="page-link" (click)="chosenPage(9)">9</a></li>
+                <li id="10" class="page-item"><a class="page-link" (click)="chosenPage(10)">10</a></li>            
+                <!--Arrow right-->
+              
+            </ul>
+        </nav>
+       
     <!--Table-->
     <table class="table table-hover table-sm">
 
