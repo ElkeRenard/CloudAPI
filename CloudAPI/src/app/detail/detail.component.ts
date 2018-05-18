@@ -14,15 +14,7 @@ export class DetailComponent implements OnInit{
 
   constructor(public exoticApi: ExoticService) { }
 
-  ngOnChanges(){console.log("onchanges");}
-  ngDoCheck(){console.log("docheck");}
-  ngAfterContentInit(){console.log("aftercontentinit");}
-  ngAfterContentChecked(){console.log("aftercontentchecked");}
-  ngAfterViewInit(){console.log("afterviewinit");}
-  ngAfterViewChecked(){console.log("afterviewchecked");}
-  ngOnDestroy(){
-    console.log("destroy");
-  }
+
   ngOnInit() {console.log("oninit");}
 
   public go(){

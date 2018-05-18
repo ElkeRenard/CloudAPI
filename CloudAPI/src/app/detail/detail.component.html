@@ -1,10 +1,13 @@
 <section id = 'detail'>
         <h2 class="mb-4 font-weight-bold text-center">Selected Country</h2>
-        <div class="text-center mb-4" *ngIf="country">
-            <img src= {{country.Flag}} alt="flag" style="width: 30%;">
+        <div class="text-center mb-4">
+            <button type="button" (click)="go()" class="btn">Details selected country<i class="fa fa-paper-plane-o ml-2"></i></button>
+        </div>
+        <div class="text-center mb-4">
+                <img src= {{country.Flag}} alt="flag" style="width: 30%;" *ngIf="country">
+                
         </div>
         
-        <button type="button" (click)="go()" class="btn">Find<i class="fa fa-paper-plane-o ml-2"></i></button>
 
         <!--Grid row-->
         <div class="row">

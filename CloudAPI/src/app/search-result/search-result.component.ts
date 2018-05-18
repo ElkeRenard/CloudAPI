@@ -1,5 +1,6 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, Renderer2, Inject } from '@angular/core';
 import {ICountry, ExoticService } from '../services/exotic.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'search-result',
@@ -9,8 +10,9 @@ import {ICountry, ExoticService } from '../services/exotic.service';
 export class SearchResultComponent implements OnInit, DoCheck {
 
   public results: ICountry[];
+  private selectedRow: number;
 
-  constructor(public API: ExoticService) { }
+  constructor(public API: ExoticService, private renderer: Renderer2, @Inject(DOCUMENT) documen) { }
 
   ngOnInit() {
    
@@ -21,9 +23,10 @@ export class SearchResultComponent implements OnInit, DoCheck {
     console.log("results search: ",this.results);
   }
 
-  public goToDetail(countryIn: ICountry){
-    console.log("clicked: ",countryIn);
-   
+  public goToDetail(countryIn: ICountry, index:number){
+    this.selectedRow = index;
+    console.log("clicked: ",countryIn.Name);
+    console.log("clicked",index);
     this.API.setSearchResultDetail(countryIn);
   }
 
