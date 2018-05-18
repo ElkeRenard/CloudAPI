@@ -11,29 +11,42 @@ import { IRoot } from '.././services/exotic.service';
 export class ListAllComponent implements OnInit {
 
   public completeList: ICountry[];
+  private page:number=1;
   constructor(private exoticApi: ExoticService) { }
 
   ngOnInit() {
-
-    this.exoticApi.getAll().subscribe(root => {
-    this.completeList = root.Response;
-    console.log(this.completeList);
-    },
-    err => {
-      console.log(err.message);
-    },
-    () => {
-      console.log("Done loading complete list");
-    });
-
+    this.getList();
   }
 
   prev(){
+    if(this.page>1){
+      this.page -= 1;
+      this.getList();
+    }
    
+   console.log(this.page);
   }
 
   next(){
+    if(this.page<10){
+      this.page +=1;
+      this.getList();
+    }
+    console.log(this.page);
 
+  }
+
+  private getList(){
+    this.exoticApi.getAll(this.page).subscribe(root => {
+      this.completeList = root.Response;
+      console.log(this.completeList);
+      },
+      err => {
+        console.log(err.message);
+      },
+      () => {
+        console.log("Done loading complete list");
+      });
   }
 
 }

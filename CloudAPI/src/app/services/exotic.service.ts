@@ -12,9 +12,9 @@ export class ExoticService {
 
   constructor(private http: HttpClient) { }
 
-  getAll():Observable<IRoot>{
+  getAll(page:number):Observable<IRoot>{
   
-    return this.http.get<IRoot>('http://countryapi.gear.host/v1/Country/getCountries');
+    return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pLimit=25&pPage=${page}`);
   }
 
   getRegion(region){}
