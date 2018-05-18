@@ -13,6 +13,8 @@ export class ListAllComponent implements OnInit {
   public completeList: ICountry[];
   private page:number=1;
   private pages: any;
+  public selectedRow: number;
+
   constructor(private exoticApi: ExoticService, private renderer: Renderer2) { }
 
   ngOnInit() {
@@ -72,6 +74,13 @@ export class ListAllComponent implements OnInit {
         this.renderer.setStyle(item, 'background-color', 'white');
       }
     }
+  }
+
+  public goToDetail(countryIn: ICountry, index:number){
+    this.selectedRow = index;
+    console.log("clicked: ",countryIn.Name);
+    console.log("clicked",index);
+    this.exoticApi.setSearchResultDetail(countryIn);
   }
 
 }
