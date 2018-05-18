@@ -30,8 +30,8 @@ export class ExoticService {
     return this.searchResult;
   }
 
-  getDetail(fullname){
-    return this.http.get<IRootDetail>(`http://countryapi.gear.host/v1/Country/getCountries?pName=${fullname}`);
+  getDetail(fullname):Observable<IRoot>{
+    return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pName=${fullname}`);
   }
     
 }

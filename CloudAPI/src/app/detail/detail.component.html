@@ -1,9 +1,9 @@
 <section id = 'detail'>
         <h2 class="mb-4 font-weight-bold text-center">Selected Country</h2>
-        <div class="text-center mb-4">
-            <img src="https://api.backendless.com/2F26DFBF-433C-51CC-FF56-830CEA93BF00/473FB5A9-D20E-8D3E-FF01-E93D9D780A00/files/CountryFlagsPng/blz.png" alt="flag" style="width: 20%;">
+        <div class="text-center mb-4" *ngIf="country">
+            <img src= {{country.Flag}} alt="flag" style="width: 35%;">
         </div>
-        <button onclick="go()">go</button>
+        <button type="button" (click)="go()" class="btn">Find<i class="fa fa-paper-plane-o ml-2"></i></button>
 
         <!--Grid row-->
         <div class="row">
@@ -28,7 +28,7 @@
                     </tr>
                     <tr>
                         <th scope="row"><i class="fa fa-map mr-2" aria-hidden="true"></i>Subregion</th>
-                        <td>{{country.Subregion}}</td>
+                        <td>{{country.SubRegion}}</td>
                     </tr>
                     <tr>
                         <th scope="row"><i class="fa fa-heart-o mr-2" aria-hidden="true"></i>Native language</th>

@@ -17,9 +17,9 @@ export class DetailComponent implements OnInit {
      
   }
 
-  go(){
-    this.exoticApi.getDetail("belize").subscribe(root => {
-      this.country = root.Response;
+  public go(){
+    this.exoticApi.getDetail("china").subscribe(root => {
+      this.country = root.Response[0];
       console.log("detail:" ,this.country);
     },
     err => {
