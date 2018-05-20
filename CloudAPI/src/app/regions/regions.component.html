@@ -7,12 +7,7 @@
         <!--Table head-->
         <thead style = "background-color: #4dd0e1; color: white;">
             <tr>
-                <th>Africa</th>
-                <th>Americas</th>
-                <th>Asia</th>
-                <th>Europe</th>
-                <th>Oceania</th>
-                <th>Polar</th>
+                <th (click) = "showCountriesRegion('$event.target.textContent')" *ngFor = "let region of regions; let i = index" >{{region}}</th>
             </tr>
         </thead>
         <!--Table head-->
@@ -20,47 +15,10 @@
         <!--Table body-->
         <tbody>
             <tr>
-                <td>
+                <td *ngFor = "let region of subregions">
                   <ul>
-                    <li>Eastern Africa</li>
-                    <li>Middle Africa</li>
-                    <li>Northern Africa</li>
-                    <li>Southern Africa</li>
-                    <li>Western Africa</li>
+                    <li *ngFor = "let subregion of region">{{subregion}}</li>
                   </ul>
-                </td>
-                <td>
-                    <ul>
-                        <li>Caribbean</li>
-                        <li>Central America</li>
-                        <li>Northern America</li>
-                        <li>South America</li>
-                      </ul>
-                </td>
-                <td>
-                    <ul>
-                        <li>Central Asia</li>
-                        <li>Eastern Asia</li>
-                        <li>South-Eastern Asia</li>
-                        <li>Southern Asia</li>
-                        <li>Western Asia</li>
-                      </ul>
-                </td>
-                <td>
-                    <ul>
-                        <li>Eastern Europe</li>
-                        <li>Northern Europe</li>
-                        <li>Southern Europe</li>
-                        <li>Western Europe</li>
-                      </ul>
-                </td>
-                <td>
-                    <ul>
-                        <li>Australia and New Zealand</li>
-                        <li>Melanesia</li>
-                        <li>Micronesia</li>
-                        <li>Polynesia</li>
-                      </ul>
                 </td>
             </tr>
         </tbody>

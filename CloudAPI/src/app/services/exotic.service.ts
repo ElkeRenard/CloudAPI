@@ -17,7 +17,9 @@ export class ExoticService {
     return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pLimit=25&pPage=${page}`);
   }
 
-  getRegion(region){}
+  getCountriesByRegion(region, subregion):Observable<IRoot>{
+    return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pRegion=${region}&pSubRegion=${subregion}`)
+  }
 
   searchByName(name):Observable<IRoot>{
     return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pName=${name}`);
