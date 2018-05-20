@@ -9,6 +9,9 @@ import { ExoticService, ICountry } from '../services/exotic.service';
 export class RegionsComponent implements OnInit {
 
   public regionList: ICountry[];
+  public region: string;
+  public subregion: string;
+  public selectedRow: number;
   public regions: string[] = [
     "Africa",
     "Americas",
@@ -49,14 +52,63 @@ export class RegionsComponent implements OnInit {
       "Micronesia",
       "Polynesia"
      ]
-  ]
+  ];
 
-  constructor(private exoticApi: ExoticService) { }
+  /*public subregions = {
+    "Africa": [
+      "Eastern Africa",
+      "Middle Africa",
+      "Northern Africa",
+      "Southern Africa",
+      "Western Africa"
+    ],
+    "Americas": [
+      "Caribbean",
+      "Central America",
+      "Northern America",
+      "South America"
+     ],
+     "Asia":  [
+      "Central Asia",
+      "Eastern Asia",
+      "South-Eastern Asia",
+      "Southern Asia",
+      "Western Asia"
+     ],
+     "Europe":      [
+      "Eastern Europe",
+      "Northern Europe",
+      "Southern Europe",
+      "Western Europe"
+     ],
+     "Oceania":      [
+      "Australia and New Zealand",
+      "Melanesia",
+      "Micronesia",
+      "Polynesia"
+     ],
+     "Polar":[]
+  };*/
+
+  constructor(private exoticApi: ExoticService) { 
+    this.exoticApi.getCountriesByRegion("Americas", "Caribbean").subscribe(list => {
+      this.region = "Americas";
+      this.subregion = "Caribbean";
+      this.regionList = list.Response;
+      console.log(list);
+    },
+    error => {
+      console.log(error.message);
+    },
+    () => {
+      console.log("done loading region list");
+    });
+  }
 
   ngOnInit() {
   }
 
-  public async showCountriesRegion(region){
+  public showCountriesRegion(region){
     this.exoticApi.getCountriesByRegion(region, "").subscribe(list => {
       this.regionList = list.Response;
       console.log(this.regionList);
@@ -69,10 +121,11 @@ export class RegionsComponent implements OnInit {
     });
   }
 
-  public async showCountriesSubRegion(region, subregion){
-    this.exoticApi.getCountriesByRegion(region, subregion).subscribe(list => {
+  public showCountriesSubRegion(region, subregion){
+    //console.log("subregion: ", region, subregion);
+    this.exoticApi.getCountriesByRegion("Americas", subregion).subscribe(list => {
       this.regionList = list.Response;
-      console.log(this.regionList);
+      console.log(list);
     },
     error => {
       console.log(error.message);
@@ -80,6 +133,13 @@ export class RegionsComponent implements OnInit {
     () => {
       console.log("done loading region list");
     });
+  }
+
+  public goToDetail(countryIn: ICountry, index:number){
+    this.selectedRow = index;
+    console.log("clicked: ",countryIn.Name);
+    console.log("clicked",index);
+    this.exoticApi.setSearchResultDetail(countryIn);
   }
 
 }

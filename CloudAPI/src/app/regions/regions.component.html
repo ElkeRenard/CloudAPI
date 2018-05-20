@@ -7,7 +7,7 @@
         <!--Table head-->
         <thead style = "background-color: #4dd0e1; color: white;">
             <tr>
-                <th (click) = "showCountriesRegion('$event.target.textContent')" *ngFor = "let region of regions; let i = index" >{{region}}</th>
+                <th (click) = "showCountriesRegion(region)" *ngFor = "let region of regions; let i = index" >{{region}}</th>
             </tr>
         </thead>
         <!--Table head-->
@@ -17,7 +17,7 @@
             <tr>
                 <td *ngFor = "let region of subregions">
                   <ul>
-                    <li *ngFor = "let subregion of region">{{subregion}}</li>
+                    <li *ngFor = "let subregion of region" (click) = "showCountriesSubRegion(region, subregion)" class = "mb-2">{{subregion}}</li>
                   </ul>
                 </td>
             </tr>
@@ -27,5 +27,32 @@
     </table>
     </div>
   </div>
+
+  <h3 *ngIf = "regionList" class="mx-4 font-weight-bold text-center">Countries in {{region}}, {{subregion}}</h3>
+  <table *ngIf = "regionList" class="table table-hover table-sm">
+
+    <!--Table head-->
+    <thead>
+        <tr>
+            <th  class="font-weight-bold">ID</th>
+            <th  class="font-weight-bold">Country</th>
+            <th  class="font-weight-bold">Native name</th>
+            <th  class="font-weight-bold">Region</th>
+        </tr>
+    </thead>
+    <!--Table head-->
+   
+    <!--Table body-->
+    <tbody class="list">
+        <tr *ngFor="let country of regionList; let i = index" (click)="goToDetail(country, i)" [class.active]="i == selectedRow">
+            <th scope="row">{{country.Alpha3Code}} </th>
+            <td>{{country.Name}}</td>
+            <td>{{country.NativeName}}</td>
+            <td>{{country.Region}}</td>
+        </tr>
+    </tbody>
+    <!--Table body-->
+
+</table>
 </section>
 
