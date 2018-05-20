@@ -45,6 +45,16 @@ export class ExoticService {
     
 }
 
+const headerDict = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Access-Control-Allow-Headers': 'Content-Type',
+}
+
+const requestOptions = {                                                                                                                                                                                 
+  headers: new HttpHeaders(headerDict), 
+}
+
 export interface IRoot{
 
   IsSuccess:boolean,

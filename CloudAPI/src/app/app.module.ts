@@ -23,7 +23,7 @@ import { RegionsComponent } from './regions/regions.component';
     ListAllComponent,
     SearchResultComponent,
     DetailComponent,
-    RegionsComponent,
+    RegionsComponent
   ],
   imports: [
     BrowserModule,
