@@ -110,6 +110,8 @@ export class RegionsComponent implements OnInit {
 
   public showCountriesRegion(region){
     this.exoticApi.getCountriesByRegion(region, "").subscribe(list => {
+      this.region = region;
+      this.subregion = "";
       this.regionList = list.Response;
       console.log(this.regionList);
     },
@@ -124,6 +126,8 @@ export class RegionsComponent implements OnInit {
   public showCountriesSubRegion(region, subregion){
     //console.log("subregion: ", region, subregion);
     this.exoticApi.getCountriesByRegion("Americas", subregion).subscribe(list => {
+      this.region = region;
+      this.subregion = subregion;
       this.regionList = list.Response;
       console.log(list);
     },

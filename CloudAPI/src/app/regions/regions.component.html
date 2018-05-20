@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <h3 *ngIf = "regionList" class="mx-4 font-weight-bold text-center">Countries in {{region}}, {{subregion}}</h3>
+  <h3 *ngIf = "region != '' " class="mx-4 font-weight-bold text-center">Countries in {{region}}<span *ngIf = "subregion != '' ">,{{subregion}}</span> </h3>
   <table *ngIf = "regionList" class="table table-hover table-sm">
 
     <!--Table head-->
@@ -38,6 +38,7 @@
             <th  class="font-weight-bold">Country</th>
             <th  class="font-weight-bold">Native name</th>
             <th  class="font-weight-bold">Region</th>
+            <th  class="font-weight-bold">Subregion</th>
         </tr>
     </thead>
     <!--Table head-->
@@ -49,6 +50,7 @@
             <td>{{country.Name}}</td>
             <td>{{country.NativeName}}</td>
             <td>{{country.Region}}</td>
+            <td>{{country.SubRegion}}</td>
         </tr>
     </tbody>
     <!--Table body-->
