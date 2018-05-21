@@ -18,7 +18,6 @@ export class DetailComponent implements OnInit{
 
   constructor(public exoticApi: ExoticService) { }
 
-
   ngOnInit() {console.log("oninit");}
 
   public go(){
