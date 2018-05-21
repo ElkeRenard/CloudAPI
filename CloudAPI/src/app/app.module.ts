@@ -14,7 +14,14 @@ import { ListAllComponent } from './list-all/list-all.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { DetailComponent } from './detail/detail.component';
 import { RegionsComponent } from './regions/regions.component';
+import { SocialLoginModule,AuthServiceConfig, GoogleLoginProvider } from 'angular4-social-login';
 
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("977080412179-sqqsr207k1bik6ge7bdq7khaosljucc0.apps.googleusercontent.com")
+  }
+  ]);
 
 @NgModule({
   declarations: [
@@ -30,7 +37,8 @@ import { RegionsComponent } from './regions/regions.component';
     BrowserModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    LeafletModule.forRoot()
+    LeafletModule.forRoot(),
+    SocialLoginModule.initialize(config)
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [HttpClient, ExoticService],
