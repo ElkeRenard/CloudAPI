@@ -4,6 +4,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ExoticService } from '././services/exotic.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup} from '@angular/forms';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 import { AppComponent } from './app.component';
@@ -28,7 +29,8 @@ import { RegionsComponent } from './regions/regions.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    LeafletModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [HttpClient, ExoticService],

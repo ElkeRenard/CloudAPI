@@ -13,7 +13,7 @@
         <div class="row" *ngIf="country; else start">
         
         <!--Grid column-->
-        <div class="col-lg-5 col-md-12" >
+        <div class="col-lg-6 col-md-12" >
             <table class="table table-borderless table-sm" >
             
                 <tbody>
@@ -55,9 +55,9 @@
         <!--Grid column-->
         
         <!--Grid column-->
-        <div class="col-lg-7 col-md-12">
+        <div class="col-lg-6 col-md-12">
         
-                
+            <div *ngIf= "country" style="height: 300px;" leaflet [leafletOptions]="options"></div>        
         
         </div>
         <!--Grid column-->
