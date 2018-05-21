@@ -15,9 +15,9 @@
         <!--Table body-->
         <tbody>
             <tr>
-                <td *ngFor = "let region of subregions">
+                <td *ngFor = "let reg of subregions; let i = index">
                   <ul>
-                    <li *ngFor = "let subregion of region" (click) = "showCountriesSubRegion(region, subregion)" class = "mb-2">{{subregion}}</li>
+                    <li *ngFor = "let sub of reg" (click) = "showCountriesSubRegion(regions[i], sub)" class = "mb-2">{{sub}}</li>
                   </ul>
                 </td>
             </tr>
@@ -28,8 +28,8 @@
     </div>
   </div>
 
-  <h3 *ngIf = "region != '' " class="mx-4 font-weight-bold text-center">Countries in {{region}}<span *ngIf = "subregion != '' ">,{{subregion}}</span> </h3>
-  <table *ngIf = "regionList" class="table table-hover table-sm">
+  <h3 *ngIf = "region " class="mx-4 font-weight-bold text-center">Countries in {{region}}<span *ngIf = "subregion != '' ">, {{subregion}}</span> </h3>
+  <table *ngIf = "regionList" class="table table-hover table-sm" style = "width: 100%">
 
     <!--Table head-->
     <thead>

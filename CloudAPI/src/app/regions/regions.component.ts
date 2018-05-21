@@ -91,18 +91,7 @@ export class RegionsComponent implements OnInit {
   };*/
 
   constructor(private exoticApi: ExoticService) { 
-    this.exoticApi.getCountriesByRegion("Americas", "Caribbean").subscribe(list => {
-      this.region = "Americas";
-      this.subregion = "Caribbean";
-      this.regionList = list.Response;
-      console.log(list);
-    },
-    error => {
-      console.log(error.message);
-    },
-    () => {
-      console.log("done loading region list");
-    });
+    
   }
 
   ngOnInit() {
@@ -124,8 +113,8 @@ export class RegionsComponent implements OnInit {
   }
 
   public showCountriesSubRegion(region, subregion){
-    //console.log("subregion: ", region, subregion);
-    this.exoticApi.getCountriesByRegion("Americas", subregion).subscribe(list => {
+    console.log("subregion: ", region, subregion);
+    this.exoticApi.getCountriesByRegion(region, subregion).subscribe(list => {
       this.region = region;
       this.subregion = subregion;
       this.regionList = list.Response;
