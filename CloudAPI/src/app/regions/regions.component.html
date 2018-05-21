@@ -7,7 +7,7 @@
         <!--Table head-->
         <thead style = "background-color: #4dd0e1; color: white;">
             <tr>
-                <th (click) = "showCountriesRegion(region)" *ngFor = "let region of regions; let i = index" >{{region}}</th>
+                <th (click) = "showCountriesRegion(region)" *ngFor = "let region of regions; let i = index"><a>{{region}}</a></th>
             </tr>
         </thead>
         <!--Table head-->
@@ -17,7 +17,7 @@
             <tr>
                 <td *ngFor = "let reg of subregions; let i = index">
                   <ul>
-                    <li *ngFor = "let sub of reg" (click) = "showCountriesSubRegion(regions[i], sub)" class = "mb-2">{{sub}}</li>
+                    <li *ngFor = "let sub of reg" (click) = "showCountriesSubRegion(regions[i], sub)" class = "mb-2"><a>{{sub}}</a></li>
                   </ul>
                 </td>
             </tr>

@@ -50,6 +50,7 @@ export class ListAllComponent implements OnInit {
   }
 
   private getList(){
+    this.selectedRow = null;
     this.exoticApi.getAll(this.page).subscribe(root => {
       this.completeList = root.Response;
       console.log(this.completeList);
