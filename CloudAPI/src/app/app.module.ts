@@ -21,6 +21,8 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { DetailComponent } from './detail/detail.component';
 import { RegionsComponent } from './regions/regions.component';
 import { LoginComponent } from './login/login.component';
+import { OpenComponent } from './open/open.component';
+import { RestrictedComponent } from './restricted/restricted.component';
 
 const appRoutes: Routes=[
   {path: "home", component: HomepageComponent},
@@ -51,7 +53,9 @@ export function getAuthServiceConfigs() {
     SearchResultComponent,
     DetailComponent,
     RegionsComponent,
-    LoginComponent
+    LoginComponent,
+    OpenComponent,
+    RestrictedComponent
   ],
   imports: [
     BrowserModule,
