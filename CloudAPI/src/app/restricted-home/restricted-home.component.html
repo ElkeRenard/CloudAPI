@@ -1,0 +1,42 @@
+
+<section id='restricted-home'></section>
+<div id="restricted-intro" class="view">
+
+    <div class="mask rgba-black-light">
+
+        <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+
+            <div class="row d-flex justify-content-center text-center">
+                
+                <div class="col-md-3 option">
+                    <h3 class=" pt-5 mb-2 title" (click)="searchAPI()">Search API</h3>
+                    <hr class="white">
+                </div> 
+                <div class="col-md-3"> 
+                    <h3 class="pt-5 mb-2" (click)="searchMyWorld()">Search My World</h3>
+                    <hr class="white">
+                </div> 
+                
+                <div class="col-md-10">
+
+                    <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">Find a country</h2>
+
+                    <hr class="hr-light">
+
+                </div>
+
+                <div class="col-md-6">
+                  <div class="md-form form-lg">
+                      <input type="text" id="search" placeholder="Search" class="form-control form-control-lg white-text">
+                      <!--<label for="search"></label>-->
+                      <a href = "#searchResult"><button type="button" (click)="findCountry()" class="btn btn-outline-white">Find<i class="fa fa-paper-plane-o ml-2"></i></button></a>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+                            

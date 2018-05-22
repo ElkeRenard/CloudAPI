@@ -14,7 +14,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarOpenComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ListAllComponent } from './list-all/list-all.component';
 import { SearchResultComponent } from './search-result/search-result.component';
@@ -23,10 +23,14 @@ import { RegionsComponent } from './regions/regions.component';
 import { LoginComponent } from './login/login.component';
 import { OpenComponent } from './open/open.component';
 import { RestrictedComponent } from './restricted/restricted.component';
+import { NavbarRestrictedComponent } from './navbar-restricted/navbar-restricted.component';
+import { RestrictedHomeComponent } from './restricted-home/restricted-home.component';
+import { RestrictedSearchResultComponent } from './restricted-search-result/restricted-search-result.component';
 
 const appRoutes: Routes=[
-  {path: "home", component: HomepageComponent},
-  {path: "", redirectTo: "home", pathMatch: 'full'}
+  {path: "home", component: OpenComponent},
+  {path: "", redirectTo: "home", pathMatch: 'full'},
+  {path: "restricted", component: RestrictedComponent}  
   /*{path: "**", component: PageNotFoundComponent}*/
 ]
 
@@ -47,7 +51,7 @@ export function getAuthServiceConfigs() {
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
+    NavbarOpenComponent,
     HomepageComponent,
     ListAllComponent,
     SearchResultComponent,
@@ -55,7 +59,10 @@ export function getAuthServiceConfigs() {
     RegionsComponent,
     LoginComponent,
     OpenComponent,
-    RestrictedComponent
+    RestrictedComponent,
+    NavbarRestrictedComponent,
+    RestrictedHomeComponent,
+    RestrictedSearchResultComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top " style="background-color: rgba(46, 46, 46, 0.6)">
+    <div class="container">
+  
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+  
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto smooth-scroll">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Home
+                    </a>
+                </li>
+
+  
+                <li class="nav-item" [routerLinkActive]="['active']">
+                      <a  class="nav-link" [routerLink]="['/restricted']">My World</a>     
+                </li>
+  
+            </ul>
+  
+            <ul class="navbar-nav nav-flex-icons">
+              <li class="nav-item">
+                  <login></login>
+              </li>
+          </ul>
+        </div>
+        <!-- Collapsible content -->
+  
+    </div>
+  </nav>
+  
