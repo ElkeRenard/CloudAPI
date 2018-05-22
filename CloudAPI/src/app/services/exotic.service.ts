@@ -11,7 +11,7 @@ export class ExoticService {
   language:string;
   private searchResult: ICountry[];
   private searchDetail: ICountry;
-  
+  private option: string;
 
   constructor(private http: HttpClient) { }
 
@@ -34,6 +34,15 @@ export class ExoticService {
 
   getSearchResultByName(){
     return this.searchResult;
+  }
+
+  setRestrictedSearchResultByName(result, option){
+    this.searchResult = result;
+    this.option = option;
+  }
+
+  getRestrictedSearchResultByName(){
+    return [this.searchResult, this.option];
   }
 
   setSearchResultDetail(input:ICountry){

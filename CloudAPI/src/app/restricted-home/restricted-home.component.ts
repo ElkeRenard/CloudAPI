@@ -22,14 +22,29 @@ export class RestrictedHomeComponent implements OnInit {
   findCountry(){
     console.log((<HTMLInputElement>document.getElementById("search")).value);
     this.input = (<HTMLInputElement>document.getElementById("search")).value;
+
     if(this.input == ""){
       this.list = [];
       this.exoticApi.setSearchResultByName(this.list);
     }
     else{
-      this.exoticApi.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
+      if(this.API){
+        this.exoticApi.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
+          this.list = root.Response;
+          this.exoticApi.setRestrictedSearchResultByName(this.list, "API");
+          console.log(this.list);
+        },
+        err => {
+          console.log(err.message);
+        },
+        () => {
+          console.log("Done loading search result");
+        });
+      }
+      if(this.myWorld){
+        this.exoticApi.searchByName("Canada").subscribe(root => {
         this.list = root.Response;
-        this.exoticApi.setSearchResultByName(this.list);
+        this.exoticApi.setRestrictedSearchResultByName(this.list, "MyWorld");
         console.log(this.list);
       },
       err => {
@@ -38,6 +53,8 @@ export class RestrictedHomeComponent implements OnInit {
       () => {
         console.log("Done loading search result");
       });
+      }
+      
     }
   }
 
