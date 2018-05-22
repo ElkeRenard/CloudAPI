@@ -26,6 +26,7 @@ import { RestrictedComponent } from './restricted/restricted.component';
 import { NavbarRestrictedComponent } from './navbar-restricted/navbar-restricted.component';
 import { RestrictedHomeComponent } from './restricted-home/restricted-home.component';
 import { RestrictedSearchResultComponent } from './restricted-search-result/restricted-search-result.component';
+import { RestrictedDetailComponent } from './restricted-detail/restricted-detail.component';
 
 const appRoutes: Routes=[
   {path: "home", component: OpenComponent},
@@ -62,7 +63,8 @@ export function getAuthServiceConfigs() {
     RestrictedComponent,
     NavbarRestrictedComponent,
     RestrictedHomeComponent,
-    RestrictedSearchResultComponent
+    RestrictedSearchResultComponent,
+    RestrictedDetailComponent
   ],
   imports: [
     BrowserModule,

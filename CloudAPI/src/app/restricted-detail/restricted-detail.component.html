@@ -1,0 +1,78 @@
+<section id = 'restricted-detail'>
+    <h2 class="mb-4 font-weight-bold text-center">Selected Country</h2>
+    <div class="text-center mb-4">
+        <button type="button" (click)="go()" class="btn">Details selected country<i class="fa fa-paper-plane-o ml-2"></i></button>
+    </div>
+    <div class="text-center mb-4">
+            <img src= {{country.Flag}} alt="flag" style="width: 30%;" *ngIf="country">
+            
+    </div>
+    
+
+    <!--Grid row-->
+    <div class="row" *ngIf="country; else start">
+    
+    <!--Grid column-->
+    <div class="col-lg-6 col-md-12" >
+        <table class="table table-borderless table-sm" >
+        
+            <tbody>
+                <tr>
+                    <th scope="row"><i class="fa fa-globe mr-2" aria-hidden="true"></i>Name</th>
+                    <td>{{country.Name}}</td>
+                </tr>
+                <tr>
+                    <th scope="row"><i class="fa fa-heart mr-2" aria-hidden="true"></i>Native name</th>
+                    <td>{{country.NativeName}}</td>
+                </tr>
+                <tr>
+                    <th scope="row"><i class="fa fa-map-o mr-2" aria-hidden="true"></i>Region</th>
+                    <td>{{country.Region}}</td>
+                </tr>
+                <tr>
+                    <th scope="row"><i class="fa fa-map mr-2" aria-hidden="true"></i>Subregion</th>
+                    <td>{{country.SubRegion}}</td>
+                </tr>
+                <tr>
+                    <th scope="row"><i class="fa fa-heart-o mr-2" aria-hidden="true"></i>Native language</th>
+                    <td>{{country.NativeLanguage}}</td>
+                </tr>
+                <tr>
+                    <th scope="row"><i class="fa fa-money mr-2" aria-hidden="true"></i>Currency name</th>
+                    <td>{{country.CurrencyName}}</td>
+                    <th scope="row">Symbol</th>
+                    <td>{{country.CurrencySymbol}}</td>
+                </tr>
+                <tr>
+                    <th scope="row"><i class="fa fa-star mr-2" aria-hidden="true"></i>Area</th>
+                    <td>{{country.Area}} km²</td>
+                </tr>
+            </tbody>
+
+        </table>
+    
+    </div>
+    <!--Grid column-->
+    
+    <!--Grid column-->
+    <div class="col-lg-6 col-md-12">
+    
+        <div *ngIf= "country" style="height: 300px;" leaflet [leafletOptions]="options"></div>        
+    
+    </div>
+    <!--Grid column-->
+    
+    </div>
+    <!--Grid row-->
+</section>
+
+<ng-template #noData>
+<i class="fa fa-globe fa-5x blue-text mb-3" aria-hidden="true"></i>
+<p>Your search did not match any country.</p>
+</ng-template>
+
+<ng-template #start>
+    <div class="text-center mb-4">
+        <i class="fa fa-globe fa-5x blue-text mb-3 " aria-hidden="true"></i>
+    </div>
+</ng-template>
