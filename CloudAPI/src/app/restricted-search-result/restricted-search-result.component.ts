@@ -9,7 +9,8 @@ import {ICountry, ExoticService } from '../services/exotic.service';
 export class RestrictedSearchResultComponent implements OnInit {
 
   public results: ICountry[];
-  private selectedRow: number;
+  private selectedRow: number;  
+  public buttonTekst: string="Save to My World";
 
   constructor(private API: ExoticService) { }
 
@@ -21,7 +22,7 @@ export class RestrictedSearchResultComponent implements OnInit {
     console.log("results search: ",this.results);
   }
 
-  public goToDetail(countryIn: ICountry, index:number){
+  public getDetail(countryIn: ICountry, index:number){
     this.selectedRow = index;
     console.log("clicked: ",countryIn.Name);
     console.log("clicked",index);

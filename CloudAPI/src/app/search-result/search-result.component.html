@@ -17,7 +17,7 @@
        
         <!--Table body-->
         <tbody class="list">
-            <tr *ngFor="let country of results; let i = index" (click)="goToDetail(country, i)" [class.active]="i == selectedRow">
+            <tr *ngFor="let country of results; let i = index" (click)="getDetail(country, i)" [class.active]="i == selectedRow">
                 <th scope="row">{{country.Alpha3Code}} </th>
                 <td>{{country.Name}}</td>
                 <td>{{country.NativeName}}</td>

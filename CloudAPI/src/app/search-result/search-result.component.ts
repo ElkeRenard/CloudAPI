@@ -22,7 +22,7 @@ export class SearchResultComponent implements OnInit, DoCheck {
     console.log("results search: ",this.results);
   }
 
-  public goToDetail(countryIn: ICountry, index:number){
+  public getDetail(countryIn: ICountry, index:number){
     this.selectedRow = index;
     console.log("clicked: ",countryIn.Name);
     console.log("clicked",index);
