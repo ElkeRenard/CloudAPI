@@ -1,5 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import {ICountry, ExoticService } from '../services/exotic.service';
+import {ICountry, ExoticService } from '../../services/exotic.service';
 
 @Component({
   selector: 'restricted-search-result',

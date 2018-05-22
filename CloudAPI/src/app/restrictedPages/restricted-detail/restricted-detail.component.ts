@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import * as L from 'leaflet';
-import {ExoticService, ICountry } from '../services/exotic.service';
+import {ExoticService, ICountry } from '../../services/exotic.service';
 import { latLng, tileLayer } from 'leaflet';
 @Component({
   selector: 'restricted-detail',

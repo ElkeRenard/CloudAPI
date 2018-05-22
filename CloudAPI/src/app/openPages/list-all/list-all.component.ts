@@ -1,7 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { ExoticService } from '.././services/exotic.service';
-import { ICountry } from '.././services/exotic.service';
-import { IRoot } from '.././services/exotic.service';
+import { ExoticService, ICountry, IRoot } from '../../services/exotic.service';
 
 @Component({
   selector: 'list-all',

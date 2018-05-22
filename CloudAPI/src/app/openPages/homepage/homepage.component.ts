@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ExoticService, ICountry } from '../services/exotic.service';
+import {ExoticService, ICountry } from '../../services/exotic.service';
 
 @Component({
   selector: 'homepage',

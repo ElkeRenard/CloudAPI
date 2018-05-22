@@ -14,19 +14,19 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
-import { NavbarOpenComponent } from './navbar/navbar.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { ListAllComponent } from './list-all/list-all.component';
-import { SearchResultComponent } from './search-result/search-result.component';
-import { DetailComponent } from './detail/detail.component';
-import { RegionsComponent } from './regions/regions.component';
+import { NavbarOpenComponent } from './openPages/navbar/navbar.component';
+import { HomepageComponent } from './openPages/homepage/homepage.component';
+import { ListAllComponent } from './openPages/list-all/list-all.component';
+import { SearchResultComponent } from './openPages/search-result/search-result.component';
+import { DetailComponent } from './openPages/detail/detail.component';
+import { RegionsComponent } from './openPages/regions/regions.component';
 import { LoginComponent } from './login/login.component';
-import { OpenComponent } from './open/open.component';
-import { RestrictedComponent } from './restricted/restricted.component';
-import { NavbarRestrictedComponent } from './navbar-restricted/navbar-restricted.component';
-import { RestrictedHomeComponent } from './restricted-home/restricted-home.component';
-import { RestrictedSearchResultComponent } from './restricted-search-result/restricted-search-result.component';
-import { RestrictedDetailComponent } from './restricted-detail/restricted-detail.component';
+import { OpenComponent } from './openPages/open/open.component';
+import { RestrictedComponent } from './restrictedPages/restricted/restricted.component';
+import { NavbarRestrictedComponent } from './restrictedPages/navbar-restricted/navbar-restricted.component';
+import { RestrictedHomeComponent } from './restrictedPages/restricted-home/restricted-home.component';
+import { RestrictedSearchResultComponent } from './restrictedPages/restricted-search-result/restricted-search-result.component';
+import { RestrictedDetailComponent } from './restrictedPages/restricted-detail/restricted-detail.component';
 
 const appRoutes: Routes=[
   {path: "home", component: OpenComponent},

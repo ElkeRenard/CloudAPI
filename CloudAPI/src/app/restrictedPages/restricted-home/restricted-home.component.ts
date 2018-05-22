@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import {ExoticService, ICountry } from '../services/exotic.service';
+import {ExoticService, ICountry } from '../../services/exotic.service';
 
 @Component({
   selector: 'restricted-home',
