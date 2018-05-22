@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ExoticService, ICountry, IRoot } from '../../services/exotic.service';
+import {ShareService } from '../../services/share.service';
 
 @Component({
   selector: 'list-all',
@@ -13,7 +14,7 @@ export class ListAllComponent implements OnInit {
   private pages: any;
   public selectedRow: number;
 
-  constructor(private exoticApi: ExoticService, private renderer: Renderer2) { }
+  constructor(private exoticApi: ExoticService, private renderer: Renderer2,  private share: ShareService) { }
 
   ngOnInit() {
     this.getList();
@@ -79,7 +80,7 @@ export class ListAllComponent implements OnInit {
     this.selectedRow = index;
     console.log("clicked: ",countryIn.Name);
     console.log("clicked",index);
-    this.exoticApi.setSearchResultDetail(countryIn);
+    this.share.setSearchResultDetail(countryIn);
   }
 
 }

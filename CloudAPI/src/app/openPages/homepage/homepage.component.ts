@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ExoticService, ICountry } from '../../services/exotic.service';
+import {ShareService } from '../../services/share.service';
 
 @Component({
   selector: 'homepage',
@@ -11,7 +12,7 @@ export class HomepageComponent implements OnInit {
   public list: ICountry[];
   private input: string;
 
-  constructor(private exoticApi: ExoticService) { }
+  constructor(private exoticApi: ExoticService, private share: ShareService) { }
 
   ngOnInit() {
   }
@@ -21,12 +22,12 @@ export class HomepageComponent implements OnInit {
     this.input = (<HTMLInputElement>document.getElementById("search")).value;
     if(this.input == ""){
       this.list = [];
-      this.exoticApi.setSearchResultByName(this.list);
+      this.share.setSearchResultByName(this.list);
     }
     else{
       this.exoticApi.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
         this.list = root.Response;
-        this.exoticApi.setSearchResultByName(this.list);
+        this.share.setSearchResultByName(this.list);
         console.log(this.list);
       },
       err => {

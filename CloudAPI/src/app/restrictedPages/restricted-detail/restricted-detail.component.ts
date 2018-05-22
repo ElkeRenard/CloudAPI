@@ -2,6 +2,8 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import * as L from 'leaflet';
 import {ExoticService, ICountry } from '../../services/exotic.service';
 import { latLng, tileLayer } from 'leaflet';
+import {ShareService } from '../../services/share.service';
+
 @Component({
   selector: 'restricted-detail',
   templateUrl: './restricted-detail.component.html',
@@ -15,15 +17,15 @@ export class RestrictedDetailComponent implements OnInit {
   private input:ICountry;
   public options;
 
-  constructor(public exoticApi: ExoticService) { }
+  constructor(public exoticApi: ExoticService, private share: ShareService) { }
 
   ngOnInit() {
   }
 
   public go(){
     this.country = null;
-    if(this.exoticApi.getSearchResultDetail() != null){
-      this.input = this.exoticApi.getSearchResultDetail();
+    if(this.share.getSearchResultDetail() != null){
+      this.input = this.share.getSearchResultDetail();
       this.exoticApi.getDetail(this.input.Name).subscribe(root => {
         this.country = root.Response[0];
         this.lat = this.country.Latitude;

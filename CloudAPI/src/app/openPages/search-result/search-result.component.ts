@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import {ICountry, ExoticService } from '../../services/exotic.service';
+import {ShareService } from '../../services/share.service';
 
 @Component({
   selector: 'search-result',
@@ -11,14 +12,14 @@ export class SearchResultComponent implements OnInit, DoCheck {
   public results: ICountry[];
   private selectedRow: number;
 
-  constructor(public API: ExoticService) { }
+  constructor(public API: ExoticService, private share: ShareService) { }
 
   ngOnInit() {
    
   }
 
   ngDoCheck(){
-    this.results = this.API.getSearchResultByName();
+    this.results = this.share.getSearchResultByName();
     console.log("results search: ",this.results);
   }
 
@@ -26,7 +27,7 @@ export class SearchResultComponent implements OnInit, DoCheck {
     this.selectedRow = index;
     console.log("clicked: ",countryIn.Name);
     console.log("clicked",index);
-    this.API.setSearchResultDetail(countryIn);
+    this.share.setSearchResultDetail(countryIn);
   }
 
 

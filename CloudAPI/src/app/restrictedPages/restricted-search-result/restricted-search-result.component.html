@@ -18,11 +18,11 @@
         <!--Table body-->
         <tbody class="list">
             <tr *ngFor="let country of results; let i = index" (click)="getDetail(country, i)" [class.active]="i == selectedRow">
-                <th scope="row">{{country.Alpha3Code}} </th>
-                <td>{{country.Name}}</td>
-                <td>{{country.NativeName}}</td>
-                <td>{{country.Region}}</td>                
-                <td><button type="button" class="btn btn-cyan btn-sm" (click)="handleData()">{{buttonTekst}}</button></td>
+                <th scope="row">{{country.Alpha3Code}}<span *ngIf = "option == 'MyWorld'">{{country.alpha3Code}}</span> </th>
+                <td>{{country.Name}}<span *ngIf = "option == 'MyWorld'">{{country.name}}</span></td>
+                <td>{{country.NativeName}}<span *ngIf = "option == 'MyWorld'">{{country.nativeName}}</span></td>
+                <td>{{country.Region}}<span *ngIf = "option == 'MyWorld'">{{country.region}}</span></td>                
+                <td><button type="button" class="btn btn-cyan btn-sm" (click)="handleData(country)">{{buttonTekst}}</button></td>
             </tr>
         </tbody>
         <!--Table body-->

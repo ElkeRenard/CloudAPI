@@ -1,5 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
-import {ICountry, ExoticService } from '../../services/exotic.service';
+import { ICountry, ExoticService } from '../../services/exotic.service';
+import { ShareService } from '../../services/share.service';
+import { MyWorldService } from '../../services/my-world.service';
 
 @Component({
   selector: 'restricted-search-result',
@@ -14,13 +16,14 @@ export class RestrictedSearchResultComponent implements OnInit {
   private selectedRow: number;  
   public buttonTekst: string="Save to My World";
 
-  constructor(private API: ExoticService) { }
+  constructor(private API: ExoticService, private share:ShareService, private myWorldAPI: MyWorldService) { }
 
   ngOnInit() {
   }
 
   ngDoCheck(){
-    this.data = this.API.getRestrictedSearchResultByName();
+    this.data = this.share.getRestrictedSearchResultByName();
+    console.log("data ",this.data[0]);
     this.results = this.data[0];
     this.option = this.data[1];
     if(this.option == "API"){
@@ -37,16 +40,34 @@ export class RestrictedSearchResultComponent implements OnInit {
     this.selectedRow = index;
     console.log("clicked: ",countryIn.Name);
     console.log("clicked",index);
-    this.API.setSearchResultDetail(countryIn);
+    this.share.setSearchResultDetail(countryIn);
   }
 
-  public handleData(){
+  public handleData(country){
     if(this.option == "API"){
-      //add country to my world
+      //console.log(country);
+      this.myWorldAPI.addCountry(country).subscribe(result => {
+        console.log(result);
+      },
+      err => {
+        console.log(err.message);
+      },
+      () => {
+        console.log("done");
+      });
     }
 
     if(this.option == "MyWorld"){
       //delete country from my world
+      this.myWorldAPI.deleteCountry(country.id).subscribe(result => {
+        console.log(result);
+      },
+      err => {
+        console.log(err.message);
+      },
+      () => {
+        console.log("done");
+      });
     }
   }
 }

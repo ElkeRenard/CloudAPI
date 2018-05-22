@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExoticService, ICountry } from '../../services/exotic.service';
+import {ShareService } from '../../services/share.service';
 
 @Component({
   selector: 'regions',
@@ -90,7 +91,7 @@ export class RegionsComponent implements OnInit {
      "Polar":[]
   };*/
 
-  constructor(private exoticApi: ExoticService) { 
+  constructor(private exoticApi: ExoticService, private share: ShareService) { 
     
   }
 
@@ -134,7 +135,7 @@ export class RegionsComponent implements OnInit {
     this.selectedRow = index;
     console.log("clicked: ",countryIn.Name);
     console.log("clicked",index);
-    this.exoticApi.setSearchResultDetail(countryIn);
+    this.share.setSearchResultDetail(countryIn);
   }
 
 }

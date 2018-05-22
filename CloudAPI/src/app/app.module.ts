@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ExoticService } from '././services/exotic.service';
+import { MyWorldService } from '././services/my-world.service';
+import { ShareService } from '././services/share.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
@@ -31,8 +33,8 @@ import { RestrictedDetailComponent } from './restrictedPages/restricted-detail/r
 const appRoutes: Routes=[
   {path: "home", component: OpenComponent},
   {path: "", redirectTo: "home", pathMatch: 'full'},
-  {path: "restricted", component: RestrictedComponent}  
-  /*{path: "**", component: PageNotFoundComponent}*/
+  {path: "restricted", component: RestrictedComponent}
+  //{path: "**", redirectTo: "home", pathMatch: 'full'}
 ]
 
 export function getAuthServiceConfigs() {
@@ -76,7 +78,10 @@ export function getAuthServiceConfigs() {
 
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [HttpClient, ExoticService,    
+  providers: [HttpClient,
+    ExoticService,
+    MyWorldService,
+    ShareService,  
     {provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs
     }

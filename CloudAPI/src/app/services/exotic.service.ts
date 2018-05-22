@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {RequestOptions, Request, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import "rxjs/add/operator/map";
 
@@ -8,66 +7,29 @@ import "rxjs/add/operator/map";
 @Injectable()
 export class ExoticService {
 
-  language:string;
-  private searchResult: ICountry[];
-  private searchDetail: ICountry;
-  private option: string;
+  private baseURL: string = "http://countryapi.gear.host/v1/Country/getCountries";
 
   constructor(private http: HttpClient) { }
 
   getAll(page:number):Observable<IRoot>{
   
-    return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pLimit=25&pPage=${page}`);
+    return this.http.get<IRoot>(`${this.baseURL}?pLimit=25&pPage=${page}`);
   }
 
   getCountriesByRegion(region, subregion):Observable<IRoot>{
-    return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pRegion=${region}&pSubRegion=${subregion}`)
+    return this.http.get<IRoot>(`${this.baseURL}?pRegion=${region}&pSubRegion=${subregion}`)
   }
 
   searchByName(name):Observable<IRoot>{
-    return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pName=${name}`);
-  }
-
-  setSearchResultByName(result){
-    this.searchResult = result;
-  }
-
-  getSearchResultByName(){
-    return this.searchResult;
-  }
-
-  setRestrictedSearchResultByName(result, option){
-    this.searchResult = result;
-    this.option = option;
-  }
-
-  getRestrictedSearchResultByName(){
-    return [this.searchResult, this.option];
-  }
-
-  setSearchResultDetail(input:ICountry){
-    this.searchDetail = input;
-  }
-
-  getSearchResultDetail():ICountry{
-    return this.searchDetail;
+    return this.http.get<IRoot>(`${this.baseURL}?pName=${name}`);
   }
 
   getDetail(fullname):Observable<IRoot>{
-    return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pName=${fullname}`);
+    return this.http.get<IRoot>(`${this.baseURL}?pName=${fullname}`);
   }
     
 }
 
-const headerDict = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Access-Control-Allow-Headers': '*',
-}
-
-const requestOptions = {                                                                                                                                                                                 
-  headers: new HttpHeaders(headerDict), 
-}
 
 export interface IRoot{
 

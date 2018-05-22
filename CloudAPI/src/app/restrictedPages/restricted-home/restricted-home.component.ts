@@ -1,5 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import {ExoticService, ICountry } from '../../services/exotic.service';
+import { MyWorldService } from '../../services/my-world.service';
+import {ShareService } from '../../services/share.service';
 
 @Component({
   selector: 'restricted-home',
@@ -8,30 +10,29 @@ import {ExoticService, ICountry } from '../../services/exotic.service';
 })
 export class RestrictedHomeComponent implements OnInit {
 
-  public list: ICountry[];
+  public list;
   private input: string;
   private API: boolean;
   private myWorld: boolean;
   private option: any;
 
-  constructor(private exoticApi: ExoticService, private renderer: Renderer2) { }
+  constructor(private exoticApi: ExoticService, private renderer: Renderer2, private myWorldAPI: MyWorldService, private share: ShareService) { }
 
   ngOnInit() {
   }
 
   findCountry(){
-    console.log((<HTMLInputElement>document.getElementById("search")).value);
+    //console.log((<HTMLInputElement>document.getElementById("search")).value);
     this.input = (<HTMLInputElement>document.getElementById("search")).value;
-
-    if(this.input == ""){
-      this.list = [];
-      this.exoticApi.setSearchResultByName(this.list);
-    }
-    else{
-      if(this.API){
+    if(this.API){
+      if(this.input == ""){
+        this.list = [];
+        this.share.setSearchResultByName(this.list);
+      }
+      else{      
         this.exoticApi.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
           this.list = root.Response;
-          this.exoticApi.setRestrictedSearchResultByName(this.list, "API");
+          this.share.setRestrictedSearchResultByName(this.list, "API");
           console.log(this.list);
         },
         err => {
@@ -41,21 +42,37 @@ export class RestrictedHomeComponent implements OnInit {
           console.log("Done loading search result");
         });
       }
-      if(this.myWorld){
-        this.exoticApi.searchByName("Canada").subscribe(root => {
-        this.list = root.Response;
-        this.exoticApi.setRestrictedSearchResultByName(this.list, "MyWorld");
-        console.log(this.list);
-      },
-      err => {
-        console.log(err.message);
-      },
-      () => {
-        console.log("Done loading search result");
-      });
-      }
-      
     }
+      if(this.myWorld){
+        if(this.input == ""){
+          console.log("go api go!!!");
+          this.myWorldAPI.getAll().subscribe( result => {
+            console.log("empty request", result)
+            this.list = result;
+            this.share.setRestrictedSearchResultByName(this.list, "MyWorld");
+            console.log(this.list);
+          },
+          err => {
+            console.log(err.message);
+          },
+          () => {
+            console.log("done");
+          });
+        }
+        else{ 
+          this.exoticApi.searchByName("Canada").subscribe(root => {
+          this.list = root.Response;
+          this.share.setRestrictedSearchResultByName(this.list, "MyWorld");
+          console.log(this.list);
+            },
+            err => {
+              console.log(err.message);
+            },
+            () => {
+              console.log("Done loading search result");
+          });
+        }
+      }
   }
 
   public searchAPI(){
