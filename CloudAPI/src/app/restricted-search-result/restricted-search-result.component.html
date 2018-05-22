@@ -1,6 +1,6 @@
 <section id = 'restricted-searchResult' class="text-center">
     
-    <h2 class="mb-4 font-weight-bold">Search result</h2>
+    <h2 class="mb-4 font-weight-bold">Search result<span *ngIf = "option == 'MyWorld'"> in My World</span></h2>
     <!--Table-->
     <table *ngIf = "results; else start" class="table table-hover table-sm">
 
