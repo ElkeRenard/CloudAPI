@@ -5,6 +5,12 @@ import { ExoticService } from '././services/exotic.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider
+} from "angular5-social-login";
+import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
@@ -14,14 +20,27 @@ import { ListAllComponent } from './list-all/list-all.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { DetailComponent } from './detail/detail.component';
 import { RegionsComponent } from './regions/regions.component';
-import { SocialLoginModule,AuthServiceConfig, GoogleLoginProvider } from 'angular4-social-login';
+import { LoginComponent } from './login/login.component';
 
-let config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("977080412179-sqqsr207k1bik6ge7bdq7khaosljucc0.apps.googleusercontent.com")
-  }
-  ]);
+const appRoutes: Routes=[
+  {path: "home", component: HomepageComponent},
+  {path: "", redirectTo: "home", pathMatch: 'full'}
+  /*{path: "**", component: PageNotFoundComponent}*/
+]
+
+export function getAuthServiceConfigs() {
+  const id = "977080412179-vme2o8kuklc86n34c2i17tsnp6v1556m.apps.googleusercontent.com";
+  
+  let config = new AuthServiceConfig(
+      [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(id)
+        },
+      ]
+  );
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -31,17 +50,24 @@ let config = new AuthServiceConfig([
     ListAllComponent,
     SearchResultComponent,
     DetailComponent,
-    RegionsComponent
+    RegionsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     LeafletModule.forRoot(),
-    SocialLoginModule.initialize(config)
+    SocialLoginModule,
+    RouterModule.forRoot(appRoutes, {useHash:true})
+
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [HttpClient, ExoticService],
+  providers: [HttpClient, ExoticService,    
+    {provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

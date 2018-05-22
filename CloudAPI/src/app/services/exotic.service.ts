@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {RequestOptions, Request, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import "rxjs/add/operator/map";
+
 
 @Injectable()
 export class ExoticService {
@@ -9,12 +11,13 @@ export class ExoticService {
   language:string;
   private searchResult: ICountry[];
   private searchDetail: ICountry;
+  
 
   constructor(private http: HttpClient) { }
 
   getAll(page:number):Observable<IRoot>{
   
-    return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pLimit=25&pPage=${page}`);
+    return this.http.get<IRoot>(`http://countryapi.gear.host/v1/Country/getCountries?pLimit=25&pPage=${page}`, requestOptions);
   }
 
   getCountriesByRegion(region, subregion):Observable<IRoot>{
@@ -50,7 +53,7 @@ export class ExoticService {
 const headerDict = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Headers': '*',
 }
 
 const requestOptions = {                                                                                                                                                                                 
