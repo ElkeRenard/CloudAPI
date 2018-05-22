@@ -1,6 +1,5 @@
-import { Component, OnInit, DoCheck, Renderer2, Inject } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import {ICountry, ExoticService } from '../services/exotic.service';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'search-result',
@@ -12,7 +11,7 @@ export class SearchResultComponent implements OnInit, DoCheck {
   public results: ICountry[];
   private selectedRow: number;
 
-  constructor(public API: ExoticService, private renderer: Renderer2, @Inject(DOCUMENT) documen) { }
+  constructor(public API: ExoticService) { }
 
   ngOnInit() {
    

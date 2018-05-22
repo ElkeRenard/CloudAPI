@@ -1,3 +1,41 @@
-<p>
-  restricted-search-result works!
-</p>
+<section id = 'restricted-searchResult' class="text-center">
+    
+    <h2 class="mb-4 font-weight-bold">Search result</h2>
+    <!--Table-->
+    <table *ngIf = "results; else start" class="table table-hover table-sm">
+
+        <!--Table head-->
+        <thead *ngIf="results != ''; else noData">
+            <tr>
+                <th  class="font-weight-bold">ID</th>
+                <th  class="font-weight-bold">Country</th>
+                <th  class="font-weight-bold">Native name</th>
+                <th  class="font-weight-bold">Region</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+       
+        <!--Table body-->
+        <tbody class="list">
+            <tr *ngFor="let country of results; let i = index" (click)="goToDetail(country, i)" [class.active]="i == selectedRow">
+                <th scope="row">{{country.Alpha3Code}} </th>
+                <td>{{country.Name}}</td>
+                <td>{{country.NativeName}}</td>
+                <td>{{country.Region}}</td>
+            </tr>
+        </tbody>
+        <!--Table body-->
+    
+    </table>
+    <!--Table-->
+     
+</section>
+
+<ng-template #noData>
+    <i class="fa fa-globe fa-5x blue-text mb-3" aria-hidden="true"></i>
+    <p>Your search did not match any country.</p>
+</ng-template>
+
+<ng-template #start>
+        <i class="fa fa-globe fa-5x blue-text mb-3" aria-hidden="true"></i>
+</ng-template>
