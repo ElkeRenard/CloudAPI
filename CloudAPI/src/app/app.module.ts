@@ -14,7 +14,6 @@ import {
 } from "angular5-social-login";
 import { RouterModule, Routes } from '@angular/router';
 
-
 import { AppComponent } from './app.component';
 import { NavbarOpenComponent } from './openPages/navbar/navbar.component';
 import { HomepageComponent } from './openPages/homepage/homepage.component';
@@ -30,6 +29,7 @@ import { RestrictedHomeComponent } from './restrictedPages/restricted-home/restr
 import { RestrictedSearchResultComponent } from './restrictedPages/restricted-search-result/restricted-search-result.component';
 import { RestrictedDetailComponent } from './restrictedPages/restricted-detail/restricted-detail.component';
 import { RestrictedListAllComponent } from './restrictedPages/restricted-list-all/restricted-list-all.component';
+import { StoryModalComponent } from './restrictedPages/story-modal/story-modal.component';
 
 const appRoutes: Routes=[
   {path: "home", component: OpenComponent},
@@ -68,7 +68,8 @@ export function getAuthServiceConfigs() {
     RestrictedHomeComponent,
     RestrictedSearchResultComponent,
     RestrictedDetailComponent,
-    RestrictedListAllComponent
+    RestrictedListAllComponent,
+    StoryModalComponent
   ],
   imports: [
     BrowserModule,

@@ -75,7 +75,14 @@
     </div>
 
     <div class="row d-flex justify-content-center mt-4" *ngIf="option == 'MyWorld'">
-        <button type="button" class="btn btn-cyan btn-lg" (click)="save()">Save</button>
+        <div class="col-md-3 d-flex justify-content-center">
+            <button type="button" class="btn btn-cyan btn-lg" (click)="save()">Save</button>
+        </div>
+
+        <div class="col-md-3 d-flex justify-content-center">
+            <button type="button" class="btn btn-cyan btn-lg" (click)="form()" >Story</button>
+        </div>
+        
     </div>
 
 </section>
