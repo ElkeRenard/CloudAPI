@@ -28,7 +28,7 @@ export class ShareService {
     return [this.searchResult, this.option];
   }
 
-  setRestrictedSearchResultDetail(input:ICountry, option){
+  setRestrictedSearchResultDetail(input, option){
     this.searchDetail = input;
     this.option = option;
   }

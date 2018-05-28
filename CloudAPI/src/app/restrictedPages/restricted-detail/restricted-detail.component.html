@@ -76,13 +76,17 @@
 
     <div class="row d-flex justify-content-center mt-4" *ngIf="option == 'MyWorld'">
         <div class="col-md-3 d-flex justify-content-center">
-            <button type="button" class="btn btn-cyan btn-lg" (click)="save()">Save</button>
+            <button type="button" class="btn btn-cyan btn-lg" (click)="save()" mdbWavesEffect>Save</button>
         </div>
 
         <div class="col-md-3 d-flex justify-content-center">
-            <button type="button" class="btn btn-cyan btn-lg" (click)="form()" >Story</button>
+            <button type="button" class="btn btn-cyan btn-lg" (click)="form.show()" mdbWavesEffect>Story</button>
         </div>
-        
+        <!--Modal: Contact form-->
+        <div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <story-modal></story-modal>
+        </div>
+        <!--Modal: Contact form-->
     </div>
 
 </section>
