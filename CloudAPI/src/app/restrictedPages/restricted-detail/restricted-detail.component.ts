@@ -29,7 +29,7 @@ export class RestrictedDetailComponent implements OnInit {
     this.country = null;
     if(this.share.getRestrictedSearchResultDetail() != null){
       this.data = this.share.getRestrictedSearchResultDetail();
-      console.log("data ",this.data[0]);
+      //console.log("data ",this.data[0]);
       this.input = this.data[0];
       this.option = this.data[1];
       if(this.option == "API"){
@@ -37,7 +37,7 @@ export class RestrictedDetailComponent implements OnInit {
           this.country = root.Response[0];
           this.lat = this.country.Latitude;
           this.long = this.country.Longitude;
-          console.log("detail:" ,this.country);
+          //console.log("detail:" ,this.country);
           this.options = {
             layers: [
               tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
@@ -54,17 +54,17 @@ export class RestrictedDetailComponent implements OnInit {
           console.log(err.message);
         },
         () => {
-          console.log("Done loading");
+          //console.log("Done loading");
         });
       }
 
       if(this.option == "MyWorld"){}
-      console.log(this.input.id);
+      //console.log(this.input.id);
       this.myWorldAPI.getDetail(this.input.id).subscribe(root => {
         this.country = root;
         this.lat = this.country.latitude;
         this.long = this.country.longitude;
-        console.log("detail:" ,this.country);
+        //console.log("detail:" ,this.country);
         this.options = {
           layers: [
             tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
@@ -81,14 +81,14 @@ export class RestrictedDetailComponent implements OnInit {
         console.log(err.message);
       },
       () => {
-        console.log("Done loading");
+        //console.log("Done loading");
       });
     }
   }
 
   public save(){
     this.myWorldAPI.updateCountry(this.country).subscribe(result => {
-      console.log(result);
+      //console.log(result);
     },
     error => {
       console.log(error.message);

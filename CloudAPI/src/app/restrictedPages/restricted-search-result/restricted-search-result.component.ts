@@ -23,7 +23,7 @@ export class RestrictedSearchResultComponent implements OnInit {
 
   ngDoCheck(){
     this.data = this.share.getRestrictedSearchResultByName();
-    console.log("data ",this.data[0]);
+    //console.log("data ",this.data[0]);
     this.results = this.data[0];
     this.option = this.data[1];
     if(this.option == "API"){
@@ -33,18 +33,18 @@ export class RestrictedSearchResultComponent implements OnInit {
     if(this.option == "MyWorld"){
       this.buttonTekst = "Delete";
     }
-    console.log("results search: ",this.results);
+    //console.log("results search: ",this.results);
   }
 
   public getDetail(countryIn: ICountry, index:number){
     this.selectedRow = index;
-    console.log("clicked: ",countryIn.Name);
-    console.log("clicked",index);
+    //console.log("clicked: ",countryIn.Name);
+    //console.log("clicked",index);
     this.share.setRestrictedSearchResultDetail(countryIn, this.option);
   }
 
   public handleData(country){
-    console.log("handle data: ",country);
+    //console.log("handle data: ",country);
     if(this.option == "API"){
       //console.log(country);
       this.myWorldAPI.addCountry(country).subscribe(result => {
@@ -54,32 +54,32 @@ export class RestrictedSearchResultComponent implements OnInit {
         console.log(err.message);
       },
       () => {
-        console.log("done");
+        //console.log("done");
       });
     }
 
     if(this.option == "MyWorld"){
       //delete country from my world
       this.myWorldAPI.deleteCountry(country.id).subscribe(result => {
-        console.log(result);
+        //console.log(result);
         this.myWorldAPI.getAll().subscribe( result => {
-          console.log("empty request", result)
+          //console.log("empty request", result)
           this.results = result;
           this.share.setRestrictedSearchResultByName(this.results, "MyWorld");
-          console.log(this.results);
+          //console.log(this.results);
         },
         err => {
           console.log(err.message);
         },
         () => {
-          console.log("done");
+          //console.log("done");
         });
       },
       err => {
         console.log(err.message);
       },
       () => {
-        console.log("done");
+        //console.log("done");
       });
     }
   }

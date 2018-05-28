@@ -20,13 +20,13 @@ export class SearchResultComponent implements OnInit, DoCheck {
 
   ngDoCheck(){
     this.results = this.share.getSearchResultByName();
-    console.log("results search: ",this.results);
+    //console.log("results search: ",this.results);
   }
 
   public getDetail(countryIn: ICountry, index:number){
     this.selectedRow = index;
-    console.log("clicked: ",countryIn.Name);
-    console.log("clicked",index);
+    //console.log("clicked: ",countryIn.Name);
+    //console.log("clicked",index);
     this.share.setSearchResultDetail(countryIn);
   }
 

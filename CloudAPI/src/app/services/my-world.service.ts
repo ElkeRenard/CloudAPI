@@ -21,19 +21,19 @@ export class MyWorldService {
     return this.http.post(`http://localhost:1768/api/Countries`, country);
   }
 
-  public deleteCountry(id){
+  public deleteCountry(id: number){
     return this.http.delete(`http://localhost:1768/api/Countries/${id}`);
   }
 
-  public searchByName(name){
-    return this.http.get(`http://localhost:1768/api/Countries/${name}`);
+  public searchByName(name: string){
+    return this.http.get(`http://localhost:1768/api/Countries?name=${name}`);
   }
 
-  public getDetail(id):Observable<IMyCountry>{
+  public getDetail(id: number):Observable<IMyCountry>{
     return this.http.get<IMyCountry>(`http://localhost:1768/api/Countries/${id}`);
   }
 
-  public updateCountry(country){
+  public updateCountry(country: IMyCountry){
     return this.http.put(`http://localhost:1768/api/Countries/`, country);
   }
 

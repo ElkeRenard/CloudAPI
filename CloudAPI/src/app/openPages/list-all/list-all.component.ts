@@ -28,7 +28,7 @@ export class ListAllComponent implements OnInit {
       this.setActive();
     }
    
-   console.log(this.page);
+   //console.log(this.page);
   }
 
   next(){
@@ -37,7 +37,7 @@ export class ListAllComponent implements OnInit {
       this.getList();
       this.setActive();
     }
-    console.log(this.page);
+    //console.log(this.page);
 
   }
 
@@ -45,29 +45,29 @@ export class ListAllComponent implements OnInit {
     this.page = input;
     this.setActive();
     this.getList();
-    console.log(this.page);
+    //console.log(this.page);
   }
 
   private getList(){
     this.selectedRow = null;
     this.exoticApi.getAll(this.page).subscribe(root => {
       this.completeList = root.Response;
-      console.log(this.completeList);
+      //console.log(this.completeList);
       },
       err => {
         console.log(err.message);
       },
       () => {
-        console.log("Done loading complete list");
+        //console.log("Done loading complete list");
       });
   }
 
   private setActive(){
     this.pages = document.getElementsByClassName("page-item");
-    console.log(this.pages);
+    //console.log(this.pages);
     for(let item of this.pages){
       if(item.id == this.page){
-        console.log(this.page, item)
+        //console.log(this.page, item)
         this.renderer.setStyle(item, 'background-color', '#4dd0e1');
       }
       else{
@@ -78,8 +78,8 @@ export class ListAllComponent implements OnInit {
 
   public goToDetail(countryIn: ICountry, index:number){
     this.selectedRow = index;
-    console.log("clicked: ",countryIn.Name);
-    console.log("clicked",index);
+    //console.log("clicked: ",countryIn.Name);
+    //console.log("clicked",index);
     this.share.setSearchResultDetail(countryIn);
   }
 

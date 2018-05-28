@@ -104,37 +104,37 @@ export class RegionsComponent implements OnInit {
       this.region = region;
       this.subregion = "";
       this.regionList = list.Response;
-      console.log(this.regionList);
+      //console.log(this.regionList);
     },
     error => {
       console.log(error.message);
     },
     () => {
-      console.log("done loading region list");
+      //console.log("done loading region list");
     });
   }
 
   public showCountriesSubRegion(region, subregion){
     this.selectedRow = null;
-    console.log("subregion: ", region, subregion);
+    //console.log("subregion: ", region, subregion);
     this.exoticApi.getCountriesByRegion(region, subregion).subscribe(list => {
       this.region = region;
       this.subregion = subregion;
       this.regionList = list.Response;
-      console.log(list);
+      //console.log(list);
     },
     error => {
       console.log(error.message);
     },
     () => {
-      console.log("done loading region list");
+      //console.log("done loading region list");
     });
   }
 
   public goToDetail(countryIn: ICountry, index:number){
     this.selectedRow = index;
-    console.log("clicked: ",countryIn.Name);
-    console.log("clicked",index);
+    //console.log("clicked: ",countryIn.Name);
+    //console.log("clicked",index);
     this.share.setSearchResultDetail(countryIn);
   }
 

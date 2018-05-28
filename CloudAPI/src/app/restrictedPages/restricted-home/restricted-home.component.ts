@@ -22,7 +22,7 @@ export class RestrictedHomeComponent implements OnInit {
   }
 
   findCountry(){
-    //console.log((<HTMLInputElement>document.getElementById("search")).value);
+    console.log("input: ",(<HTMLInputElement>document.getElementById("search")).value);
     this.input = (<HTMLInputElement>document.getElementById("search")).value;
     if(this.API){
       if(this.input == ""){
@@ -33,13 +33,13 @@ export class RestrictedHomeComponent implements OnInit {
         this.exoticApi.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
           this.list = root.Response;
           this.share.setRestrictedSearchResultByName(this.list, "API");
-          console.log(this.list);
+          //console.log(this.list);
         },
         err => {
           console.log(err.message);
         },
         () => {
-          console.log("Done loading search result");
+          //console.log("Done loading search result");
         });
       }
     }
@@ -59,11 +59,11 @@ export class RestrictedHomeComponent implements OnInit {
             console.log("done");
           });
         }
-        else{ 
+        else{
           this.myWorldAPI.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
           this.list = root;
           this.share.setRestrictedSearchResultByName(this.list, "MyWorld");
-          console.log(this.list);
+          console.log("filter: ",root);
             },
             err => {
               console.log(err.message);
@@ -79,7 +79,7 @@ export class RestrictedHomeComponent implements OnInit {
     this.API = true;
     this.myWorld = false;
     this.option = document.getElementsByTagName("h3");
-    console.log(this.option, this.API, this.myWorld);
+    //console.log(this.option, this.API, this.myWorld);
     this.renderer.setStyle(this.option[0], 'color', '#4dd0e1');
     this.renderer.setStyle(this.option[1], 'color', 'white');
   }
@@ -88,7 +88,7 @@ export class RestrictedHomeComponent implements OnInit {
     this.API = false;
     this.myWorld = true;
     this.option = document.getElementsByTagName("h3");
-    console.log(this.option, this.API, this.myWorld);
+    //console.log(this.option, this.API, this.myWorld);
     this.renderer.setStyle(this.option[0], 'color', 'white');
     this.renderer.setStyle(this.option[1], 'color', '#4dd0e1');
   }

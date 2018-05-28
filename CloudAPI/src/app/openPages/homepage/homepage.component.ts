@@ -18,7 +18,7 @@ export class HomepageComponent implements OnInit {
   }
 
   findCountry(){
-    console.log((<HTMLInputElement>document.getElementById("search")).value);
+    //console.log((<HTMLInputElement>document.getElementById("search")).value);
     this.input = (<HTMLInputElement>document.getElementById("search")).value;
     if(this.input == ""){
       this.list = [];
@@ -28,13 +28,13 @@ export class HomepageComponent implements OnInit {
       this.exoticApi.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
         this.list = root.Response;
         this.share.setSearchResultByName(this.list);
-        console.log(this.list);
+        //console.log(this.list);
       },
       err => {
         console.log(err.message);
       },
       () => {
-        console.log("Done loading search result");
+        //console.log("Done loading search result");
       });
     }
   }
