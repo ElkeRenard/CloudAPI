@@ -11,9 +11,20 @@ import {
 })
 export class LoginComponent implements OnInit {
 
+  public user;
+
   constructor( private socialAuthService: AuthService ) {}
+
+  public auth(socialPlatform: string){
+    if(!this.user){
+      this.socialSignIn(socialPlatform);
+    }
+    if(this.user){
+      this.signOut();
+    }
+  }
   
-  public socialSignIn(socialPlatform : string) {
+  private socialSignIn(socialPlatform : string) {
     let socialPlatformProvider;
     if(socialPlatform == "google"){
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
@@ -22,10 +33,16 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
         console.log(socialPlatform+" sign in data : " , userData);
+        this.user = userData.name;
+
         // Now sign-in with userData
             
       }
     );
+  }
+
+  private signOut(){
+    this.socialAuthService.signOut();
   }
 
   ngOnInit() {

@@ -7,6 +7,7 @@ export class ShareService {
   private searchResult: ICountry[];
   private searchDetail: ICountry;
   private option: string;
+  private user;
 
   constructor() { }
 
@@ -42,6 +43,14 @@ export class ShareService {
 
   getSearchResultDetail(){
     return this.searchDetail;
+  }
+
+  setUser(user){
+    this.user = user;
+  }
+
+  getUser(user){
+    return this.user;
   }
 
 }
