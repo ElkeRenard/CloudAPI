@@ -31,18 +31,31 @@ namespace myWorldApi
                     )
             );
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
             services.AddMvc();
-            services.AddCors();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, WorldContext worldctx)
         {
+            app.UseCors("AllowAll");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
 
             app.UseMvc();
 

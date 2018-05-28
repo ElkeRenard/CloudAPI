@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myWorldApi.models;
@@ -20,11 +21,13 @@ namespace myWorldApi.Controllers
         }
 
         [HttpGet]
+        
         public List<Country> getAll()
         {
             return context.Countries.ToList();
         }
 
+        [EnableCors("AllowAll")]
         [HttpGet]
         [Route("{id}")]
         public IActionResult getCountryById(long id)
@@ -35,15 +38,15 @@ namespace myWorldApi.Controllers
             return Ok(country);
         }
 
-        [HttpGet]
+        /*[HttpGet]
         [Route("{name}")]
-        public IActionResult searchCountries(string name) { 
+        public List<Country> searchCountries([FromUri]string name) { 
             IQueryable<Country> query = context.Countries;
 
             if (!string.IsNullOrWhiteSpace(name))
                 query = query.Where(d => d.Name == name);
-            return Ok(query);
-        }
+            return query.ToList();
+        }*/
 
         [HttpDelete]
         [Route("{id}")]
@@ -65,7 +68,7 @@ namespace myWorldApi.Controllers
             return Created("", newCountry);
         }
 
-        [HttpPut]
+       /* [HttpPut]
         public IActionResult updateCountry([FromBody] Country countryIn, [FromBody] Boolean favorite)
         {
 
@@ -74,6 +77,6 @@ namespace myWorldApi.Controllers
                 return NotFound();
             context.SaveChanges();
             return Ok(country);
-        }
+        }*/
     }
 }
