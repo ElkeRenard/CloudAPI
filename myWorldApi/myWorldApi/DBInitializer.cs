@@ -31,9 +31,7 @@ namespace myWorldApi
                     CurrencyName = "Belize dollar",
                     CurrencySymbol = "$",
                     Flag = "https://api.backendless.com/2F26DFBF-433C-51CC-FF56-830CEA93BF00/473FB5A9-D20E-8D3E-FF01-E93D9D780A00/files/CountryFlags/blz.svg",
-                    FlagPng = "https://api.backendless.com/2F26DFBF-433C-51CC-FF56-830CEA93BF00/473FB5A9-D20E-8D3E-FF01-E93D9D780A00/files/CountryFlagsPng/blz.png",
-                    Favourite = false
-
+                    FlagPng = "https://api.backendless.com/2F26DFBF-433C-51CC-FF56-830CEA93BF00/473FB5A9-D20E-8D3E-FF01-E93D9D780A00/files/CountryFlagsPng/blz.png"
                 };
 
                 var country2 = new Country()
@@ -53,8 +51,7 @@ namespace myWorldApi
                     CurrencyName = "Costa Rican colón",
                     CurrencySymbol = "₡",
                     Flag = "https://api.backendless.com/2F26DFBF-433C-51CC-FF56-830CEA93BF00/473FB5A9-D20E-8D3E-FF01-E93D9D780A00/files/CountryFlags/cri.svg",
-                    FlagPng = "https://api.backendless.com/2F26DFBF-433C-51CC-FF56-830CEA93BF00/473FB5A9-D20E-8D3E-FF01-E93D9D780A00/files/CountryFlagsPng/cri.png",
-                    Favourite = true
+                    FlagPng = "https://api.backendless.com/2F26DFBF-433C-51CC-FF56-830CEA93BF00/473FB5A9-D20E-8D3E-FF01-E93D9D780A00/files/CountryFlagsPng/cri.png"
                 };
 
                 context.Countries.Add(country1);

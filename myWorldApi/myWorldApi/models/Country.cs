@@ -24,6 +24,6 @@ namespace myWorldApi.models
         public string CurrencySymbol { get; set; }
         public string Flag { get; set; }
         public string FlagPng { get; set; }
-        public bool Favourite { get; set; }
+
     }
 }
