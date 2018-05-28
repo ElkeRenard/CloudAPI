@@ -3,9 +3,9 @@
     <div class="text-center mb-4">
         <button type="button" (click)="go()" class="btn">Details selected country<i class="fa fa-paper-plane-o ml-2"></i></button>
     </div>
-    <div class="text-center mb-4">
-            <img src= {{country.Flag}} alt="flag" style="width: 30%;" *ngIf="country">
-            
+    <div class="text-center mb-4" *ngIf="country">
+            <img src= {{country.Flag}} alt="flag" style="width: 30%;" *ngIf="option == 'API'">
+            <img src= {{country.flag}} alt="flag" style="width: 30%;" *ngIf="option == 'MyWorld'">
     </div>
     
 
@@ -19,33 +19,33 @@
             <tbody>
                 <tr>
                     <th scope="row"><i class="fa fa-globe mr-2" aria-hidden="true"></i>Name</th>
-                    <td>{{country.Name}}</td>
+                    <td>{{country.Name}}<span *ngIf = "option == 'MyWorld'">{{country.name}}</span></td>
                 </tr>
                 <tr>
                     <th scope="row"><i class="fa fa-heart mr-2" aria-hidden="true"></i>Native name</th>
-                    <td>{{country.NativeName}}</td>
+                    <td>{{country.NativeName}}<span *ngIf = "option == 'MyWorld'">{{country.nativeName}}</span></td>
                 </tr>
                 <tr>
                     <th scope="row"><i class="fa fa-map-o mr-2" aria-hidden="true"></i>Region</th>
-                    <td>{{country.Region}}</td>
+                    <td>{{country.Region}}<span *ngIf = "option == 'MyWorld'">{{country.region}}</span></td>
                 </tr>
                 <tr>
                     <th scope="row"><i class="fa fa-map mr-2" aria-hidden="true"></i>Subregion</th>
-                    <td>{{country.SubRegion}}</td>
+                    <td>{{country.SubRegion}}<span *ngIf = "option == 'MyWorld'">{{country.subregion}}</span></td>
                 </tr>
                 <tr>
                     <th scope="row"><i class="fa fa-heart-o mr-2" aria-hidden="true"></i>Native language</th>
-                    <td>{{country.NativeLanguage}}</td>
+                    <td>{{country.NativeLanguage}}<span *ngIf = "option == 'MyWorld'">{{country.nativeLanguage}}</span></td>
                 </tr>
                 <tr>
                     <th scope="row"><i class="fa fa-money mr-2" aria-hidden="true"></i>Currency name</th>
-                    <td>{{country.CurrencyName}}</td>
+                    <td>{{country.CurrencyName}}<span *ngIf = "option == 'MyWorld'">{{country.currencyName}}</span></td>
                     <th scope="row">Symbol</th>
-                    <td>{{country.CurrencySymbol}}</td>
+                    <td>{{country.CurrencySymbol}}<span *ngIf = "option == 'MyWorld'">{{country.currencySymbol}}</span></td>
                 </tr>
                 <tr>
                     <th scope="row"><i class="fa fa-star mr-2" aria-hidden="true"></i>Area</th>
-                    <td>{{country.Area}} km²</td>
+                    <td>{{country.Area}}<span *ngIf = "option == 'MyWorld'">{{country.area}}</span> km²</td>
                 </tr>
             </tbody>
 

@@ -23,6 +23,14 @@ export class MyWorldService {
   public deleteCountry(id){
     return this.http.delete(`http://localhost:1768/api/Countries/${id}`);
   }
+
+  public searchByName(name){
+    return this.http.get(`http://localhost:1768/api/Countries/${name}`);
+  }
+
+  getDetail(id):Observable<IMyCountry>{
+    return this.http.get<IMyCountry>(`http://localhost:1768/api/Countries/${id}`);
+  }
   
 }
 

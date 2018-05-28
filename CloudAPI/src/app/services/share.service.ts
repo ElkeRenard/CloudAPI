@@ -27,12 +27,13 @@ export class ShareService {
     return [this.searchResult, this.option];
   }
 
-  setSearchResultDetail(input:ICountry){
+  setSearchResultDetail(input:ICountry, option){
     this.searchDetail = input;
+    this.option = option;
   }
 
-  getSearchResultDetail():ICountry{
-    return this.searchDetail;
+  getSearchResultDetail(){
+    return [this.searchDetail, this.option];
   }
 
 }

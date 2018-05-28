@@ -60,8 +60,8 @@ export class RestrictedHomeComponent implements OnInit {
           });
         }
         else{ 
-          this.exoticApi.searchByName("Canada").subscribe(root => {
-          this.list = root.Response;
+          this.myWorldAPI.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
+          this.list = root;
           this.share.setRestrictedSearchResultByName(this.list, "MyWorld");
           console.log(this.list);
             },

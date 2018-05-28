@@ -40,7 +40,7 @@ export class RestrictedSearchResultComponent implements OnInit {
     this.selectedRow = index;
     console.log("clicked: ",countryIn.Name);
     console.log("clicked",index);
-    this.share.setSearchResultDetail(countryIn);
+    this.share.setSearchResultDetail(countryIn, this.option);
   }
 
   public handleData(country){
