@@ -20,11 +20,13 @@ namespace myWorldApi.Controllers
             this.context = context;
         }
 
-        [HttpGet]
-        
-        public List<Country> getAll()
+        [HttpGet]        
+        public List<Country> getAll(string name)
         {
-            return context.Countries.ToList();
+            IQueryable < Country > query = context.Countries;
+            if (!string.IsNullOrWhiteSpace(name))
+                query = query.Where(d => d.Name.Contains(name));
+            return query.ToList();
         }
 
         [EnableCors("AllowAll")]
@@ -38,15 +40,6 @@ namespace myWorldApi.Controllers
             return Ok(country);
         }
 
-        /*[HttpGet]
-        [Route("{name}")]
-        public List<Country> searchCountries([FromUri]string name) { 
-            IQueryable<Country> query = context.Countries;
-
-            if (!string.IsNullOrWhiteSpace(name))
-                query = query.Where(d => d.Name == name);
-            return query.ToList();
-        }*/
 
         [HttpDelete]
         [Route("{id}")]
@@ -63,20 +56,22 @@ namespace myWorldApi.Controllers
         [HttpPost]
         public IActionResult addCountry([FromBody] Country newCountry)
         {
+            newCountry.Favourite = false;
             context.Countries.Add(newCountry);
             context.SaveChanges();
             return Created("", newCountry);
         }
 
-       /* [HttpPut]
-        public IActionResult updateCountry([FromBody] Country countryIn, [FromBody] Boolean favorite)
+        [HttpPut]
+        public IActionResult updateCountry([FromBody] Country countryIn)
         {
 
             var country = context.Countries.Find(countryIn.id);
             if (country == null)
                 return NotFound();
+            country.Favourite = countryIn.Favourite;
             context.SaveChanges();
             return Ok(country);
-        }*/
+        }
     }
 }
