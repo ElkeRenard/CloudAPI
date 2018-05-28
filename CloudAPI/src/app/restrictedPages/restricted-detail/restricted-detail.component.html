@@ -1,7 +1,7 @@
 <section id = 'restricted-detail'>
     <h2 class="mb-4 font-weight-bold text-center">Selected Country</h2>
     <div class="text-center mb-4">
-        <button type="button" (click)="go()" class="btn">Details selected country<i class="fa fa-paper-plane-o ml-2"></i></button>
+        <button type="button" (click)="go()" class="btn btn-cyan">Details selected country<i class="fa fa-paper-plane-o ml-2"></i></button>
     </div>
     <div class="text-center mb-4" *ngIf="country">
             <img src= {{country.Flag}} alt="flag" style="width: 30%;" *ngIf="option == 'API'">
@@ -68,8 +68,8 @@
     <div class="row d-flex justify-content-center mt-4" *ngIf="option == 'MyWorld'">
         
         <div *ngIf="country">
-                <i *ngIf="!country.favourite" class="fa fa-heart-o fa-3x" aria-hidden="true" (click)="country.favourite = !country.favourite"> Favourite</i>
-                <i *ngIf="country.favourite" class="fa fa-heart fa-3x orange-text" aria-hidden="true" (click)="country.favourite = !country.favourite"> Favourite</i>
+                <a><i *ngIf="!country.favourite" class="fa fa-heart-o fa-3x" aria-hidden="true" (click)="country.favourite = !country.favourite"> Favourite</i></a>
+                <a><i *ngIf="country.favourite" class="fa fa-heart fa-3x orange-text" aria-hidden="true" (click)="country.favourite = !country.favourite"> Favourite</i></a>
         </div>
        
     </div>

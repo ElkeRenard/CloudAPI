@@ -1,3 +1,31 @@
-<p>
-  restricted-list-all works!
-</p>
+<section id = "restricted-list-all"  class="text-center">
+
+    <h2 class="mb-5 font-weight-bold"><a (click)="prev()"><i class="fa fa-angle-left mr-5" aria-hidden="true"></i></a>All countries<a (click)="next()"><i class="fa fa-angle-right ml-5"></i></a></h2>
+      <!--Table-->
+      <table class="table table-hover table-sm">
+
+        <!--Table head-->
+        <thead *ngIf="completeList">
+            <tr>
+                <th  class="font-weight-bold">ID</th>
+                <th  class="font-weight-bold">Country</th>
+                <th  class="font-weight-bold">Native name</th>
+                <th  class="font-weight-bold">Region</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+    
+        <!--Table body-->
+        <tbody>
+            <tr *ngFor="let country of completeList; let i = index" (click)="goToDetail(country, i)" [class.active]="i == selectedRow">
+                <th scope="row">{{country.alpha3Code}}</th>
+                <td>{{country.name}}</td>
+                <td>{{country.nativeName}}</td>
+                <td>{{country.region}}</td>
+            </tr>
+        </tbody>
+        <!--Table body-->
+    
+    </table>
+    <!--Table-->
+</section>

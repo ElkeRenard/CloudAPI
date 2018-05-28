@@ -29,7 +29,7 @@ import { NavbarRestrictedComponent } from './restrictedPages/navbar-restricted/n
 import { RestrictedHomeComponent } from './restrictedPages/restricted-home/restricted-home.component';
 import { RestrictedSearchResultComponent } from './restrictedPages/restricted-search-result/restricted-search-result.component';
 import { RestrictedDetailComponent } from './restrictedPages/restricted-detail/restricted-detail.component';
-import { RestrictedListAllComponent } from './restricted-list-all/restricted-list-all.component';
+import { RestrictedListAllComponent } from './restrictedPages/restricted-list-all/restricted-list-all.component';
 
 const appRoutes: Routes=[
   {path: "home", component: OpenComponent},
