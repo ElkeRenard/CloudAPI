@@ -27,8 +27,8 @@ export class RestrictedDetailComponent implements OnInit {
 
   public go(){
     this.country = null;
-    if(this.share.getSearchResultDetail() != null){
-      this.data = this.share.getSearchResultDetail();
+    if(this.share.getRestrictedSearchResultDetail() != null){
+      this.data = this.share.getRestrictedSearchResultDetail();
       console.log("data ",this.data[0]);
       this.input = this.data[0];
       this.option = this.data[1];
@@ -84,7 +84,16 @@ export class RestrictedDetailComponent implements OnInit {
         console.log("Done loading");
       });
     }
-      
+  }
 
+  public save(){
+    this.myWorldAPI.updateCountry(this.country).subscribe(result => {
+      console.log(result);
+    },
+    error => {
+      console.log(error.message);
+    },
+    () => {}
+    );
   }
 }

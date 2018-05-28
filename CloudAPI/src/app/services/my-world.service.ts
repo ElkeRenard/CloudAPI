@@ -9,6 +9,7 @@ import  {ICountry } from './exotic.service';
 export class MyWorldService {
 
   private baseUrl: string = "http://localhost:1768/api/Countries";
+  private newCountry:IMyCountry;
 
   constructor(private http: HttpClient) { }
 
@@ -28,9 +29,14 @@ export class MyWorldService {
     return this.http.get(`http://localhost:1768/api/Countries/${name}`);
   }
 
-  getDetail(id):Observable<IMyCountry>{
+  public getDetail(id):Observable<IMyCountry>{
     return this.http.get<IMyCountry>(`http://localhost:1768/api/Countries/${id}`);
   }
+
+  public updateCountry(country){
+    return this.http.put(`http://localhost:1768/api/Countries/`, country);
+  }
+
   
 }
 
@@ -52,6 +58,7 @@ export interface IMyCountry{
   CurrencyName:string,
   CurrencySymbol:string,
   Flag:string,
-  FlagPng:string
+  FlagPng:string,
+  Favourite:boolean
 }
 

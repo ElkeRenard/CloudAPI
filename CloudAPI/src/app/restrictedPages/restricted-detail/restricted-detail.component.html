@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <th scope="row"><i class="fa fa-map mr-2" aria-hidden="true"></i>Subregion</th>
-                    <td>{{country.SubRegion}}<span *ngIf = "option == 'MyWorld'">{{country.subregion}}</span></td>
+                    <td>{{country.SubRegion}}<span *ngIf = "option == 'MyWorld'">{{country.subRegion}}</span></td>
                 </tr>
                 <tr>
                     <th scope="row"><i class="fa fa-heart-o mr-2" aria-hidden="true"></i>Native language</th>
@@ -63,7 +63,21 @@
     <!--Grid column-->
     
     </div>
+    
     <!--Grid row-->
+    <div class="row d-flex justify-content-center mt-4" *ngIf="option == 'MyWorld'">
+        
+        <div *ngIf="country">
+                <i *ngIf="!country.favourite" class="fa fa-heart-o fa-3x" aria-hidden="true" (click)="country.favourite = !country.favourite"> Favourite</i>
+                <i *ngIf="country.favourite" class="fa fa-heart fa-3x orange-text" aria-hidden="true" (click)="country.favourite = !country.favourite"> Favourite</i>
+        </div>
+       
+    </div>
+
+    <div class="row d-flex justify-content-center mt-4" *ngIf="option == 'MyWorld'">
+        <button type="button" class="btn btn-cyan btn-lg" (click)="save()">Save</button>
+    </div>
+
 </section>
 
 <ng-template #noData>

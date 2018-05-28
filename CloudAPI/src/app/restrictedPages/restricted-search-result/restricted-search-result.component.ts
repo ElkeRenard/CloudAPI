@@ -40,10 +40,11 @@ export class RestrictedSearchResultComponent implements OnInit {
     this.selectedRow = index;
     console.log("clicked: ",countryIn.Name);
     console.log("clicked",index);
-    this.share.setSearchResultDetail(countryIn, this.option);
+    this.share.setRestrictedSearchResultDetail(countryIn, this.option);
   }
 
   public handleData(country){
+    console.log("handle data: ",country);
     if(this.option == "API"){
       //console.log(country);
       this.myWorldAPI.addCountry(country).subscribe(result => {
