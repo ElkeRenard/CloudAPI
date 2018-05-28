@@ -21,7 +21,7 @@ export class MyWorldService {
   }
 
   public deleteCountry(id){
-    return this.http.delete(`http://localhost:1768/api/Countries`, id);
+    return this.http.delete(`http://localhost:1768/api/Countries/${id}`);
   }
   
 }

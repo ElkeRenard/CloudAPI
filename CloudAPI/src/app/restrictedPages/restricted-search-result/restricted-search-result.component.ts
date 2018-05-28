@@ -61,6 +61,18 @@ export class RestrictedSearchResultComponent implements OnInit {
       //delete country from my world
       this.myWorldAPI.deleteCountry(country.id).subscribe(result => {
         console.log(result);
+        this.myWorldAPI.getAll().subscribe( result => {
+          console.log("empty request", result)
+          this.results = result;
+          this.share.setRestrictedSearchResultByName(this.results, "MyWorld");
+          console.log(this.results);
+        },
+        err => {
+          console.log(err.message);
+        },
+        () => {
+          console.log("done");
+        });
       },
       err => {
         console.log(err.message);
