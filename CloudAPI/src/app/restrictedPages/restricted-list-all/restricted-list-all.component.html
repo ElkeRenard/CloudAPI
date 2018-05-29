@@ -1,0 +1,37 @@
+<section id = "restricted-list-all"  class="text-center">
+
+    <h2 class=" font-weight-bold"><a (click)="prev()"><i class="fa fa-angle-left mr-5" aria-hidden="true"></i></a>My world<a (click)="next()"><i class="fa fa-angle-right ml-5"></i></a></h2>
+    <div class="mb-5">
+        <a><i *ngIf="!favourite" class="fa fa-heart-o" aria-hidden="true" (click)="favo(true)"> Only Favourites</i></a>
+        <a><i *ngIf="favourite" class="fa fa-heart orange-text" aria-hidden="true" (click)="favo(true)"> All Favourites</i></a>
+    </div>  
+    <!--Table-->
+      <table class="table table-hover table-sm">
+
+        <!--Table head-->
+        <thead *ngIf="completeList">
+            <tr>
+                <th  class="font-weight-bold">ID</th>
+                <th  class="font-weight-bold">Country</th>
+                <th  class="font-weight-bold">Native name</th>
+                <th  class="font-weight-bold">Region</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+    
+        <!--Table body-->
+        <tbody>
+            <tr *ngFor="let country of completeList; let i = index" (click)="goToDetail(country, i)" [class.active]="i == selectedRow">
+                <th scope="row">{{country.alpha3Code}}</th>
+                <td>{{country.name}}</td>
+                <td>{{country.nativeName}}</td>
+                <td>{{country.region}}</td>
+                <td><button type="button" class="btn btn-cyan btn-sm" (click)="showStories()">Stories</button></td>               
+                <td><button class="klik" type="button" class="btn btn-red btn-sm" (click)="delete(country,i)">Delete</button></td>
+            </tr>
+        </tbody>
+        <!--Table body-->
+    
+    </table>
+    <!--Table-->
+</section>

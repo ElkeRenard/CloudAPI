@@ -21,8 +21,9 @@
                 <th scope="row">{{country.Alpha3Code}}<span *ngIf = "option == 'MyWorld'">{{country.alpha3Code}}</span> </th>
                 <td>{{country.Name}}<span *ngIf = "option == 'MyWorld'">{{country.name}}</span></td>
                 <td>{{country.NativeName}}<span *ngIf = "option == 'MyWorld'">{{country.nativeName}}</span></td>
-                <td>{{country.Region}}<span *ngIf = "option == 'MyWorld'">{{country.region}}</span></td>                
-                <td><button type="button" class="btn btn-cyan btn-sm" (click)="handleData(country)">{{buttonTekst}}</button></td>
+                <td>{{country.Region}}<span *ngIf = "option == 'MyWorld'">{{country.region}}</span></td> 
+                <td><button *ngIf="option == 'MyWorld'" type="button" class="btn btn-cyan btn-sm" (click)="showStories()">Stories</button></td>               
+                <td><button class="klik" type="button" class="btn btn-red btn-sm" (click)="handleData(country,i)">{{buttonTekst}}</button></td>                
             </tr>
         </tbody>
         <!--Table body-->

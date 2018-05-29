@@ -56,6 +56,39 @@ namespace myWorldApi
                     Favourite = true
                 };
 
+                var author1 = new Traveller()
+                {
+                    Name = "Elke"
+                };
+
+                var author2 = new Traveller()
+                {
+                    Name = "Floor"
+                };
+
+                var story1 = new Story()
+                {
+                    Country = country1,
+                    StartDate = new DateTime(2017, 08, 12),
+                    EndDate = new DateTime(2017, 08, 22),
+                    Author = author1,
+                    Travelstory = "We gingen de eendjes eten geven en dan naar het rampolinepark."
+
+                };
+
+                var story2 = new Story()
+                {
+                    Country = country2,
+                    StartDate = new DateTime(2017, 07, 5),
+                    EndDate = new DateTime(2017, 07, 16),
+                    Author = author2,
+                    Travelstory = "Tijdens het snorkelen zagen we veel felgekleurde visjes en mooie koralen. We hebben ook enkele lege schelpen opgevist."
+
+                };
+                context.Travellers.Add(author1);
+                context.Travellers.Add(author1);
+                context.Stories.Add(story1);
+                context.Stories.Add(story2);
                 context.Countries.Add(country1);
                 context.Countries.Add(country2);
                 context.SaveChanges();

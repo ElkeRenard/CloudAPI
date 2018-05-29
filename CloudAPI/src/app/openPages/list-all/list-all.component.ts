@@ -17,14 +17,14 @@ export class ListAllComponent implements OnInit {
   constructor(private exoticApi: ExoticService, private renderer: Renderer2,  private share: ShareService) { }
 
   ngOnInit() {
-    this.getList();
+    this.getList(this.page);
     this.setActive();
   }
 
   prev(){
     if(this.page>1){
       this.page -= 1;
-      this.getList();
+      this.getList(this.page);
       this.setActive();
     }
    
@@ -34,7 +34,7 @@ export class ListAllComponent implements OnInit {
   next(){
     if(this.page<10){
       this.page +=1;
-      this.getList();
+      this.getList(this.page);
       this.setActive();
     }
     //console.log(this.page);
@@ -44,13 +44,13 @@ export class ListAllComponent implements OnInit {
   chosenPage(input:number){
     this.page = input;
     this.setActive();
-    this.getList();
+    this.getList(this.page);
     //console.log(this.page);
   }
 
-  private getList(){
+  private getList(page){
     this.selectedRow = null;
-    this.exoticApi.getAll(this.page).subscribe(root => {
+    this.exoticApi.getAll(page).subscribe(root => {
       this.completeList = root.Response;
       //console.log(this.completeList);
       },

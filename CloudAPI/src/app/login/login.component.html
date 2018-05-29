@@ -1,2 +1,5 @@
- <a class="px-2 fa-lg fb-ic" (click)="socialSignIn('google')"><i class="fa fa-google"></i></a>
+ <a  (click)="auth('google')" *ngIf = "!user; else loggedIn"><i class="fa fa-google white-text fa-lg "> Login</i></a>
  
+ <ng-template #loggedIn>
+    <a class="orange-text font-weight-bold" (click)="auth('google')">{{user}}</a>   
+ </ng-template>
