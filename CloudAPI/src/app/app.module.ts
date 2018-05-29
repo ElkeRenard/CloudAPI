@@ -30,7 +30,7 @@ import { RestrictedSearchResultComponent } from './restrictedPages/restricted-se
 import { RestrictedDetailComponent } from './restrictedPages/restricted-detail/restricted-detail.component';
 import { RestrictedListAllComponent } from './restrictedPages/restricted-list-all/restricted-list-all.component';
 import { StoryModalComponent } from './restrictedPages/story-modal/story-modal.component';
-import { RestrictedStoriesComponent } from './restricted-stories/restricted-stories.component';
+import { RestrictedStoriesComponent } from './restrictedPages/restricted-stories/restricted-stories.component';
 
 const appRoutes: Routes=[
   {path: "home", component: OpenComponent},
