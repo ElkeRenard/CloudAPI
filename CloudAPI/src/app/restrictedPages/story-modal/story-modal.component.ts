@@ -13,10 +13,10 @@ export class StoryModalComponent implements OnInit {
   private data;
 
   public story: IStory ={
-    Country: "Belarus",
-    StartDate: "20/05/2018",
-    EndDate: "24/05/2018",
-    Author: "elke",
+    Country: "",
+    StartDate: "",
+    EndDate: "",
+    Author: "",
     Travelstory: ""
   }
 
@@ -27,7 +27,7 @@ export class StoryModalComponent implements OnInit {
   }
 
   public saveStory(){
-    this.data = this.share.getRestrictedSearchResultDetail();
+    this.data = this.share.getRestrictedDetail();
     console.log(this.data);
     this.country = this.data[0];
     this.story.Country = this.country.name;

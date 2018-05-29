@@ -19,7 +19,7 @@ export class SearchResultComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(){
-    this.results = this.share.getSearchResultByName();
+    this.results = this.share.getSearchResult();
     //console.log("results search: ",this.results);
   }
 
@@ -27,7 +27,7 @@ export class SearchResultComponent implements OnInit, DoCheck {
     this.selectedRow = index;
     //console.log("clicked: ",countryIn.Name);
     //console.log("clicked",index);
-    this.share.setSearchResultDetail(countryIn);
+    this.share.setDetail(countryIn);
   }
 
 

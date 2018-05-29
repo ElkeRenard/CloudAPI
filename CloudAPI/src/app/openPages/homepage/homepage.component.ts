@@ -22,12 +22,12 @@ export class HomepageComponent implements OnInit {
     this.input = (<HTMLInputElement>document.getElementById("search")).value;
     if(this.input == ""){
       this.list = [];
-      this.share.setSearchResultByName(this.list);
+      this.share.setSearchResult(this.list);
     }
     else{
-      this.exoticApi.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
+      this.exoticApi.searchByName(this.input).subscribe(root => {
         this.list = root.Response;
-        this.share.setSearchResultByName(this.list);
+        this.share.setSearchResult(this.list);
         //console.log(this.list);
       },
       err => {

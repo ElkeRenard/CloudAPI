@@ -11,20 +11,20 @@ export class ExoticService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(page:number):Observable<IRoot>{
+  public getAll(page:number):Observable<IRoot>{
   
     return this.http.get<IRoot>(`${this.baseURL}?pLimit=25&pPage=${page}`);
   }
 
-  getCountriesByRegion(region, subregion):Observable<IRoot>{
+  public getCountriesByRegion(region, subregion):Observable<IRoot>{
     return this.http.get<IRoot>(`${this.baseURL}?pRegion=${region}&pSubRegion=${subregion}`)
   }
 
-  searchByName(name):Observable<IRoot>{
+  public searchByName(name):Observable<IRoot>{
     return this.http.get<IRoot>(`${this.baseURL}?pName=${name}`);
   }
 
-  getDetail(fullname):Observable<IRoot>{
+  public getDetail(fullname):Observable<IRoot>{
     return this.http.get<IRoot>(`${this.baseURL}?pName=${fullname}`);
   }
     

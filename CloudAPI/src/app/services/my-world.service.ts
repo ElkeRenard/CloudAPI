@@ -13,7 +13,7 @@ export class MyWorldService {
   constructor(private http: HttpClient) { }
 
   //calls to countries
-  public getAll(): Observable<IMyCountry[]>{
+  public getCountries(): Observable<IMyCountry[]>{
     return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries`);
   }
 
@@ -73,24 +73,24 @@ export class MyWorldService {
 
 export interface IMyCountry{
 
-  Id: number,
-  Name:string,
-  Alpha2Code:string,
-  Alpha3Code:string,
-  NativeName:string,
-  Region:string,
-  SubRegion:string,
-  Latitude:number,
-  Longitude:number,
-  Area:number,
-  NumericCode:number,
-  NativeLanguage:string,
-  CurrencyCode:string,
-  CurrencyName:string,
-  CurrencySymbol:string,
-  Flag:string,
-  FlagPng:string,
-  Favourite:boolean
+  id: number,
+  name:string,
+  alpha2Code:string,
+  alpha3Code:string,
+  nativeName:string,
+  region:string,
+  subRegion:string,
+  latitude:number,
+  longitude:number,
+  area:number,
+  numericCode:number,
+  nativeLanguage:string,
+  currencyCode:string,
+  currencyName:string,
+  currencySymbol:string,
+  flag:string,
+  flagPng:string,
+  favourite:boolean
 }
 
 export interface IStory{

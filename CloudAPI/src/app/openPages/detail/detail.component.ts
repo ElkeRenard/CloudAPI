@@ -23,24 +23,11 @@ export class DetailComponent implements OnInit{
 
   public go(){
     this.country = null;
-    if(this.share.getSearchResultDetail() != null){
-      this.input = this.share.getSearchResultDetail();
+    if(this.share.getDetail() != null){
+      this.input = this.share.getDetail();
       this.exoticApi.getDetail(this.input.Name).subscribe(root => {
         this.country = root.Response[0];
-        this.lat = this.country.Latitude;
-        this.long = this.country.Longitude;
-        console.log("detail:" ,this.country);
-        this.options = {
-          layers: [
-            tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-              maxZoom: 20,
-              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-              detectRetina: true
-            })
-          ],
-          zoom: 6,
-          center: latLng([ this.lat, this.long ])
-        };
+        this.setMap(this.country);
       },
       err => {
         console.log(err.message);
@@ -50,6 +37,23 @@ export class DetailComponent implements OnInit{
       });
     }
 
+  }
+
+  private setMap(country){
+    this.lat = this.country.Latitude;
+    this.long = this.country.Longitude;
+    console.log("detail:" ,this.country);
+    this.options = {
+      layers: [
+        tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+          maxZoom: 20,
+          subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+          detectRetina: true
+        })
+      ],
+      zoom: 6,
+      center: latLng([ this.lat, this.long ])
+    };
   }
 
 }
