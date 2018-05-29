@@ -6,19 +6,19 @@
 
   <label class="mr-5">Sort by: </label>
   <div class="form-check">
-      <input class="form-check-input " type="radio" name="exampleRadios" id="sortByCountry">
+      <input class="form-check-input " type="radio" name="exampleRadios" id="sortByCountry" (click)="sort('country')">
       <label class="form-check-label mr-4" for="sortByCountry">
           Country
       </label>
   </div>
   <div class="form-check">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="sortByAuthor">
+      <input class="form-check-input" type="radio" name="exampleRadios" id="sortByAuthor" (click)="sort('author')">
       <label class="form-check-label mr-4" for="sortByAuthor">
           Author
       </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="exampleRadios" id="default" checked>
+    <input class="form-check-input" type="radio" name="exampleRadios" id="default" (click)="sort('')" checked>
     <label class="form-check-label" for="default">
         default
     </label>

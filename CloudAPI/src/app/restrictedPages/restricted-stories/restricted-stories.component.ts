@@ -27,4 +27,17 @@ export class RestrictedStoriesComponent implements OnInit {
 
     });
   }
+
+  public sort(sortby: string){
+    this.myWorldAPI.sort(sortby).subscribe(result => {
+      this.completeList = result;
+      console.log(this.completeList);
+    },
+    err => {
+      console.log(err.message);
+    },
+    () => {
+
+    });
+  }
 }

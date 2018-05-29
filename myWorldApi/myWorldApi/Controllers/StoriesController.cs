@@ -20,7 +20,7 @@ namespace myWorldApi.Controllers
         }
 
         [HttpGet]
-        public List<Story> getAll(string name, string country)
+        public List<Story> getAll(string name, string country, string sort, string dir="asc")
         {
             IQueryable<Story> query = context.Stories;
             if (!string.IsNullOrWhiteSpace(name))
@@ -28,6 +28,26 @@ namespace myWorldApi.Controllers
 
             if (country != null)
                 query = query.Where(d => d.Country == country);
+
+            if (!string.IsNullOrWhiteSpace(sort))
+            {
+                switch (sort)
+                {
+                    case "country":
+                        if (dir == "asc")
+                            query = query.OrderBy(d => d.Country);
+                        else if (dir == "desc")
+                            query = query.OrderByDescending(d => d.Country);
+                        break;
+                    case "author":
+                        if (dir == "asc")
+                            query = query.OrderBy(d => d.Author);
+                        else if (dir == "desc")
+                            query = query.OrderByDescending(d => d.Author);
+                        break;
+                }
+            }
+
 
             return query.ToList();
         }
