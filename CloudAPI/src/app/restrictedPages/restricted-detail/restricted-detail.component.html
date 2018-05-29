@@ -1,7 +1,7 @@
 <section id = 'restricted-detail'>
     <h2 class="mb-4 font-weight-bold text-center">Selected Country</h2>
     <div class="text-center mb-4">
-        <button type="button" (click)="go()" class="btn">Details selected country<i class="fa fa-paper-plane-o ml-2"></i></button>
+        <button type="button" (click)="go()" class="btn btn-cyan">Details selected country<i class="fa fa-paper-plane-o ml-2"></i></button>
     </div>
     <div class="text-center mb-4" *ngIf="country">
             <img src= {{country.Flag}} alt="flag" style="width: 30%;" *ngIf="option == 'API'">
@@ -68,14 +68,39 @@
     <div class="row d-flex justify-content-center mt-4" *ngIf="option == 'MyWorld'">
         
         <div *ngIf="country">
-                <i *ngIf="!country.favourite" class="fa fa-heart-o fa-3x" aria-hidden="true" (click)="country.favourite = !country.favourite"> Favourite</i>
-                <i *ngIf="country.favourite" class="fa fa-heart fa-3x orange-text" aria-hidden="true" (click)="country.favourite = !country.favourite"> Favourite</i>
+                <a><i *ngIf="!country.favourite" class="fa fa-heart-o fa-3x" aria-hidden="true" (click)="country.favourite = !country.favourite"> Favourite</i></a>
+                <a><i *ngIf="country.favourite" class="fa fa-heart fa-3x orange-text" aria-hidden="true" (click)="country.favourite = !country.favourite"> Favourite</i></a>
         </div>
        
     </div>
 
     <div class="row d-flex justify-content-center mt-4" *ngIf="option == 'MyWorld'">
-        <button type="button" class="btn btn-cyan btn-lg" (click)="save()">Save</button>
+        <div class="col-md-3 d-flex justify-content-center">
+            <button type="button" class="btn btn-cyan btn-lg" (click)="save()" mdbWavesEffect>Save</button>
+        </div>
+
+        <div class="col-md-3 d-flex justify-content-center">
+            <button type="button" class="btn btn-cyan btn-lg" (click)="form.show()" mdbWavesEffect>Story</button>
+        </div>
+        <!--Modal: Contact form-->
+        <div mdbModal #form="mdb-modal" class="modal fade mb-0" id="modalstoryForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog cascading-modal" role="document">
+                <!--Content-->
+                <div class="modal-content">
+            
+                    <!--Header-->
+                    <div class="modal-header cyan white-text">
+                        <h4 class="title font-weight-bold">{{country.name}}</h4>
+                        <h4 class="title"><i class="fa fa-pencil"></i> Add a travel story</h4>
+                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <story-modal></story-modal>
+                </div>
+            </div>
+        </div>
+        <!--Modal: Contact form-->
     </div>
 
 </section>

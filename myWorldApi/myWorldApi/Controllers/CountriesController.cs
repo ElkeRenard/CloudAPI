@@ -21,11 +21,15 @@ namespace myWorldApi.Controllers
         }
 
         [HttpGet]        
-        public List<Country> getAll(string name)
+        public List<Country> getAll(string name, bool favourite)
         {
             IQueryable < Country > query = context.Countries;
             if (!string.IsNullOrWhiteSpace(name))
                 query = query.Where(d => d.Name.Contains(name));
+
+            if (favourite)
+                query = query.Where(d => d.Favourite == true);
+
             return query.ToList();
         }
 

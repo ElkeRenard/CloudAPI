@@ -17,6 +17,10 @@ export class MyWorldService {
     return this.http.get<IMyCountry[]>(`http://localhost:1768/api/Countries`);
   }
 
+  public getFavourites(): Observable<IMyCountry[]>{
+    return this.http.get<IMyCountry[]>(`http://localhost:1768/api/Countries?favourite=true`);
+  }
+
   public addCountry(country: ICountry){
     return this.http.post(`http://localhost:1768/api/Countries`, country);
   }
