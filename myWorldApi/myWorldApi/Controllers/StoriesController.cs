@@ -20,14 +20,14 @@ namespace myWorldApi.Controllers
         }
 
         [HttpGet]
-        public List<Story> getAll(string name, Country country)
+        public List<Story> getAll(string name, string country)
         {
             IQueryable<Story> query = context.Stories;
             if (!string.IsNullOrWhiteSpace(name))
-                query = query.Where(d => d.Author.Name.Contains(name));
+                query = query.Where(d => d.Author.Contains(name));
 
             if (country != null)
-                query = query.Where(d => d.Country.id == country.id);
+                query = query.Where(d => d.Country == country);
 
             return query.ToList();
         }

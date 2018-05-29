@@ -68,20 +68,20 @@ namespace myWorldApi
 
                 var story1 = new Story()
                 {
-                    Country = country1,
-                    StartDate = new DateTime(2017, 08, 12),
-                    EndDate = new DateTime(2017, 08, 22),
-                    Author = author1,
+                    Country = "Nederland",
+                    StartDate = "18/10/20216",
+                    EndDate = "18/09/2016",
+                    Author = "floor",
                     Travelstory = "We gingen de eendjes eten geven en dan naar het rampolinepark."
 
                 };
 
                 var story2 = new Story()
                 {
-                    Country = country2,
-                    StartDate = new DateTime(2017, 07, 5),
-                    EndDate = new DateTime(2017, 07, 16),
-                    Author = author2,
+                    Country = "Kribati",
+                    StartDate = "24/05/2017",
+                    EndDate = "25/05/2017",
+                    Author = "elke",
                     Travelstory = "Tijdens het snorkelen zagen we veel felgekleurde visjes en mooie koralen. We hebben ook enkele lege schelpen opgevist."
 
                 };

@@ -5,7 +5,7 @@ import { ExoticService } from '././services/exotic.service';
 import { MyWorldService } from '././services/my-world.service';
 import { ShareService } from '././services/share.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule} from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import {
   SocialLoginModule,
@@ -79,6 +79,7 @@ export function getAuthServiceConfigs() {
     MDBBootstrapModule.forRoot(),
     LeafletModule.forRoot(),
     SocialLoginModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes, {useHash:true})
 
   ],

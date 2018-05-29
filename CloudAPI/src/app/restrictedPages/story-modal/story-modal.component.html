@@ -5,14 +5,14 @@
                     <!-- Grid column -->
                     <div class="col">
                         <label for="startDate">Start date</label>
-                        <input type="text" id="startDate" class="form-control form-control-sm" placeholder="dd/mm/yyyy">
+                        <input type="text" id="startDate" class="form-control form-control-sm" placeholder="dd/mm/yyyy" [(ngModel)]='story.StartDate'>
                     </div>
                     <!-- Grid column -->
             
                     <!-- Grid column -->
                     <div class="col">
                         <label for="endDate">End date</label>
-                        <input type="text" id="endDate" class="form-control form-control-sm" placeholder="dd/mm/yyyy">
+                        <input type="text" id="endDate" class="form-control form-control-sm" placeholder="dd/mm/yyyy" [(ngModel)]='story.EndDate'>
                     </div>
                     <!-- Grid column -->
                 </div>
@@ -21,16 +21,15 @@
 
                  <!-- Default input subject -->
                  <label for="author">Story teller</label>
-                 <input type="text" id="author" class="form-control form-control-sm">
-                 
+                 <input type="text" id="author" class="form-control form-control-sm" [(ngModel)]='story.Author'>
                  <br>               
                 
                 <!-- Default textarea message -->
                 <label for="story">Your story</label>
-                <textarea type="text" id="story" class="md-textarea form-control"></textarea>
+                <textarea type="text" id="story" class="md-textarea form-control" [(ngModel)]='story.Travelstory'></textarea>
 
                 <div class="text-center mt-4 mb-2">
-                    <button class="btn btn-info">Save
+                    <button class="btn btn-info" (click)="saveStory()">Save
                         <i class="fa fa-send ml-2"></i>
                     </button>
                 </div>
