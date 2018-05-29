@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, Renderer2 } from '@angular/core';
 import { ICountry, ExoticService } from '../../services/exotic.service';
 import { ShareService } from '../../services/share.service';
 import { MyWorldService } from '../../services/my-world.service';
@@ -16,7 +16,7 @@ export class RestrictedSearchResultComponent implements OnInit {
   private selectedRow: number;  
   public buttonTekst: string="Save to My World";
 
-  constructor(private API: ExoticService, private share:ShareService, private myWorldAPI: MyWorldService) { }
+  constructor(private API: ExoticService, private share:ShareService, private myWorldAPI: MyWorldService, private renderer: Renderer2) { }
 
   ngOnInit() {
   }
@@ -43,7 +43,7 @@ export class RestrictedSearchResultComponent implements OnInit {
     this.share.setRestrictedSearchResultDetail(countryIn, this.option);
   }
 
-  public handleData(country){
+  public handleData(country, index:number){
     //console.log("handle data: ",country);
     if(this.option == "API"){
       //console.log(country);

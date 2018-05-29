@@ -33,32 +33,27 @@ export class RestrictedListAllComponent implements OnInit {
       });
   }
 
-  public favo(){
-    this.favourite = !this.favourite;
-    this.myWorldAPI.getFavourites().subscribe(result => {
-      this.completeList = result;
-      //console.log(this.completeList);
-      },
-      err => {
-        console.log(err.message);
-      },
-      () => {
-        //console.log("Done loading complete list");
-      });
-  }
+  public favo(change:boolean){
+    if(change){
+      this.favourite = !this.favourite;
+    }
 
-  public noFavo(){
-    this.favourite = !this.favourite;
-    this.myWorldAPI.getAll().subscribe(result => {
-      this.completeList = result;
-      //console.log(this.completeList);
-      },
-      err => {
-        console.log(err.message);
-      },
-      () => {
-        //console.log("Done loading complete list");
-      });
+    if(this.favourite){
+      this.myWorldAPI.getFavourites().subscribe(result => {
+        this.completeList = result;
+        //console.log(this.completeList);
+        },
+        err => {
+          console.log(err.message);
+        },
+        () => {
+          //console.log("Done loading complete list");
+        });
+    }
+    else{
+      this.getList();
+    }
+    
   }
 
   public goToDetail(countryIn: IMyCountry, index:number){
@@ -67,4 +62,20 @@ export class RestrictedListAllComponent implements OnInit {
     //console.log("clicked",index);
     this.share.setRestrictedSearchResultDetail(countryIn, "MyWorld");
   }
+
+  public delete(country, index:number){
+    //console.log("handle data: ",country);
+      //delete country from my world
+      this.myWorldAPI.deleteCountry(country.id).subscribe(result => {
+        //console.log(result);
+        this.favo(false);
+      },
+      err => {
+        console.log(err.message);
+      },
+      () => {
+        //console.log("done");
+      });
+  }
+
 }
