@@ -21,14 +21,19 @@ namespace myWorldApi.Controllers
         }
 
         [HttpGet]        
-        public List<Country> getAll(string name, bool favourite)
+        public List<Country> getAll(string name, bool favourite, int? page, int? length)
         {
+            var ppage = page ?? 1;
+            var llength = length ?? 5;
+
             IQueryable < Country > query = context.Countries;
             if (!string.IsNullOrWhiteSpace(name))
                 query = query.Where(d => d.Name.Contains(name));
 
             if (favourite)
                 query = query.Where(d => d.Favourite == true);
+
+            query = query.Skip((ppage - 1) * llength).Take(llength);
 
             return query.ToList();
         }

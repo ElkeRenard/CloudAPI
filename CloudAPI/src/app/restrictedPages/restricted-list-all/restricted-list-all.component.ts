@@ -12,6 +12,7 @@ export class RestrictedListAllComponent implements OnInit {
   public completeList: IMyCountry[];
   public selectedRow: number;
   public favourite: boolean;
+  private page: number=1;
 
   constructor(private myWorldAPI: MyWorldService, private share: ShareService) { }
 
@@ -19,27 +20,15 @@ export class RestrictedListAllComponent implements OnInit {
     this.getList();
   }
 
-  private getList(){
+  private getList(change?:boolean){
     this.selectedRow = null;
-    this.myWorldAPI.getCountries().subscribe(result => {
-      this.completeList = result;
-      //console.log(this.completeList);
-      },
-      err => {
-        console.log(err.message);
-      },
-      () => {
-        //console.log("Done loading complete list");
-      });
-  }
-
-  public favo(change:boolean){
     if(change){
       this.favourite = !this.favourite;
+      this.page = 1;
     }
 
     if(this.favourite){
-      this.myWorldAPI.getFavourites().subscribe(result => {
+      this.myWorldAPI.getFavourites(this.page).subscribe(result => {
         this.completeList = result;
         //console.log(this.completeList);
         },
@@ -51,9 +40,37 @@ export class RestrictedListAllComponent implements OnInit {
         });
     }
     else{
-      this.getList();
+      this.myWorldAPI.getCountries(this.page).subscribe(result => {
+        this.completeList = result;
+        //console.log("page: ", this.page);
+        //console.log(this.completeList);
+        },
+        err => {
+          console.log(err.message);
+        },
+        () => {
+          //console.log("Done loading complete list");
+        });
     }
     
+  }
+
+  public prev(){
+    if(this.page>1){
+      this.page -= 1;
+      this.getList();
+    }
+   
+   //console.log(this.page);
+  }
+
+  public next(){
+    if(this.page<10){
+      this.page +=1;
+      this.getList();
+    }
+    //console.log(this.page);
+
   }
 
   public goToDetail(countryIn: IMyCountry, index:number){
@@ -68,7 +85,7 @@ export class RestrictedListAllComponent implements OnInit {
       //delete country from my world
       this.myWorldAPI.deleteCountry(country.id).subscribe(result => {
         //console.log(result);
-        this.favo(false);
+        this.getList(false);
       },
       err => {
         console.log(err.message);

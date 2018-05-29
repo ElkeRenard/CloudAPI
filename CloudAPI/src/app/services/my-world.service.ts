@@ -13,12 +13,13 @@ export class MyWorldService {
   constructor(private http: HttpClient) { }
 
   //calls to countries
-  public getCountries(): Observable<IMyCountry[]>{
-    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries`);
+  public getCountries(page:number=null, length:number=null): Observable<IMyCountry[]>{
+    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries?page=${page}&length=${length}`);
+    
   }
 
-  public getFavourites(): Observable<IMyCountry[]>{
-    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries?favourite=true`);
+  public getFavourites(page:number=null, length:number=null): Observable<IMyCountry[]>{
+    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries?favourite=true&page=${page}&length=${length}`);
   }
 
   public addCountry(country: ICountry){
@@ -66,13 +67,13 @@ export class MyWorldService {
     return this.http.get<IStory[]>(`${this.baseUrl}Stories?sort=${sortby}`);
   }
 
-  public getStoriesByCountry(country:ICountry):Observable<IStory[]>{
+  /*public getStoriesByCountry(country:ICountry):Observable<IStory[]>{
     return this.http.get<IStory[]>(`${this.baseUrl}Stories?country=${country}`);
   }
 
   public getStoriesByAuthor(author: string):Observable<IStory[]>{
     return this.http.get<IStory[]>(`${this.baseUrl}Stories?name=${author}`);
-  }
+  }*/
 }
 
 export interface IMyCountry{
