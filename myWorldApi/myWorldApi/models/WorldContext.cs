@@ -13,6 +13,8 @@ namespace myWorldApi.models
         }
 
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Story> Stories { get; set; }
+        public DbSet<Traveller> Travellers { get; set; }
     }
 
     
