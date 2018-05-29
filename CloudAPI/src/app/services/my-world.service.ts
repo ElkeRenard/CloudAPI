@@ -66,3 +66,16 @@ export interface IMyCountry{
   Favourite:boolean
 }
 
+export interface IStory{
+  Id: number,
+  Country: IMyCountry,
+  StartDate: Date,
+  EndDate: Date,
+  Author: IAuthor,
+  Travelstory: string
+}
+
+export interface IAuthor{
+  Id: number,
+  Name:string
+}
