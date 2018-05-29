@@ -3,7 +3,7 @@ import * as L from 'leaflet';
 import {ExoticService, ICountry } from '../../services/exotic.service';
 import { latLng, tileLayer } from 'leaflet';
 import {ShareService } from '../../services/share.service';
-import { MyWorldService } from '../../services/my-world.service';
+import { MyWorldService, IStory } from '../../services/my-world.service';
 
 @Component({
   selector: 'restricted-detail',
@@ -18,6 +18,7 @@ export class RestrictedDetailComponent implements OnInit {
   private input;
   public options;
   private data;
+  public story: IStory;
 
   constructor(public exoticApi: ExoticService, private share: ShareService, private myWorldAPI: MyWorldService) { }
 
@@ -85,5 +86,29 @@ export class RestrictedDetailComponent implements OnInit {
       zoom: 6,
       center: latLng([ this.lat, this.long ])
     };
+  }
+
+  public saveStory(){
+    this.story = {
+      Country:"",
+      StartDate : "",
+      EndDate : "",
+      Author : "",
+      Travelstory: ""
+    };
+    this.story.Country = this.country.name;
+    this.story.StartDate = (document.getElementById("startDate") as HTMLInputElement).value;
+    this.story.EndDate = (document.getElementById("endDate") as HTMLInputElement).value;
+    this.story.Author = (document.getElementById("author") as HTMLInputElement).value;
+    this.story.Travelstory = (document.getElementById("story") as HTMLInputElement).value
+    this.myWorldAPI.addStory(this.story).subscribe(result => {
+      console.log("recieve: ", result);
+    },
+    err => {
+      console.log(err.message);
+    },
+    () => {
+
+    });
   }
 }

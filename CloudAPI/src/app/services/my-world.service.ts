@@ -107,12 +107,12 @@ export interface IStory{
 }
 
 export interface IMyStory{
-  Id: number,
-  Country: string,
-  StartDate: string,
-  EndDate: string,
-  Author: string,
-  Travelstory: string
+  id: number,
+  country: string,
+  startDate: string,
+  endDate: string,
+  author: string,
+  travelstory: string
 }
 
 export interface IAuthor{

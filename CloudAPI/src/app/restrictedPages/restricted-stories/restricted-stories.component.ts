@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MyWorldService, IMyStory } from '../../services/my-world.service';
+import { MyWorldService, IMyStory, IStory } from '../../services/my-world.service';
 
 @Component({
   selector: 'restricted-stories',
@@ -9,6 +9,8 @@ import { MyWorldService, IMyStory } from '../../services/my-world.service';
 export class RestrictedStoriesComponent implements OnInit {
 
   public completeList;
+  public storyDetail;
+
   constructor(private myWorldAPI: MyWorldService) { }
 
   ngOnInit() {
@@ -41,8 +43,29 @@ export class RestrictedStoriesComponent implements OnInit {
     });
   }
 
-  public updateStory(story){
+  public getDetail(story:IMyStory){
+    this.myWorldAPI.getStory(story.id).subscribe(result => {
+      this.storyDetail = result;
+      console.log(this.storyDetail);
+    },
+    err => {console.log(err.message);
+    },
+    () => {
 
+    });
+  }
+
+  public updateStory(){
+    this.myWorldAPI.updateStory(this.storyDetail).subscribe(result => {
+      console.log("recieve: ", result);
+      this.getList();
+    },
+    err => {
+      console.log(err.message);
+    },
+    () => {
+
+    });
   }
 
   public deleteStory(story){
@@ -56,4 +79,5 @@ export class RestrictedStoriesComponent implements OnInit {
 
     });
   }
+
 }

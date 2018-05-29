@@ -43,7 +43,7 @@ export class RestrictedSearchResultComponent implements OnInit {
     this.share.setRestrictedDetail(countryIn, this.share.Option);
   }
 
-  public handleData(country, index:number){
+  public handleData(country){
     //console.log("handle data: ",country);
     if(this.share.Option == "API"){
       //console.log(country);
