@@ -10,6 +10,7 @@ export class RestrictedStoriesComponent implements OnInit {
 
   public completeList;
   public storyDetail;
+  private page:number=1;
 
   constructor(private myWorldAPI: MyWorldService) { }
 
@@ -18,7 +19,7 @@ export class RestrictedStoriesComponent implements OnInit {
   }
 
   private getList(){
-    this.myWorldAPI.getStories().subscribe(result => {
+    this.myWorldAPI.getStories(this.page).subscribe(result => {
       this.completeList = result;
       console.log(result);
     },
@@ -28,6 +29,24 @@ export class RestrictedStoriesComponent implements OnInit {
     () => {
 
     });
+  }
+
+  public prev(){
+    if(this.page>1){
+      this.page -= 1;
+      this.getList();
+    }
+   
+   //console.log(this.page);
+  }
+
+  public next(){
+    if(this.page<10){
+      this.page +=1;
+      this.getList();
+    }
+    //console.log(this.page);
+
   }
 
   public sort(sortby: string){

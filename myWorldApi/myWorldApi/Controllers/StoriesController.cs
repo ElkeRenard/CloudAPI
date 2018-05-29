@@ -20,8 +20,11 @@ namespace myWorldApi.Controllers
         }
 
         [HttpGet]
-        public List<Story> getAll(string name, string country, string sort)
+        public List<Story> getAll(string name, string country, string sort, int? page, int? length)
         {
+            var ppage = page ?? 1;
+            var llength = length ?? 5;
+
             IQueryable<Story> query = context.Stories;
             if (!string.IsNullOrWhiteSpace(name))
                 query = query.Where(d => d.Author.Contains(name));
@@ -42,6 +45,7 @@ namespace myWorldApi.Controllers
                 }
             }
 
+            query = query.Skip((ppage - 1) * llength).Take(llength);
 
             return query.ToList();
         }

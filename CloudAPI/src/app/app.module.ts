@@ -29,7 +29,6 @@ import { RestrictedHomeComponent } from './restrictedPages/restricted-home/restr
 import { RestrictedSearchResultComponent } from './restrictedPages/restricted-search-result/restricted-search-result.component';
 import { RestrictedDetailComponent } from './restrictedPages/restricted-detail/restricted-detail.component';
 import { RestrictedListAllComponent } from './restrictedPages/restricted-list-all/restricted-list-all.component';
-import { StoryModalComponent } from './restrictedPages/story-modal/story-modal.component';
 import { RestrictedStoriesComponent } from './restrictedPages/restricted-stories/restricted-stories.component';
 
 const appRoutes: Routes=[
@@ -70,7 +69,6 @@ export function getAuthServiceConfigs() {
     RestrictedSearchResultComponent,
     RestrictedDetailComponent,
     RestrictedListAllComponent,
-    StoryModalComponent,
     RestrictedStoriesComponent
   ],
   imports: [

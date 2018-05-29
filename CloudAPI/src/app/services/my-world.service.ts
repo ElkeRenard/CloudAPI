@@ -43,8 +43,8 @@ export class MyWorldService {
   }
 
   //calls to stories
-  public getStories():Observable<IStory[]>{
-    return this.http.get<IStory[]>(`${this.baseUrl}Stories`);
+  public getStories(page:number=null, length:number=null):Observable<IStory[]>{
+    return this.http.get<IStory[]>(`${this.baseUrl}Stories?page=${page}&length=${length}`);
   }
 
   public deleteStory(id:number){
