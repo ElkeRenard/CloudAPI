@@ -12,7 +12,7 @@ export class RestrictedSearchResultComponent implements OnInit {
 
   private data;
   private option:string;
-  public results: ICountry[];
+  public results;
   private selectedRow: number;  
   public buttonTekst: string="Save to My World";
 
@@ -22,15 +22,15 @@ export class RestrictedSearchResultComponent implements OnInit {
   }
 
   ngDoCheck(){
-    this.data = this.share.getRestrictedSearchResultByName();
+    this.data = this.share.getRestrictedSearchResult();
     //console.log("data ",this.data[0]);
     this.results = this.data[0];
-    this.option = this.data[1];
-    if(this.option == "API"){
+    this.share.Option = this.data[1];
+    if(this.share.Option == "API"){
       this.buttonTekst = "Save to My World";
     }
 
-    if(this.option == "MyWorld"){
+    if(this.share.Option == "MyWorld"){
       this.buttonTekst = "Delete";
     }
     //console.log("results search: ",this.results);
@@ -40,12 +40,12 @@ export class RestrictedSearchResultComponent implements OnInit {
     this.selectedRow = index;
     //console.log("clicked: ",countryIn.Name);
     //console.log("clicked",index);
-    this.share.setRestrictedSearchResultDetail(countryIn, this.option);
+    this.share.setRestrictedDetail(countryIn, this.share.Option);
   }
 
   public handleData(country, index:number){
     //console.log("handle data: ",country);
-    if(this.option == "API"){
+    if(this.share.Option == "API"){
       //console.log(country);
       this.myWorldAPI.addCountry(country).subscribe(result => {
         console.log(result);
@@ -58,14 +58,14 @@ export class RestrictedSearchResultComponent implements OnInit {
       });
     }
 
-    if(this.option == "MyWorld"){
+    if(this.share.Option == "MyWorld"){
       //delete country from my world
       this.myWorldAPI.deleteCountry(country.id).subscribe(result => {
         //console.log(result);
-        this.myWorldAPI.getAll().subscribe( result => {
+        this.myWorldAPI.getCountries().subscribe( result => { /*foute logica*/
           //console.log("empty request", result)
           this.results = result;
-          this.share.setRestrictedSearchResultByName(this.results, "MyWorld");
+          this.share.setRestrictedSearchResult(this.results, "MyWorld");
           //console.log(this.results);
         },
         err => {

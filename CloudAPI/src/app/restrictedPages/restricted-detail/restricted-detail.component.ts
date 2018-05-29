@@ -18,7 +18,6 @@ export class RestrictedDetailComponent implements OnInit {
   private input;
   public options;
   private data;
-  private option;
 
   constructor(public exoticApi: ExoticService, private share: ShareService, private myWorldAPI: MyWorldService) { }
 
@@ -27,28 +26,15 @@ export class RestrictedDetailComponent implements OnInit {
 
   public go(){
     this.country = null;
-    if(this.share.getRestrictedSearchResultDetail() != null){
-      this.data = this.share.getRestrictedSearchResultDetail();
+    if(this.share.getRestrictedDetail() != null){
+      this.data = this.share.getRestrictedDetail();
       //console.log("data ",this.data[0]);
       this.input = this.data[0];
-      this.option = this.data[1];
-      if(this.option == "API"){
+      this.share.Option = this.data[1];
+      if(this.share.Option == "API"){
         this.exoticApi.getDetail(this.input.Name).subscribe(root => {
           this.country = root.Response[0];
-          this.lat = this.country.Latitude;
-          this.long = this.country.Longitude;
-          //console.log("detail:" ,this.country);
-          this.options = {
-            layers: [
-              tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-                maxZoom: 20,
-                subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-                detectRetina: true
-              })
-            ],
-            zoom: 6,
-            center: latLng([ this.lat, this.long ])
-          };
+          this.setMap(this.country.Latitude, this.country.Longitude);
         },
         err => {
           console.log(err.message);
@@ -58,24 +44,11 @@ export class RestrictedDetailComponent implements OnInit {
         });
       }
 
-      if(this.option == "MyWorld"){}
+      if(this.share.Option == "MyWorld"){}
       //console.log(this.input.id);
       this.myWorldAPI.getDetail(this.input.id).subscribe(root => {
         this.country = root;
-        this.lat = this.country.latitude;
-        this.long = this.country.longitude;
-        //console.log("detail:" ,this.country);
-        this.options = {
-          layers: [
-            tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-              maxZoom: 20,
-              subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-              detectRetina: true
-            })
-          ],
-          zoom: 6,
-          center: latLng([ this.lat, this.long ])
-        };
+       this.setMap(this.country.latitude, this.country.longitude);
       },
       err => {
         console.log(err.message);
@@ -95,5 +68,22 @@ export class RestrictedDetailComponent implements OnInit {
     },
     () => {}
     );
+  }
+
+  private setMap(lat, long){
+    this.lat = lat;
+    this.long = long;
+    //console.log("detail:" ,this.country);
+    this.options = {
+      layers: [
+        tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+          maxZoom: 20,
+          subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+          detectRetina: true
+        })
+      ],
+      zoom: 6,
+      center: latLng([ this.lat, this.long ])
+    };
   }
 }

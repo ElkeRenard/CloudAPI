@@ -22,57 +22,42 @@ export class RestrictedHomeComponent implements OnInit {
   }
 
   findCountry(){
-    console.log("input: ",(<HTMLInputElement>document.getElementById("search")).value);
+    //console.log("input: ",(<HTMLInputElement>document.getElementById("search")).value);
     this.input = (<HTMLInputElement>document.getElementById("search")).value;
+    if(this.input == ""){
+      this.list = [];
+      this.share.setSearchResult(this.list);
+    }
+
     if(this.API){
-      if(this.input == ""){
-        this.list = [];
-        this.share.setSearchResultByName(this.list);
-      }
-      else{      
-        this.exoticApi.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
-          this.list = root.Response;
-          this.share.setRestrictedSearchResultByName(this.list, "API");
-          //console.log(this.list);
+      this.share.Option = "API";     
+      this.exoticApi.searchByName(this.input).subscribe(root => {
+        this.list = root.Response;
+        this.share.setRestrictedSearchResult(this.list, "API");
+        //console.log(this.list);
+       },
+       err => {
+        console.log(err.message);
+       },
+       () => {
+        //console.log("Done loading search result");
+       });
+    }
+    
+    if(this.myWorld){
+      this.share.Option="MyWorld"; 
+      this.myWorldAPI.searchByName(this.input).subscribe(root => {
+      this.list = root;
+      this.share.setRestrictedSearchResult(this.list, "MyWorld");
+      console.log("filter: ",root);
         },
         err => {
           console.log(err.message);
         },
         () => {
-          //console.log("Done loading search result");
-        });
-      }
+          console.log("Done loading search result");
+      });
     }
-      if(this.myWorld){
-        if(this.input == ""){
-          console.log("go api go!!!");
-          this.myWorldAPI.getAll().subscribe( result => {
-            console.log("empty request", result)
-            this.list = result;
-            this.share.setRestrictedSearchResultByName(this.list, "MyWorld");
-            console.log(this.list);
-          },
-          err => {
-            console.log(err.message);
-          },
-          () => {
-            console.log("done");
-          });
-        }
-        else{
-          this.myWorldAPI.searchByName((<HTMLInputElement>document.getElementById("search")).value).subscribe(root => {
-          this.list = root;
-          this.share.setRestrictedSearchResultByName(this.list, "MyWorld");
-          console.log("filter: ",root);
-            },
-            err => {
-              console.log(err.message);
-            },
-            () => {
-              console.log("Done loading search result");
-          });
-        }
-      }
   }
 
   public searchAPI(){

@@ -33,7 +33,7 @@ namespace myWorldApi.Controllers
             return query.ToList();
         }
 
-        [EnableCors("AllowAll")]
+        //[EnableCors("AllowAll")]
         [HttpGet]
         [Route("{id}")]
         public IActionResult getCountryById(long id)

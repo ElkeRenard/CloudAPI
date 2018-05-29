@@ -8,61 +8,109 @@ import  {ICountry } from './exotic.service';
 @Injectable()
 export class MyWorldService {
 
-  private baseUrl: string = "http://localhost:1768/api/Countries";
-  private newCountry:IMyCountry;
+  private baseUrl: string = "http://localhost:1768/api/";
 
   constructor(private http: HttpClient) { }
 
-  public getAll(): Observable<IMyCountry[]>{
-    return this.http.get<IMyCountry[]>(`http://localhost:1768/api/Countries`);
+  //calls to countries
+  public getCountries(): Observable<IMyCountry[]>{
+    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries`);
   }
 
   public getFavourites(): Observable<IMyCountry[]>{
-    return this.http.get<IMyCountry[]>(`http://localhost:1768/api/Countries?favourite=true`);
+    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries?favourite=true`);
   }
 
   public addCountry(country: ICountry){
-    return this.http.post(`http://localhost:1768/api/Countries`, country);
+    return this.http.post(`${this.baseUrl}Countries`, country);
   }
 
   public deleteCountry(id: number){
-    return this.http.delete(`http://localhost:1768/api/Countries/${id}`);
+    return this.http.delete(`${this.baseUrl}Countries/${id}`);
   }
 
   public searchByName(name: string){
-    return this.http.get(`http://localhost:1768/api/Countries?name=${name}`);
+    return this.http.get(`${this.baseUrl}Countries?name=${name}`);
   }
 
   public getDetail(id: number):Observable<IMyCountry>{
-    return this.http.get<IMyCountry>(`http://localhost:1768/api/Countries/${id}`);
+    return this.http.get<IMyCountry>(`${this.baseUrl}Countries/${id}`);
   }
 
   public updateCountry(country: IMyCountry){
-    return this.http.put(`http://localhost:1768/api/Countries/`, country);
+    return this.http.put(`${this.baseUrl}Countries/`, country);
   }
 
-  
+  //calls to stories
+  public getStories():Observable<IStory[]>{
+    return this.http.get<IStory[]>(`${this.baseUrl}Stories`);
+  }
+
+  public deleteStory(id:number){
+    return this.http.delete(`${this.baseUrl}Stories/${id}`);
+  }
+
+  public getStory(id:number):Observable<IStory>{
+    return this.http.get<IStory>(`${this.baseUrl}Stories/${id}`);
+  }
+
+  public updateStory(story:IStory){
+    return this.http.put(`${this.baseUrl}Stories`, story);
+  }
+
+  public addStory(story:IStory){
+    return this.http.post(`${this.baseUrl}Stories`, story);
+  }
+
+  public getStoriesByCountry(country:ICountry):Observable<IStory[]>{
+    return this.http.get<IStory[]>(`${this.baseUrl}Stories?country=${country}`);
+  }
+
+  public getStoriesByAuthor(author: string):Observable<IStory[]>{
+    return this.http.get<IStory[]>(`${this.baseUrl}Stories?name=${author}`);
+  }
 }
 
 export interface IMyCountry{
 
-  Id: number,
-  Name:string,
-  Alpha2Code:string,
-  Alpha3Code:string,
-  NativeName:string,
-  Region:string,
-  SubRegion:string,
-  Latitude:number,
-  Longitude:number,
-  Area:number,
-  NumericCode:number,
-  NativeLanguage:string,
-  CurrencyCode:string,
-  CurrencyName:string,
-  CurrencySymbol:string,
-  Flag:string,
-  FlagPng:string,
-  Favourite:boolean
+  id: number,
+  name:string,
+  alpha2Code:string,
+  alpha3Code:string,
+  nativeName:string,
+  region:string,
+  subRegion:string,
+  latitude:number,
+  longitude:number,
+  area:number,
+  numericCode:number,
+  nativeLanguage:string,
+  currencyCode:string,
+  currencyName:string,
+  currencySymbol:string,
+  flag:string,
+  flagPng:string,
+  favourite:boolean
 }
 
+export interface IStory{
+  Country: string,
+  StartDate: string,
+  EndDate: string,
+  Author: string,
+  Travelstory: string
+}
+
+export interface IMyStory{
+  Id: number,
+  Country: string,
+  StartDate: string,
+  EndDate: string,
+  Author: string,
+  Travelstory: string
+}
+
+export interface IAuthor{
+  Id: number,
+  Name:string
+}

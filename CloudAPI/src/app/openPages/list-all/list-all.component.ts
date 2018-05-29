@@ -21,7 +21,7 @@ export class ListAllComponent implements OnInit {
     this.setActive();
   }
 
-  prev(){
+  public prev(){
     if(this.page>1){
       this.page -= 1;
       this.getList(this.page);
@@ -31,7 +31,7 @@ export class ListAllComponent implements OnInit {
    //console.log(this.page);
   }
 
-  next(){
+  public next(){
     if(this.page<10){
       this.page +=1;
       this.getList(this.page);
@@ -41,7 +41,7 @@ export class ListAllComponent implements OnInit {
 
   }
 
-  chosenPage(input:number){
+  public chosenPage(input:number){
     this.page = input;
     this.setActive();
     this.getList(this.page);
@@ -80,7 +80,7 @@ export class ListAllComponent implements OnInit {
     this.selectedRow = index;
     //console.log("clicked: ",countryIn.Name);
     //console.log("clicked",index);
-    this.share.setSearchResultDetail(countryIn);
+    this.share.setDetail(countryIn);
   }
 
 }

@@ -8,43 +8,47 @@ export class ShareService {
   private searchDetail: ICountry;
   private option: string;
   private user;
+  public Option: string;
 
   constructor() { }
 
-  setSearchResultByName(result){
+  //open pages
+  setSearchResult(result){
     this.searchResult = result;
   }
 
-  getSearchResultByName(){
+  getSearchResult(){
     return this.searchResult;
   }
 
-  setRestrictedSearchResultByName(result, option){
+  setDetail(input:ICountry){
+    this.searchDetail = input;
+  }
+
+  getDetail(){
+    return this.searchDetail;
+  }
+
+  //restricted pages
+  setRestrictedSearchResult(result, option){
     this.searchResult = result;
     this.option = option;
   }
 
-  getRestrictedSearchResultByName(){
+  getRestrictedSearchResult(){
     return [this.searchResult, this.option];
   }
 
-  setRestrictedSearchResultDetail(input, option){
+  setRestrictedDetail(input, option){
     this.searchDetail = input;
     this.option = option;
   }
 
-  getRestrictedSearchResultDetail(){
+  getRestrictedDetail(){
     return [this.searchDetail, this.option];
   }
 
-  setSearchResultDetail(input:ICountry){
-    this.searchDetail = input;
-  }
-
-  getSearchResultDetail(){
-    return this.searchDetail;
-  }
-
+  //authentication
   setUser(user){
     this.user = user;
   }

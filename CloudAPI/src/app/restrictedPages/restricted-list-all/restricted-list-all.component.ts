@@ -21,7 +21,7 @@ export class RestrictedListAllComponent implements OnInit {
 
   private getList(){
     this.selectedRow = null;
-    this.myWorldAPI.getAll().subscribe(result => {
+    this.myWorldAPI.getCountries().subscribe(result => {
       this.completeList = result;
       //console.log(this.completeList);
       },
@@ -60,7 +60,7 @@ export class RestrictedListAllComponent implements OnInit {
     this.selectedRow = index;
     //console.log("clicked: ",countryIn.Name);
     //console.log("clicked",index);
-    this.share.setRestrictedSearchResultDetail(countryIn, "MyWorld");
+    this.share.setRestrictedDetail(countryIn, "MyWorld");
   }
 
   public delete(country, index:number){
