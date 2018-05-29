@@ -11,6 +11,7 @@ export class RestrictedListAllComponent implements OnInit {
 
   public completeList: IMyCountry[];
   public selectedRow: number;
+  public favourite: boolean;
 
   constructor(private myWorldAPI: MyWorldService, private share: ShareService) { }
 
@@ -20,6 +21,34 @@ export class RestrictedListAllComponent implements OnInit {
 
   private getList(){
     this.selectedRow = null;
+    this.myWorldAPI.getAll().subscribe(result => {
+      this.completeList = result;
+      //console.log(this.completeList);
+      },
+      err => {
+        console.log(err.message);
+      },
+      () => {
+        //console.log("Done loading complete list");
+      });
+  }
+
+  public favo(){
+    this.favourite = !this.favourite;
+    this.myWorldAPI.getFavourites().subscribe(result => {
+      this.completeList = result;
+      //console.log(this.completeList);
+      },
+      err => {
+        console.log(err.message);
+      },
+      () => {
+        //console.log("Done loading complete list");
+      });
+  }
+
+  public noFavo(){
+    this.favourite = !this.favourite;
     this.myWorldAPI.getAll().subscribe(result => {
       this.completeList = result;
       //console.log(this.completeList);
