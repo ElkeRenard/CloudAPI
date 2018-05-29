@@ -114,8 +114,3 @@ export interface IMyStory{
   author: string,
   travelstory: string
 }
-
-export interface IAuthor{
-  Id: number,
-  Name:string
-}

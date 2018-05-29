@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Renderer2 } from '@angular/core';
 import * as L from 'leaflet';
 import {ExoticService, ICountry } from '../../services/exotic.service';
 import { latLng, tileLayer } from 'leaflet';
@@ -19,8 +19,9 @@ export class RestrictedDetailComponent implements OnInit {
   public options;
   private data;
   public story: IStory;
+  private saveStoryButton;
 
-  constructor(public exoticApi: ExoticService, private share: ShareService, private myWorldAPI: MyWorldService) { }
+  constructor(public exoticApi: ExoticService, private share: ShareService, private myWorldAPI: MyWorldService, private renderer: Renderer2) { }
 
   ngOnInit() {
   }
@@ -89,6 +90,7 @@ export class RestrictedDetailComponent implements OnInit {
   }
 
   public saveStory(){
+    this.saveStoryButton = document.getElementById("saveStoryButton");
     this.story = {
       Country:"",
       StartDate : "",
@@ -103,6 +105,7 @@ export class RestrictedDetailComponent implements OnInit {
     this.story.Travelstory = (document.getElementById("story") as HTMLInputElement).value
     this.myWorldAPI.addStory(this.story).subscribe(result => {
       console.log("recieve: ", result);
+      this.renderer.setStyle(this.saveStoryButton, 'background-color', '#00C851');
     },
     err => {
       console.log(err.message);
