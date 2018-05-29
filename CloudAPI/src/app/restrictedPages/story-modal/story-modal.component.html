@@ -1,40 +1,31 @@
+<div class="row">
 
-            <div class="modal-body">
+    <div class="col">
+        <label for="startDate">Start date</label>
+        <input type="text" id="startDate" class="form-control form-control-sm" placeholder="dd/mm/yyyy" [(ngModel)]='story.StartDate'>
+    </div>
 
-                <div class="row">
-                    <!-- Grid column -->
-                    <div class="col">
-                        <label for="startDate">Start date</label>
-                        <input type="text" id="startDate" class="form-control form-control-sm" placeholder="dd/mm/yyyy" [(ngModel)]='story.StartDate'>
-                    </div>
-                    <!-- Grid column -->
-            
-                    <!-- Grid column -->
-                    <div class="col">
-                        <label for="endDate">End date</label>
-                        <input type="text" id="endDate" class="form-control form-control-sm" placeholder="dd/mm/yyyy" [(ngModel)]='story.EndDate'>
-                    </div>
-                    <!-- Grid column -->
-                </div>
+    <div class="col">
+        <label for="endDate">End date</label>
+        <input type="text" id="endDate" class="form-control form-control-sm" placeholder="dd/mm/yyyy" [(ngModel)]='story.EndDate'>
+    </div>
+</div>
                 
-                <br>
+<br>
 
-                 <!-- Default input subject -->
-                 <label for="author">Story teller</label>
-                 <input type="text" id="author" class="form-control form-control-sm" [(ngModel)]='story.Author'>
-                 <br>               
+<label for="author">Story teller</label>
+<input type="text" id="author" class="form-control form-control-sm" [(ngModel)]='story.Author'>
+<br>               
                 
-                <!-- Default textarea message -->
-                <label for="story">Your story</label>
-                <textarea type="text" id="story" class="md-textarea form-control" [(ngModel)]='story.Travelstory'></textarea>
+<label for="story">Your story</label>
+<textarea type="text" id="story" class="md-textarea form-control" [(ngModel)]='story.Travelstory'></textarea>
 
-                <div class="text-center mt-4 mb-2">
-                    <button class="btn btn-info" (click)="saveStory()">Save
-                        <i class="fa fa-send ml-2"></i>
-                    </button>
-                </div>
+<div class="text-center mt-4 mb-2">
+    <button class="btn btn-info" (click)="saveStory()">Save
+        <i class="fa fa-send ml-2"></i>
+    </button>
+</div>
 
-            </div>
 
 
                       

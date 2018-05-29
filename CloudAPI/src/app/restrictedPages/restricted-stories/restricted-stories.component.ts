@@ -40,4 +40,20 @@ export class RestrictedStoriesComponent implements OnInit {
 
     });
   }
+
+  public updateStory(story){
+
+  }
+
+  public deleteStory(story){
+    this.myWorldAPI.deleteStory(story.id).subscribe(result => {
+      this.completeList = result;
+    },
+    err => {
+      console.log(err.message);
+    },
+    () => {
+
+    });
+  }
 }

@@ -20,7 +20,7 @@ namespace myWorldApi.Controllers
         }
 
         [HttpGet]
-        public List<Story> getAll(string name, string country, string sort, string dir="asc")
+        public List<Story> getAll(string name, string country, string sort)
         {
             IQueryable<Story> query = context.Stories;
             if (!string.IsNullOrWhiteSpace(name))
@@ -34,16 +34,10 @@ namespace myWorldApi.Controllers
                 switch (sort)
                 {
                     case "country":
-                        if (dir == "asc")
                             query = query.OrderBy(d => d.Country);
-                        else if (dir == "desc")
-                            query = query.OrderByDescending(d => d.Country);
                         break;
                     case "author":
-                        if (dir == "asc")
                             query = query.OrderBy(d => d.Author);
-                        else if (dir == "desc")
-                            query = query.OrderByDescending(d => d.Author);
                         break;
                 }
             }
@@ -73,7 +67,7 @@ namespace myWorldApi.Controllers
                 return NotFound();
             context.Stories.Remove(story);
             context.SaveChanges();
-            return NoContent();
+            return Ok(context.Stories);
         }
 
         [HttpPost]
