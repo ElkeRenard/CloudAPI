@@ -7,27 +7,30 @@ import "rxjs/add/operator/map";
 @Injectable()
 export class ExoticService {
 
-  private baseURL: string = "http://countryapi.gear.host/v1/Country/getCountries";
+  //private baseURL: string = "http://countryapi.gear.host/v1/Country/getCountries";
 
   constructor(private http: HttpClient) { }
 
   public getAll(page:number):Observable<IRoot>{
   
-    return this.http.get<IRoot>(`${this.baseURL}?pLimit=25&pPage=${page}`);
+    return this.http.get<IRoot>(`/getCountries?pLimit=25&pPage=${page}`);
   }
 
   public getCountriesByRegion(region, subregion):Observable<IRoot>{
-    return this.http.get<IRoot>(`${this.baseURL}?pRegion=${region}&pSubRegion=${subregion}`)
+    return this.http.get<IRoot>(`/getCountries?pRegion=${region}&pSubRegion=${subregion}`)
   }
 
   public searchByName(name):Observable<IRoot>{
-    return this.http.get<IRoot>(`${this.baseURL}?pName=${name}`);
+    return this.http.get<IRoot>(`/getCountries?pName=${name}`);
   }
 
   public searchById(id):Observable<IRoot>{
-    return this.http.get<IRoot>(`${this.baseURL}?pAlpha3Code=${id}`);
+    return this.http.get<IRoot>(`/getCountries?pAlpha3Code=${id}`);
   }
     
+  public getDetail(name):Observable<IRoot>{
+    return this.http.get<IRoot>(`/getCountries?pname=${name}`);
+  }
 }
 
 
