@@ -1,5 +1,7 @@
- <a  (click)="auth('google')" *ngIf = "!user; else loggedIn"><i class="fa fa-google white-text fa-lg "> Login</i></a>
- 
- <ng-template #loggedIn>
-    <a class="orange-text font-weight-bold" (click)="auth('google')">{{user}}</a>   
- </ng-template>
+  <div *ngIf="! user">
+    <a  (click)="login()"><i class="fa fa-google white-text fa-lg "> Login</i></a>
+  </div>
+  <div *ngIf="user">
+        <span class="orange-text"> {{user.displayName}}</span>    
+  </div>
+
