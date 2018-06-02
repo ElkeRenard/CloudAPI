@@ -16,7 +16,7 @@ export class AuthGuard  {
       if (this.user) { 
         return true;
       } else {
-        window.alert("You don't have permission to view this page"); 
+        window.alert("You need to login to view this page"); 
         return false;
       }
   }
