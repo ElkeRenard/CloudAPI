@@ -1,0 +1,8 @@
+{
+  "/getCountries/*": {
+    "target": "http://countryapi.gear.host/v1/Country",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

@@ -27,7 +27,7 @@ export class SearchResultComponent implements OnInit, DoCheck {
     this.selectedRow = index;
     //console.log("clicked: ",countryIn.Name);
     //console.log("clicked",index);
-    this.share.setDetail(countryIn);
+    this.share.DetailCountry=countryIn;
   }
 
 

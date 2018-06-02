@@ -9,6 +9,7 @@ export class ShareService {
   private option: string;
   private user;
   public Option: string;
+  public DetailCountry:ICountry;
 
   constructor() { }
 
@@ -19,14 +20,6 @@ export class ShareService {
 
   getSearchResult(){
     return this.searchResult;
-  }
-
-  setDetail(input:ICountry){
-    this.searchDetail = input;
-  }
-
-  getDetail(){
-    return this.searchDetail;
   }
 
   //restricted pages
