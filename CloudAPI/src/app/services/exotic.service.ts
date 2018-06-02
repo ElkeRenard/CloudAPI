@@ -24,8 +24,8 @@ export class ExoticService {
     return this.http.get<IRoot>(`${this.baseURL}?pName=${name}`);
   }
 
-  public getDetail(fullname):Observable<IRoot>{
-    return this.http.get<IRoot>(`${this.baseURL}?pName=${fullname}`);
+  public searchById(id):Observable<IRoot>{
+    return this.http.get<IRoot>(`${this.baseURL}?pAlpha3Code=${id}`);
   }
     
 }
