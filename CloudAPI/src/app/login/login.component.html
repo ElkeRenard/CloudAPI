@@ -2,6 +2,6 @@
     <a  (click)="login()"><i class="fa fa-google white-text fa-lg "> Login</i></a>
   </div>
   <div *ngIf="user">
-        <span class="orange-text"> {{user.displayName}}</span>    
+       <a (click)="logout()"  [routerLink]="['/home']"><span class="orange-text"> {{user.displayName}}</span></a> 
   </div>
 

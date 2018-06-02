@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from './services/auth.service';
+import { User } from './services/user';
 
 @Injectable()
 export class AuthGuard  {
-  /*canActivate(
+  user: User;
+  constructor(private afService: AuthService){}
+
+  canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      if (this.userService.isLoggedIn()) { 
+      this.afService.user$.subscribe(user => this.user = user);
+      if (this.user) { 
         return true;
       } else {
         window.alert("You don't have permission to view this page"); 
         return false;
       }
-  }*/
+  }
 }
