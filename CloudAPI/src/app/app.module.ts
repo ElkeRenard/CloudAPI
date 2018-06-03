@@ -9,6 +9,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
+import * as firebase from 'firebase/app';
 
 //services
 import { ExoticService } from '././services/exotic.service';
@@ -35,14 +36,27 @@ import { RestrictedDetailComponent } from './restrictedPages/restricted-detail/r
 import { RestrictedListAllComponent } from './restrictedPages/restricted-list-all/restricted-list-all.component';
 import { RestrictedStoriesComponent } from './restrictedPages/restricted-stories/restricted-stories.component';
 
-
+/*workaround for connection error firestore
+const originalSend = XMLHttpRequest.prototype.send;
+XMLHttpRequest.prototype.send = function(body) {
+  if (body === '') {
+    originalSend.call(this);
+  } else {
+    originalSend.call(this, body);
+  }
+};*/
 
 const appRoutes: Routes=[
   {path: "home", component: OpenComponent},
   {path: "", redirectTo: "home", pathMatch: 'full'},
   {path: "restricted", component: RestrictedComponent, canActivate:[AuthGuard]}
   //{path: "**", redirectTo: "home", pathMatch: 'full'}
-]
+];
+
+firebase.initializeApp(environment.firebase);
+const firestore = firebase.firestore();
+const settings = { timestampsInSnapshots: true};
+firestore.settings(settings);
 
 
 

@@ -10,6 +10,8 @@ import { User } from './user';
 export class AuthService {
 
   user$: Observable<User>;
+  metadata;
+  
   constructor(public afAuth: AngularFireAuth, public afs: AngularFirestore) {
     this.user$ = afAuth.authState.switchMap(user => {
       if(user) {
@@ -22,25 +24,26 @@ export class AuthService {
 
    loginWithGooglge(){
      const provider = new firebase.auth.GoogleAuthProvider();
-     this.afAuth.auth.signInWithPopup(provider).then((credential) => {
-       console.log("credential: ",credential);
-       console.log("user: ", credential.user);
-      this.updateUser(credential);
+     this.afAuth.auth.signInWithPopup(provider).then((data) => {
+       this.metadata = data;
+       //console.log("credential: ",credential);
+       //console.log("user: ", credential.user);
+      this.updateUser(data);
     });
    }
 
-   updateUser(credential) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${credential.user.uid}`);
-    const data: User = {
-      uid: credential.user.uid,
-      token: credential.credential.idToken,
-      email: credential.user.email,
-      displayName: credential.user.displayName,
-      photoURL: credential.user.photoURL,
+   updateUser(data) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${data.user.uid}`);
+    const user: User = {
+      uid: data.user.uid,
+      token: data.credential.idToken,
+      email: data.user.email,
+      displayName: data.user.displayName,
+      photoURL: data.user.photoURL,
 
     }
-    console.log("data: ", data);
-    return userRef.set(data, {merge: true});
+    console.log("data: ", user);
+    return userRef.set(user, {merge: true});
   }
 
    logout(){

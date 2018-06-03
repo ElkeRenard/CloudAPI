@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,15 @@ namespace myWorldApi
                         .AllowAnyHeader();
                     });
             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                 options.Authority = "{https://www.googleapis.com/oauth2/v3/tokeninfo?}";
+                 options.Audience = "{localhost:4200/}";
+                 options.RequireHttpsMetadata = false;
+                });
+
             services.AddMvc();
 
         }
@@ -56,7 +66,7 @@ namespace myWorldApi
                 app.UseDeveloperExceptionPage();
             }
 
-
+            app.UseAuthentication();
             app.UseMvc();
 
             DBInitializer.Initialize(worldctx);
