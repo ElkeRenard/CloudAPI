@@ -13,6 +13,7 @@ export class ShareService {
   public storiesByCountry;
   public storyDetail: IStory;
   public storyList: IStory[];
+  public restrictedDetail;
 
   constructor() { }
 
@@ -37,6 +38,7 @@ export class ShareService {
 
   setRestrictedDetail(input, option){
     this.searchDetail = input;
+    this.restrictedDetail = input;//tijdelijke oplossing voor onterechte error
     this.option = option;
   }
 

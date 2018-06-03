@@ -32,7 +32,7 @@ export class StoryComponent implements OnInit {
       Author : "",
       Travelstory: ""
     };
-    this.story.Country = this.share.getRestrictedDetail()[0].name; //werkt maar geeft toch error
+    this.story.Country = this.share.restrictedDetail.name; //tijdelijke oplossing voor onterechte error
     this.story.StartDate = (document.getElementById("startDate") as HTMLInputElement).value;
     this.story.EndDate = (document.getElementById("endDate") as HTMLInputElement).value;
     this.story.Author = (document.getElementById("author") as HTMLInputElement).value;
