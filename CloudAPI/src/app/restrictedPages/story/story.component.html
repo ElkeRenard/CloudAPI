@@ -1,0 +1,43 @@
+<div class="modal-dialog cascading-modal" role="document">
+  <!--Content-->
+  <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header cyan white-text" *ngIf="share.getRestrictedDetail()[0]">
+          <h4 class="title font-weight-bold">{{share.getRestrictedDetail()[0].name}}</h4>
+          <h4 class="title"><i class="fa fa-pencil"></i> Add a travel story</h4>
+          <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="close()">
+              <span aria-hidden="true">×</span>
+          </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+
+              <div class="col">
+                  <label for="startDate">Start date</label>
+                  <input type="text" id="startDate" class="form-control form-control-sm" placeholder="dd/mm/yyyy">
+              </div>
+          
+              <div class="col">
+                  <label for="endDate">End date</label>
+                  <input type="text" id="endDate" class="form-control form-control-sm" placeholder="dd/mm/yyyy">
+              </div>
+          </div>
+                          
+          <br>
+          
+          <label for="author">Story teller</label>
+          <input type="text" id="author" class="form-control form-control-sm">
+          <br>               
+                          
+          <label for="story">Your story</label>
+          <textarea type="text" id="story" class="md-textarea form-control"></textarea>
+          
+          <div class="text-center mt-4 mb-2">
+              <button id="saveStoryButton" class="btn" style="background-color:#33b5e5" (click)="saveStory()">Save
+                  <i class="fa fa-send ml-2"></i>
+              </button>
+          </div>
+      </div>
+  </div>
+</div>
