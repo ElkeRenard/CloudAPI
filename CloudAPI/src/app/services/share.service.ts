@@ -8,10 +8,11 @@ export class ShareService {
   private searchResult: ICountry[];
   private searchDetail: ICountry;
   private option: string;
-  private user;
   public Option: string;
   public DetailCountry:ICountry;
   public storiesByCountry;
+  public storyDetail: IStory;
+  public storyList: IStory[];
 
   constructor() { }
 
@@ -24,7 +25,7 @@ export class ShareService {
     return this.searchResult;
   }
 
-  //restricted pages
+  //restricted pages, countries
   setRestrictedSearchResult(result, option){
     this.searchResult = result;
     this.option = option;

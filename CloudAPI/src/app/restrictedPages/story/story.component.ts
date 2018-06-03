@@ -1,4 +1,4 @@
-import { Component, OnInit,Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShareService } from '../../services/share.service';
 import { MyWorldService, IStory } from '../../services/my-world.service';
 import { RestrictedDetailComponent } from '../restricted-detail/restricted-detail.component';
@@ -14,7 +14,7 @@ export class StoryComponent implements OnInit {
   public story: IStory;
   private saveStoryButton;
 
-  constructor(private share: ShareService, private myWorldAPI: MyWorldService, private modal: RestrictedDetailComponent, private renderer: Renderer2) { }
+  constructor(private share: ShareService, private myWorldAPI: MyWorldService, private modal: RestrictedDetailComponent) { }
 
   ngOnInit() {
   }
@@ -32,14 +32,13 @@ export class StoryComponent implements OnInit {
       Author : "",
       Travelstory: ""
     };
-    this.story.Country = this.share.getRestrictedDetail()[0].name; //geeft onterecht error
+    this.story.Country = this.share.getRestrictedDetail()[0].name; //werkt maar geeft toch error
     this.story.StartDate = (document.getElementById("startDate") as HTMLInputElement).value;
     this.story.EndDate = (document.getElementById("endDate") as HTMLInputElement).value;
     this.story.Author = (document.getElementById("author") as HTMLInputElement).value;
     this.story.Travelstory = (document.getElementById("story") as HTMLInputElement).value
     this.myWorldAPI.addStory(this.story).subscribe(result => {
-      console.log("recieve: ", result);
-      this.renderer.setStyle(this.saveStoryButton, 'background-color', '#00C851');
+      //console.log("recieve: ", result);
       (document.getElementById("startDate") as HTMLInputElement).value ="";
       (document.getElementById("endDate") as HTMLInputElement).value="";
       (document.getElementById("author") as HTMLInputElement).value="";

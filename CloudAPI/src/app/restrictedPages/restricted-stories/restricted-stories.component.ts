@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MyWorldService, IMyStory, IStory } from '../../services/my-world.service';
+import { ShareService } from '../../services/share.service';
 
 @Component({
   selector: 'restricted-stories',
@@ -12,14 +13,15 @@ export class RestrictedStoriesComponent implements OnInit {
   public storyDetail;
   private page:number=1;
   private isSort: string;
+  public display='none';
 
-  constructor(private myWorldAPI: MyWorldService) { }
+  constructor(private myWorldAPI: MyWorldService, private share: ShareService) { }
 
   ngOnInit() {
     this.getList();
   }
 
-  private getList(){
+  public getList(){
     switch(this.isSort){
       case 'author':
       case 'country':
@@ -74,25 +76,13 @@ export class RestrictedStoriesComponent implements OnInit {
     });
   }
 
-  public getDetail(story:IMyStory){
+  openModal(story:IMyStory){
+    this.display='block';
     this.myWorldAPI.getStory(story.id).subscribe(result => {
-      this.storyDetail = result;
-      console.log(this.storyDetail);
+      this.share.storyDetail = result;
+      console.log(this.share.storyDetail);
     },
     err => {console.log(err.message);
-    },
-    () => {
-
-    });
-  }
-
-  public updateStory(){
-    this.myWorldAPI.updateStory(this.storyDetail).subscribe(result => {
-      console.log("recieve: ", result);
-      this.getList();
-    },
-    err => {
-      console.log(err.message);
     },
     () => {
 
