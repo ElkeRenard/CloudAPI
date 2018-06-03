@@ -23,21 +23,23 @@ export class AuthService {
    loginWithGooglge(){
      const provider = new firebase.auth.GoogleAuthProvider();
      this.afAuth.auth.signInWithPopup(provider).then((credential) => {
-      this.updateUser(credential.user);
+       console.log("credential: ",credential);
+       console.log("user: ", credential.user);
+      this.updateUser(credential);
     });
    }
 
-   updateUser(user) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+   updateUser(credential) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${credential.user.uid}`);
     const data: User = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      roles: {
-        subscriber: true
-      }
+      uid: credential.user.uid,
+      token: credential.credential.idToken,
+      email: credential.user.email,
+      displayName: credential.user.displayName,
+      photoURL: credential.user.photoURL,
+
     }
+    console.log("data: ", data);
     return userRef.set(data, {merge: true});
   }
 
