@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyWorldService, IMyCountry } from '../../services/my-world.service';
 import { ShareService } from "../../services/share.service";
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'restricted-list-all',
@@ -14,7 +15,7 @@ export class RestrictedListAllComponent implements OnInit {
   public favourite: boolean;
   private page: number=1;
 
-  constructor(private myWorldAPI: MyWorldService, private share: ShareService) { }
+  constructor(private myWorldAPI: MyWorldService, private share: ShareService, private afService: AuthService) { }
 
   ngOnInit() {
     this.getList();

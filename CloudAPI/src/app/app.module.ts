@@ -9,6 +9,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
+import * as firebase from 'firebase/app';
 
 //services
 import { ExoticService } from '././services/exotic.service';
@@ -42,7 +43,12 @@ const appRoutes: Routes=[
   {path: "", redirectTo: "home", pathMatch: 'full'},
   {path: "restricted", component: RestrictedComponent, canActivate:[AuthGuard]}
   //{path: "**", redirectTo: "home", pathMatch: 'full'}
-]
+];
+
+firebase.initializeApp(environment.firebase);
+const firestore = firebase.firestore();
+const settings = { timestampsInSnapshots: true};
+firestore.settings(settings);
 
 
 

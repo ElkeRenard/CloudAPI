@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace myWorldApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/Countries")]
+    //[Authorize]
     public class CountriesController : Controller
     {
         private readonly WorldContext context;

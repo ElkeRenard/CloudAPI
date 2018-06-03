@@ -9,12 +9,16 @@ import  {ICountry } from './exotic.service';
 export class MyWorldService {
 
   private baseUrl: string = "http://localhost:1768/api/";
+  public httpOptions: HttpHeaders;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    
+   }
 
   //calls to countries
-  public getCountries(page:number=null, length:number=null): Observable<IMyCountry[]>{
-    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries?page=${page}&length=${length}`);
+  public getCountries(/*token:string, */page:number=null, length:number=null): Observable<IMyCountry[]>{
+    //this.httpOptions = new HttpHeaders().append('Authorization', token);
+    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries?page=${page}&length=${length}`/*, {headers:this.httpOptions}*/);
     
   }
 
