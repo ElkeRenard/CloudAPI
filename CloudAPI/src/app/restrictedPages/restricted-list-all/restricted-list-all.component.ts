@@ -14,6 +14,7 @@ export class RestrictedListAllComponent implements OnInit {
   public selectedRow: number;
   public favourite: boolean;
   private page: number=1;
+  display='none';
 
   constructor(private myWorldAPI: MyWorldService, private share: ShareService, private afService: AuthService) { }
 
@@ -81,7 +82,7 @@ export class RestrictedListAllComponent implements OnInit {
     this.share.setRestrictedDetail(countryIn, "MyWorld");
   }
 
-  public delete(country, index:number){
+  public delete(country){
     //console.log("handle data: ",country);
       //delete country from my world
       this.myWorldAPI.deleteCountry(country.id).subscribe(result => {
@@ -94,6 +95,20 @@ export class RestrictedListAllComponent implements OnInit {
       () => {
         //console.log("done");
       });
+  }
+
+  openModal(country: IMyCountry){
+    this.display='block';
+    this.myWorldAPI.getStoriesByCountry(country.name).subscribe(result => {
+      console.log(result);
+      this.share.storiesByCountry = [country.name,result];
+    },
+    err => {
+      console.log(err.message);
+    },
+    () => {
+
+    });
   }
 
 }

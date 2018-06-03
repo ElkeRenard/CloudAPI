@@ -35,6 +35,7 @@ import { RestrictedSearchResultComponent } from './restrictedPages/restricted-se
 import { RestrictedDetailComponent } from './restrictedPages/restricted-detail/restricted-detail.component';
 import { RestrictedListAllComponent } from './restrictedPages/restricted-list-all/restricted-list-all.component';
 import { RestrictedStoriesComponent } from './restrictedPages/restricted-stories/restricted-stories.component';
+import { StoriesByCountryComponent } from './restrictedPages/stories-by-country/stories-by-country.component';
 
 /*workaround for connection error firestore
 const originalSend = XMLHttpRequest.prototype.send;
@@ -77,7 +78,8 @@ firestore.settings(settings);
     RestrictedSearchResultComponent,
     RestrictedDetailComponent,
     RestrictedListAllComponent,
-    RestrictedStoriesComponent
+    RestrictedStoriesComponent,
+    StoriesByCountryComponent
   ],
   imports: [ 
     AngularFireModule.initializeApp(environment.firebase),

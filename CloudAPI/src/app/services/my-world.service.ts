@@ -71,11 +71,11 @@ export class MyWorldService {
     return this.http.get<IStory[]>(`${this.baseUrl}Stories?sort=${sortby}&page=${page}&length=${length}`);
   }
 
-  /*public getStoriesByCountry(country:ICountry):Observable<IStory[]>{
+  public getStoriesByCountry(country:string):Observable<IStory[]>{
     return this.http.get<IStory[]>(`${this.baseUrl}Stories?country=${country}`);
   }
 
-  public getStoriesByAuthor(author: string):Observable<IStory[]>{
+  /*public getStoriesByAuthor(author: string):Observable<IStory[]>{
     return this.http.get<IStory[]>(`${this.baseUrl}Stories?name=${author}`);
   }*/
 }

@@ -26,7 +26,7 @@
                 <td>{{country.name}}</td>
                 <td>{{country.nativeName}}</td>
                 <td>{{country.region}}</td>
-                <td><button type="button" class="btn btn-cyan btn-sm" (click)="showStories(country)">Stories</button></td>               
+                <td><button type="button" class="btn btn-cyan btn-sm" (click)="openModal(country)">Stories</button></td>               
                 <td><button class="klik" type="button" class="btn btn-red btn-sm" (click)="delete(country)">Delete</button></td>
             </tr>
         </tbody>
@@ -34,4 +34,9 @@
     
     </table>
     <!--Table-->
+    <div class="backdrop" [ngStyle]="{'display':display}"></div>
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+        <stories-by-country></stories-by-country>
+    </div>
+    
 </section>
