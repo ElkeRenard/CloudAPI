@@ -75,11 +75,11 @@
     </div>
 
     <div class="row d-flex justify-content-center mt-4" *ngIf="share.Option == 'MyWorld'">
-        <div class="col-md-3 d-flex justify-content-center">
+        <div class="col-md-3 d-flex justify-content-center" *ngIf = "country">
             <button type="button" class="btn btn-cyan btn-lg" (click)="save()" mdbWavesEffect>Save</button>
         </div>
 
-        <div class="col-md-3 d-flex justify-content-center">
+        <div class="col-md-3 d-flex justify-content-center"*ngIf = "country" >
             <button type="button" class="btn btn-cyan btn-lg" (click)="openModal(country)" mdbWavesEffect>Story</button>
         </div>
 
