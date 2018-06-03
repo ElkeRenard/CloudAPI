@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ICountry } from './exotic.service';
+import { IStory } from './my-world.service';
 
 @Injectable()
 export class ShareService {
@@ -7,8 +8,11 @@ export class ShareService {
   private searchResult: ICountry[];
   private searchDetail: ICountry;
   private option: string;
-  private user;
   public Option: string;
+  public DetailCountry:ICountry;
+  public storiesByCountry;
+  public storyDetail: IStory;
+  public storyList: IStory[];
 
   constructor() { }
 
@@ -21,15 +25,7 @@ export class ShareService {
     return this.searchResult;
   }
 
-  setDetail(input:ICountry){
-    this.searchDetail = input;
-  }
-
-  getDetail(){
-    return this.searchDetail;
-  }
-
-  //restricted pages
+  //restricted pages, countries
   setRestrictedSearchResult(result, option){
     this.searchResult = result;
     this.option = option;
@@ -46,15 +42,6 @@ export class ShareService {
 
   getRestrictedDetail(){
     return [this.searchDetail, this.option];
-  }
-
-  //authentication
-  setUser(user){
-    this.user = user;
-  }
-
-  getUser(user){
-    return this.user;
   }
 
 }

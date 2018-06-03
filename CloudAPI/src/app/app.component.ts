@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { OpenComponent } from './openPages/open/open.component';
 import { RestrictedComponent } from './restrictedPages/restricted/restricted.component';
 import { NavbarRestrictedComponent } from './restrictedPages/navbar-restricted/navbar-restricted.component';
+import { environment } from './../environments/environment';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',

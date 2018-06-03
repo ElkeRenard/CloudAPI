@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace myWorldApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/Countries")]
+    //[Authorize]
     public class CountriesController : Controller
     {
         private readonly WorldContext context;
@@ -21,14 +23,19 @@ namespace myWorldApi.Controllers
         }
 
         [HttpGet]        
-        public List<Country> getAll(string name, bool favourite)
+        public List<Country> getAll(string name, bool favourite, int? page, int? length)
         {
+            var ppage = page ?? 1;
+            var llength = length ?? 5;
+
             IQueryable < Country > query = context.Countries;
             if (!string.IsNullOrWhiteSpace(name))
                 query = query.Where(d => d.Name.Contains(name));
 
             if (favourite)
                 query = query.Where(d => d.Favourite == true);
+
+            query = query.Skip((ppage - 1) * llength).Take(llength);
 
             return query.ToList();
         }

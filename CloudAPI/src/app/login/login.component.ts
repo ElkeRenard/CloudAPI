@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AuthService,
-  GoogleLoginProvider
-} from 'angular5-social-login';
+import { AuthService } from '../services/auth.service';
+import { User } from '../services/user';
 
 @Component({
   selector: 'login',
@@ -11,44 +9,21 @@ import {
 })
 export class LoginComponent implements OnInit {
 
-  public user;
+  user:User;
+  constructor(public afService: AuthService ) {}
 
-  constructor( private socialAuthService: AuthService ) {}
-
-  public auth(socialPlatform: string){
-    if(!this.user){
-      this.socialSignIn(socialPlatform);
-    }
-    if(this.user){
-      this.signOut();
-    }
-  }
-  
-  private socialSignIn(socialPlatform : string) {
-    let socialPlatformProvider;
-    if(socialPlatform == "google"){
-      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-    }
-    
-    this.socialAuthService.signIn(socialPlatformProvider).then(
-      (userData) => {
-        console.log(socialPlatform+" sign in data : " , userData);
-        this.user = userData.name;
-
-        // Now sign-in with userData
-            
-      }
-    );
-  }
-
-  private signOut(){
-    this.socialAuthService.signOut();
-  }
+ 
 
   ngOnInit() {
-
+    this.afService.user$.subscribe(user => this.user = user);
   }
 
+  login(){
+    this.afService.loginWithGooglge();
+  }
 
+  logout(){
+    this.afService.logout();
+  }
 
 }

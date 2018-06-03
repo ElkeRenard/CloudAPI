@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myWorldApi.models;
@@ -10,6 +11,7 @@ namespace myWorldApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/Stories")]
+    //[Authorize]
     public class StoriesController : Controller
     {
         private readonly WorldContext context;
@@ -20,14 +22,32 @@ namespace myWorldApi.Controllers
         }
 
         [HttpGet]
-        public List<Story> getAll(string name, string country)
+        public List<Story> getAll(string name, string country, string sort, int? page, int? length)
         {
+            var ppage = page ?? 1;
+            var llength = length ?? 5;
+
             IQueryable<Story> query = context.Stories;
             if (!string.IsNullOrWhiteSpace(name))
                 query = query.Where(d => d.Author.Contains(name));
 
             if (country != null)
                 query = query.Where(d => d.Country == country);
+
+            if (!string.IsNullOrWhiteSpace(sort))
+            {
+                switch (sort)
+                {
+                    case "country":
+                            query = query.OrderBy(d => d.Country);
+                        break;
+                    case "author":
+                            query = query.OrderBy(d => d.Author);
+                        break;
+                }
+            }
+
+            query = query.Skip((ppage - 1) * llength).Take(llength);
 
             return query.ToList();
         }
@@ -53,7 +73,7 @@ namespace myWorldApi.Controllers
                 return NotFound();
             context.Stories.Remove(story);
             context.SaveChanges();
-            return NoContent();
+            return Ok(context.Stories);
         }
 
         [HttpPost]

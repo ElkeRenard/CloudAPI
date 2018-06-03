@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Renderer2 } from '@angular/core';
 import * as L from 'leaflet';
 import {ExoticService, ICountry } from '../../services/exotic.service';
 import { latLng, tileLayer } from 'leaflet';
 import {ShareService } from '../../services/share.service';
-import { MyWorldService } from '../../services/my-world.service';
+import { MyWorldService, IStory, IMyCountry } from '../../services/my-world.service';
 
 @Component({
   selector: 'restricted-detail',
@@ -18,8 +18,9 @@ export class RestrictedDetailComponent implements OnInit {
   private input;
   public options;
   private data;
+  public display='none';
 
-  constructor(public exoticApi: ExoticService, private share: ShareService, private myWorldAPI: MyWorldService) { }
+  constructor(public exoticApi: ExoticService, private share: ShareService, private myWorldAPI: MyWorldService, private renderer: Renderer2) { }
 
   ngOnInit() {
   }
@@ -85,5 +86,10 @@ export class RestrictedDetailComponent implements OnInit {
       zoom: 6,
       center: latLng([ this.lat, this.long ])
     };
+  }
+
+  openModal(country: IMyCountry){
+    this.display='block';
+    
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, DoCheck } from '@angular/core';
 import * as L from 'leaflet';
 import {ExoticService, ICountry } from '../../services/exotic.service';
 import { latLng, tileLayer } from 'leaflet';
@@ -9,51 +9,15 @@ import {ShareService } from '../../services/share.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class DetailComponent implements OnInit{
+export class DetailComponent implements OnInit, DoCheck{
 
-  private lat: number=46.879966;
-  private long: number=-121.726909;
-  public country: ICountry;
-  private input:ICountry;
-  public options;
 
   constructor(public exoticApi: ExoticService,private share: ShareService) { }
 
-  ngOnInit() {console.log("oninit");}
-
-  public go(){
-    this.country = null;
-    if(this.share.getDetail() != null){
-      this.input = this.share.getDetail();
-      this.exoticApi.getDetail(this.input.Name).subscribe(root => {
-        this.country = root.Response[0];
-        this.setMap(this.country);
-      },
-      err => {
-        console.log(err.message);
-      },
-      () => {
-        console.log("Done loading");
-      });
-    }
-
+  ngOnInit() {
   }
 
-  private setMap(country){
-    this.lat = this.country.Latitude;
-    this.long = this.country.Longitude;
-    console.log("detail:" ,this.country);
-    this.options = {
-      layers: [
-        tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-          maxZoom: 20,
-          subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-          detectRetina: true
-        })
-      ],
-      zoom: 6,
-      center: latLng([ this.lat, this.long ])
-    };
+  ngDoCheck(){
+   
   }
-
 }

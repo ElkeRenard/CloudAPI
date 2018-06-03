@@ -1,5 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top " style="background-color: rgba(46, 46, 46, 0.6)">
-  <div class="container">
+  
+        <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                    <login></login>
+                </li>
+            </ul>
+    <div class="container">
 
       <!-- Collapse button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
@@ -36,13 +42,13 @@
 
           </ul>
 
-          <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item">
-                <login></login>
-            </li>
-        </ul>
       </div>
       <!-- Collapsible content -->
-
+      
+            <div class="md-form my-0 form-inline">
+                <input class="form-control white-text" type="text" placeholder="ID: alpha3Code" id="Search">
+            </div>
+            <a href='#detail'><button class="btn btn-outline-white btn-sm " (click)="onSubmit()">Search</button></a>
+   
   </div>
 </nav>

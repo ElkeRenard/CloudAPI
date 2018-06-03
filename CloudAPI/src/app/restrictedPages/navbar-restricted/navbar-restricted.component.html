@@ -13,18 +13,22 @@
             <!-- Links -->
             <ul class="navbar-nav mr-auto smooth-scroll">
                 <li class="nav-item">
-                    <a class="nav-link" href="#home">Home
+                    <a class="nav-link"  [routerLink]="['/home']">Home
                     </a>
                 </li>
 
   
                 <li class="nav-item" [routerLinkActive]="['active']">
-                      <a  class="nav-link" [routerLink]="['/restricted']">My World</a>     
+                      <a  class="nav-link" href="#restricted-home">My World</a>     
                 </li>
 
                 <li class="nav-item" >
-                    <a  class="nav-link" href="#restricted-list-all">ListAll</a>     
-                </li>                
+                    <a  class="nav-link" href="#restricted-list-all">Countries</a>     
+                </li>
+                
+                <li class="nav-item" >
+                    <a  class="nav-link" href="#restricted-stories">Stories</a>     
+                </li>                    
   
             </ul>
   

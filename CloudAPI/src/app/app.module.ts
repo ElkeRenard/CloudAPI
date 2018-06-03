@@ -1,19 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { ExoticService } from '././services/exotic.service';
-import { MyWorldService } from '././services/my-world.service';
-import { ShareService } from '././services/share.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, FormsModule} from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import {
-  SocialLoginModule,
-  AuthServiceConfig,
-  GoogleLoginProvider
-} from "angular5-social-login";
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import * as firebase from 'firebase/app';
 
+//services
+import { ExoticService } from '././services/exotic.service';
+import { MyWorldService } from '././services/my-world.service';
+import { ShareService } from '././services/share.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './auth.guard';
+
+//components
 import { AppComponent } from './app.component';
 import { NavbarOpenComponent } from './openPages/navbar/navbar.component';
 import { HomepageComponent } from './openPages/homepage/homepage.component';
@@ -29,29 +34,34 @@ import { RestrictedHomeComponent } from './restrictedPages/restricted-home/restr
 import { RestrictedSearchResultComponent } from './restrictedPages/restricted-search-result/restricted-search-result.component';
 import { RestrictedDetailComponent } from './restrictedPages/restricted-detail/restricted-detail.component';
 import { RestrictedListAllComponent } from './restrictedPages/restricted-list-all/restricted-list-all.component';
-import { StoryModalComponent } from './restrictedPages/story-modal/story-modal.component';
-import { RestrictedStoriesComponent } from './restricted-stories/restricted-stories.component';
+import { RestrictedStoriesComponent } from './restrictedPages/restricted-stories/restricted-stories.component';
+import { StoriesByCountryComponent } from './restrictedPages/stories-by-country/stories-by-country.component';
+import { StoryComponent } from './restrictedPages/story/story.component';
+import { UpdateStoryComponent } from './restrictedPages/update-story/update-story.component';
+
+/*workaround for connection error firestore
+const originalSend = XMLHttpRequest.prototype.send;
+XMLHttpRequest.prototype.send = function(body) {
+  if (body === '') {
+    originalSend.call(this);
+  } else {
+    originalSend.call(this, body);
+  }
+};*/
 
 const appRoutes: Routes=[
   {path: "home", component: OpenComponent},
   {path: "", redirectTo: "home", pathMatch: 'full'},
-  {path: "restricted", component: RestrictedComponent}
+  {path: "restricted", component: RestrictedComponent, canActivate:[AuthGuard]}
   //{path: "**", redirectTo: "home", pathMatch: 'full'}
-]
+];
 
-export function getAuthServiceConfigs() {
-  const id = "977080412179-vme2o8kuklc86n34c2i17tsnp6v1556m.apps.googleusercontent.com";
-  
-  let config = new AuthServiceConfig(
-      [
-        {
-          id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider(id)
-        },
-      ]
-  );
-  return config;
-}
+firebase.initializeApp(environment.firebase);
+const firestore = firebase.firestore();
+const settings = { timestampsInSnapshots: true};
+firestore.settings(settings);
+
+
 
 @NgModule({
   declarations: [
@@ -70,15 +80,19 @@ export function getAuthServiceConfigs() {
     RestrictedSearchResultComponent,
     RestrictedDetailComponent,
     RestrictedListAllComponent,
-    StoryModalComponent,
-    RestrictedStoriesComponent
+    RestrictedStoriesComponent,
+    StoriesByCountryComponent,
+    StoryComponent,
+    UpdateStoryComponent
   ],
-  imports: [
+  imports: [ 
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
     BrowserModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     LeafletModule.forRoot(),
-    SocialLoginModule,
     FormsModule,
     RouterModule.forRoot(appRoutes, {useHash:true})
 
@@ -87,10 +101,9 @@ export function getAuthServiceConfigs() {
   providers: [HttpClient,
     ExoticService,
     MyWorldService,
-    ShareService,  
-    {provide: AuthServiceConfig,
-    useFactory: getAuthServiceConfigs
-    }
+    ShareService,
+    AuthGuard,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

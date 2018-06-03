@@ -9,16 +9,21 @@ import  {ICountry } from './exotic.service';
 export class MyWorldService {
 
   private baseUrl: string = "http://localhost:1768/api/";
+  public httpOptions: HttpHeaders;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    
+   }
 
   //calls to countries
-  public getCountries(): Observable<IMyCountry[]>{
-    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries`);
+  public getCountries(/*token:string, */page:number=null, length:number=null): Observable<IMyCountry[]>{
+    //this.httpOptions = new HttpHeaders().append('Authorization', token);
+    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries?page=${page}&length=${length}`/*, {headers:this.httpOptions}*/);
+    
   }
 
-  public getFavourites(): Observable<IMyCountry[]>{
-    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries?favourite=true`);
+  public getFavourites(page:number=null, length:number=null): Observable<IMyCountry[]>{
+    return this.http.get<IMyCountry[]>(`${this.baseUrl}Countries?favourite=true&page=${page}&length=${length}`);
   }
 
   public addCountry(country: ICountry){
@@ -42,8 +47,8 @@ export class MyWorldService {
   }
 
   //calls to stories
-  public getStories():Observable<IStory[]>{
-    return this.http.get<IStory[]>(`${this.baseUrl}Stories`);
+  public getStories(page:number=null, length:number=null):Observable<IStory[]>{
+    return this.http.get<IStory[]>(`${this.baseUrl}Stories?page=${page}&length=${length}`);
   }
 
   public deleteStory(id:number){
@@ -62,13 +67,17 @@ export class MyWorldService {
     return this.http.post(`${this.baseUrl}Stories`, story);
   }
 
-  public getStoriesByCountry(country:ICountry):Observable<IStory[]>{
+  public sort(sortby: string, page:number=null, length:number=null):Observable<IStory[]>{
+    return this.http.get<IStory[]>(`${this.baseUrl}Stories?sort=${sortby}&page=${page}&length=${length}`);
+  }
+
+  public getStoriesByCountry(country:string):Observable<IStory[]>{
     return this.http.get<IStory[]>(`${this.baseUrl}Stories?country=${country}`);
   }
 
-  public getStoriesByAuthor(author: string):Observable<IStory[]>{
+  /*public getStoriesByAuthor(author: string):Observable<IStory[]>{
     return this.http.get<IStory[]>(`${this.baseUrl}Stories?name=${author}`);
-  }
+  }*/
 }
 
 export interface IMyCountry{
@@ -102,15 +111,10 @@ export interface IStory{
 }
 
 export interface IMyStory{
-  Id: number,
-  Country: string,
-  StartDate: string,
-  EndDate: string,
-  Author: string,
-  Travelstory: string
-}
-
-export interface IAuthor{
-  Id: number,
-  Name:string
+  id: number,
+  country: string,
+  startDate: string,
+  endDate: string,
+  author: string,
+  travelstory: string
 }
