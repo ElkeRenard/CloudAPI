@@ -67,8 +67,8 @@ export class MyWorldService {
     return this.http.post(`${this.baseUrl}Stories`, story);
   }
 
-  public sort(sortby: string, dir:string="asc"):Observable<IStory[]>{
-    return this.http.get<IStory[]>(`${this.baseUrl}Stories?sort=${sortby}`);
+  public sort(sortby: string, page:number=null, length:number=null):Observable<IStory[]>{
+    return this.http.get<IStory[]>(`${this.baseUrl}Stories?sort=${sortby}&page=${page}&length=${length}`);
   }
 
   /*public getStoriesByCountry(country:ICountry):Observable<IStory[]>{

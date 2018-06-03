@@ -11,6 +11,7 @@ export class RestrictedStoriesComponent implements OnInit {
   public completeList;
   public storyDetail;
   private page:number=1;
+  private isSort: string;
 
   constructor(private myWorldAPI: MyWorldService) { }
 
@@ -19,16 +20,26 @@ export class RestrictedStoriesComponent implements OnInit {
   }
 
   private getList(){
-    this.myWorldAPI.getStories(this.page).subscribe(result => {
-      this.completeList = result;
-      console.log(result);
-    },
-    err => {
-      console.log(err.message);
-    },
-    () => {
-
-    });
+    switch(this.isSort){
+      case 'author':
+      case 'country':
+        this.sort(this.isSort);
+        break;
+      default:
+      case '': 
+        this.myWorldAPI.getStories(this.page).subscribe(result => {
+        this.completeList = result;
+        console.log(result);
+      },
+      err => {
+        console.log(err.message);
+      },
+      () => {
+  
+      });
+      break;
+    }
+    
   }
 
   public prev(){
@@ -50,7 +61,8 @@ export class RestrictedStoriesComponent implements OnInit {
   }
 
   public sort(sortby: string){
-    this.myWorldAPI.sort(sortby).subscribe(result => {
+    this.isSort = sortby;
+    this.myWorldAPI.sort(this.isSort, this.page).subscribe(result => {
       this.completeList = result;
       console.log(this.completeList);
     },
